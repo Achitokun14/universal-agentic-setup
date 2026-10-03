@@ -38,7 +38,7 @@ Use $ARGUMENTS to reference the user's input.
 | `/init` | built-in | Generate initial CLAUDE.md for the repo |
 | `/revise-claude-md` | claude-md-management | Update CLAUDE.md with session learnings |
 
-## Bundled (claude-universal, inspired from OSS)
+## Bundled (universal-agentic-setup, inspired from OSS)
 
 Twelve commands shipped with this bundle in `user/commands/`. See `docs/INSPIRATIONS.md` for credits.
 

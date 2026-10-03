@@ -1,99 +1,99 @@
-# claude-universal
+# universal-agentic-setup
 
-> One portable bundle that brings 7 AI coding CLIs to feature-parity on your workstation, with safe defaults, idempotent installers, token-thrifty hooks, and a curated skill catalog. **Use any agent. Or all of them.**
+> One agent-neutral source of truth — rules, MCP servers, skills, tools — rendered
+> into the native config of **26 coding agents** (18 wired automatically, 8 with
+> printed instructions). Safe defaults, idempotent merges, no secrets in the repo.
+> **Use any agent. Or all of them.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![PRs: only via review](https://img.shields.io/badge/PRs-owner%20review-blue)](CONTRIBUTING.md)
 [![Status: stable](https://img.shields.io/badge/status-stable-green)](#status)
 
+Formerly `claude-universal` (v1, Claude-Code-canonical, 7 CLIs). v2 is agent-neutral.
+See [MIGRATION.md](MIGRATION.md) for the v1 → v2 path.
+
 ## Why
 
-If you use **Claude Code**, **Codex**, **Goose**, **Gemini CLI**, **Kimi**, **OpenCode**, or **Claw Code** — you're juggling per-CLI config files, separate skill libraries, mismatched MCP setups, and inconsistent hooks. This bundle:
+Every coding agent reads its own config files: `~/.claude/CLAUDE.md` here,
+`~/.codex/AGENTS.md` and TOML there, `mcp.json` in five shapes, YAML where you
+least want it. This repo keeps **one source of truth** — `core/` — and a sync
+engine that renders it into each agent's native format:
 
-- Ships **one source of truth** (`user/CLAUDE.md`, `user/hooks/`, etc.)
-- Deploys to **each CLI's native config format** (no lowest-common-denominator translator)
-- Adds **token-thrifty hooks** that suggest skills based on prompt intent (avg 0 tokens; cap 80)
-- Wires **30+ MCPs** including Obsidian, Firecrawl, Chrome DevTools, Playwright, Lightpanda, Ghidra, Stripe, Sentry, Linear, Notion, GitHub, GitLab, Railway, Vercel — *once*, deployed everywhere
-- Provides **idempotent installers** — run twice, never break
-- Treats **secrets as a first-class concern** — none in this repo, gitignored templates explain how to store them locally
+- `core/AGENTS.md` — universal working rules, deployed as a managed block
+- `core/mcp/servers.json` — MCP server catalog (12 servers, 6 default-enabled,
+  env var **names** only — never values)
+- `core/skills/catalog.json` — curated skill tiers (21 core / 14 optional / 9
+  rejected-with-reason); skills are installed on demand via `npx skills`,
+  the repo itself ships **zero vendored skills**
+- `core/tools/catalog.json` — 8 core + 7 optional companion CLIs
+- `agents/registry.json` — per-agent paths, MCP config format, detect hints,
+  manual flags — every entry verified against vendor docs
 
-## Quick install — **one command**
+What v2 does **not** do (honesty section): it does not mirror hooks or slash
+commands into non-Claude agents (hook formats are agent-specific; the v1 deep
+sync that did this was machine-bound and is retired), and it does not merge
+YAML configs (Goose, Hermes) — those agents get printed instructions instead.
 
-```bash
-git clone https://github.com/Achitokun14/claude-universal.git
-cd claude-universal
-./setup
-```
-
-That's it. `./setup` detects your OS + which AI CLIs you have installed, plans the changes, prompts once, and applies. Re-running is a safe no-op (or auto-update with `--update`).
-
-```bash
-./setup                                  # install (or no-op if up-to-date)
-./setup --dry-run                        # preview without changing anything
-./setup --yes --with=obsidian,markitdown # full + 2 add-ons, no prompts
-./setup --update                         # git pull + reapply
-./setup --doctor                         # diagnose without changing anything
-./setup --uninstall                      # restore .bak, remove bundle entries
-./setup --help                           # all flags
-```
-
-For secrets, copy the gitignored templates first:
+## Quick install — one command
 
 ```bash
-cp CREDS.md.template CREDS.md       # env-var inventory
-cp SECRETS.md.template SECRETS.md   # storage cookbook
-$EDITOR CREDS.md SECRETS.md
+git clone https://github.com/Achitokun14/universal-agentic-setup.git
+cd universal-agentic-setup
+./setup                 # PowerShell: .\setup.ps1
 ```
 
-See [QUICKSTART.md](QUICKSTART.md) for the full 5-minute path.
+`./setup` (→ `setup.sh`) runs 8 phases: detect OS/agents → plan → confirm →
+prereqs → Claude-rich user scope → skills → **wire every detected agent** → verify.
+The agent wiring is `scripts/agentic_sync.py` — dry-run by default, idempotent
+(re-running is a byte-identical no-op), reversible (`--uninstall` restores backups).
+
+For just the agent-neutral sync, skip the orchestrator:
+
+```bash
+python3 scripts/agentic_sync.py                 # plan only (dry-run default)
+python3 scripts/agentic_sync.py --apply         # write configs
+python3 scripts/agentic_sync.py --list          # 26-agent registry table
+python3 scripts/agentic_sync.py --doctor        # diagnostics
+python3 scripts/agentic_sync.py --apply --skills  # + core skills via npx skills
+```
+
+For secrets, copy the gitignored templates first: `CREDS.md.template` → `CREDS.md`,
+`SECRETS.md.template` → `SECRETS.md`. See [QUICKSTART.md](QUICKSTART.md).
+
+## Supported agents
+
+**18 wired automatically** (managed rules block + MCP merge in native format):
+Claude Code · Codex · Gemini CLI · Antigravity · Cursor · GitHub Copilot ·
+OpenCode · Amp · Cline · Windsurf/Devin · Kimi Code · Qwen Code · Crush ·
+Factory Droid · Zed · omp · Junie · Amazon Q.
+
+**8 manual** (printed instructions — YAML configs, GUI-managed MCP, or cloud-only):
+Roo Code · Kilo Code · Goose · Aider · Warp · Hermes · OpenHands · Jules.
+Exact reasons: [docs/AGENTS-MATRIX.md](docs/AGENTS-MATRIX.md) (generated from the registry).
+
+MCP formats rendered: Claude `~/.claude.json` · Codex TOML `[mcp_servers.*]` ·
+Gemini/Qwen settings.json · Cursor/Copilot/Junie/Factory/Kimi Code/omp/Cline/Amazon-Q
+mcp.json-style · OpenCode `mcp` local|remote · Zed `context_servers` ·
+Amp `amp.mcpServers` · Crush `mcp` · Antigravity/Windsurf `serverUrl` for remote.
+Unrelated keys and user entries are always preserved; every modified file gets a
+timestamped `.bak` first.
 
 ## What's included
 
-### Per-CLI native deployment
+### The Claude-canonical layer (v1 heritage, still maintained)
 
-| CLI | Skills | Commands | Hooks | MCPs | Custom providers |
-|---|---|---|---|---|---|
-| **Claude Code** | 358+ user-scope (catalog Tier-S/A surfaced) | 13 bundled | 11 hooks (post-tool, prompt, stop) | 25+ | — |
-| **Codex** | 75+ symlinked from Claude | 13 mirrored | 11 hooks linked | TOML | — |
-| **Goose** | 358 (already had — preserved) | — | hooks/ dir mirrored | 9+ MCPs | MiniMax planner |
-| **Gemini CLI** | 60+ Tier-S/A linked | 13 ported | first-party hook migration | 5+ | — |
-| **Kimi** | — (no skill concept) | — | — | 6+ MCPs | MiniMax + Ollama-cloud TOML |
-| **OpenCode** | — | 13 as native agents | — | 41 MCPs | MiniMax + Ollama-cloud |
-| **Claw Code** | env-var aggregator router | — | — | — | aggregator routing via `CLAW_API_*` |
+Deployed by `install.sh user` / `install.ps1` / `./setup` into `~/.claude/`:
+settings deep-merge, docs, commands, hooks.
 
-### Token-thrifty skill router
-
-`user/hooks/skill-router.sh` runs on every prompt. Most prompts → 0 tokens. Triggered prompts → ≤80 tokens with one-line skill pointers. Compare to BASE-style always-on injection (~300 tokens *every* prompt — 70-100% saving per turn).
-
-Curated `skill-router.conf` covers ~37 high-leverage triggers across:
-planning · brainstorm · research · debug · TDD · e2e · browser-automation · frontend (Next.js/React/Tailwind) · backend (NestJS/Go/Postgres) · ops (Railway/Docker/GitHub) · git · memory · skill-creation.
-
-Edit `skill-router.conf` to tune; reloaded each prompt, no restart needed.
-
-### Curated MCPs
-
-```
-obsidian          firecrawl         chrome-devtools-mcp   playwright
-lightpanda        ghidra            browserbase           context7
-serena            stripe            sentry                linear
-notion            github            gitlab                railway
-vercel            posthog           postman               adspirer
-revenuecat        sonatype-guide    microsoft-learn       mintlify
-prisma            planetscale       svelte                next-devtools
-duckduckgo        figma             legalzoom             ...
-```
-
-All wired into the 6 agents that support MCP (Claw is env-var only).
-
-### 11 universal hooks
+**10 hooks registered in `user/settings.json`** (11 hook scripts shipped plus
+`skill-router.conf`; `session-context.sh` is shipped but intentionally unregistered):
 
 | Event | Hook | What it does |
 |---|---|---|
 | `SessionStart` | `tool-inventory.sh` | Injects compact CLI/MCP/skill inventory |
 | `UserPromptSubmit` | `skill-router.sh` | Token-thrifty intent → skill pointer |
-| `UserPromptSubmit` | `carl-hook.py` | CARL rule injection (CARL repo) |
 | `PreToolUse(Edit\|Write)` | `block-secret-writes.sh` | Refuses writes to `.env`, `*.key`, etc. |
-| `PreToolUse(Bash)` | `block-ai-attribution.sh` | Strips `Co-Authored-By: Claude` from commits |
+| `PreToolUse(Bash)` | `block-ai-attribution.sh` | Strips `Co-Authored-By:` AI lines from commits |
 | `PostToolUse(Edit\|Write)` | `auto-format.sh` | Runs prettier/biome/ruff/rustfmt/gofmt |
 | `PostToolUse(Bash\|Web*)` | `track-resources.sh` | Auto-maintains `useful-resources.md` |
 | `PostToolUse(Web*)` | `entity-tracker.sh` | Graphiti-lite JSONL knowledge graph |
@@ -101,13 +101,41 @@ All wired into the 6 agents that support MCP (Claw is env-var only).
 | `Stop` | `notify-stop.sh` | Desktop notification when session ends |
 | `Stop` | `memory-compiler.sh` | Compiles session insights to llm-wiki |
 
-### 13 slash commands
+`user/settings.json` also enables **29 plugins** (of 30 listed; 1 disabled) via
+`enabledPlugins` — Claude Code downloads and manages those itself.
 
-```
-/plan       /autoplan    /pair       /research    /extract
-/wiki       /learn       /retro      /compress    /careful
-/freeze     /crit        /ytdl
-```
+**13 slash commands** (`user/commands/`): `/autoplan /careful /compress /crit
+/extract /freeze /learn /pair /research /retro /unfreeze /wiki /ytdl`.
+
+**Permissions in `user/settings.json`**: 85 allow · 19 deny · 22 ask patterns,
+`defaultMode: "plan"`.
+
+### Token-thrifty skill router
+
+`user/hooks/skill-router.sh` runs on every prompt. Most prompts → 0 tokens.
+Triggered prompts → ≤80 tokens of one-line skill pointers. The curated
+`skill-router.conf` holds **37 keyword→skill triggers** across planning,
+research, debugging, frontend, backend, ops, git, memory and skill-creation.
+Compare to always-on injection (~300 tokens every prompt). Edit the conf to
+tune; reloaded each prompt, no restart needed.
+
+### MCP catalog (12 servers)
+
+Default-enabled (keyless/local): `duckduckgo` `playwright` `fetch` `next-devtools`
+`svelte` `vue-devtools` · Opt-in (key/binary/account): `firecrawl` `browserbase`
+`github` `puppeteer` `lightpanda` `obsidian` — see
+[`core/mcp/servers.json`](core/mcp/servers.json). Seeded exclusively from servers
+this repo already documented in v1; env entries carry variable names only
+(rendered as `${VAR}` placeholders). Note: the v1 README's "30+ MCPs" described
+the author's workstation (see `user/docs/MCPS.md`); the catalog above is what
+the repo actually ships.
+
+### Skills catalog (21 core / 14 optional / 9 rejected)
+
+`npx skills add <source> --skill <name> -g -y` installs from upstream repos —
+full tables and skip rationale in [docs/SKILLS.md](docs/SKILLS.md).
+(The v1 README's "358+ skills" described the author's machine; the repo ships a
+catalog, not skills.)
 
 ### Local-model launchers (in `~/.local/bin/`)
 
@@ -120,11 +148,13 @@ bonsai      bonsai-8b-q4km  5.2 GB    ⚠️ chat-only (reasoning model, no tool
 
 ## Security stance
 
-- **No secrets in this repo.** `CREDS.md` and `SECRETS.md` are gitignored; `*.template` versions show structure.
-- `permissions.allow`: 80 curated safe Bash patterns. `permissions.deny`: 19 destructive blocks. `permissions.ask`: 25 destructive-but-useful prompts.
+- **No secrets in this repo.** `CREDS.md` / `SECRETS.md` are gitignored;
+  `*.template` versions show structure. MCP env entries are variable *names*.
+- Secret-scan + path-leak-scan + shellcheck run in CI on every PR.
 - `defaultMode: "plan"` — no silent code execution.
-- `block-secret-writes.sh` hook refuses writes to credential-shaped files.
-- `block-ai-attribution.sh` strips AI auth-coauthor lines from commits (per-user preference).
+- `block-secret-writes.sh` refuses writes to credential-shaped files.
+- `block-ai-attribution.sh` strips AI auth-coauthor lines from commits.
+- Every config write is backup-first and reversible via `--uninstall`.
 - See [SECURITY.md](SECURITY.md) for vulnerability reports.
 
 ## Repository docs
@@ -135,29 +165,33 @@ bonsai      bonsai-8b-q4km  5.2 GB    ⚠️ chat-only (reasoning model, no tool
 | [QUICKSTART.md](QUICKSTART.md) | 5-minute install path |
 | [HOW-TO-USE.md](HOW-TO-USE.md) | Narrative manual |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | How the bundle is organised |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | PR-only workflow + conventions |
-| [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) | Community standards |
-| [SECURITY.md](SECURITY.md) | Vulnerability reporting |
-| [LICENSE](LICENSE) | MIT |
-| [CREDS.md.template](CREDS.md.template) | Env-var inventory (copy → `CREDS.md`, gitignored) |
-| [SECRETS.md.template](SECRETS.md.template) | Storage cookbook (copy → `SECRETS.md`, gitignored) |
-| [user/docs/](user/docs/) | Per-area references (RULES · SETTINGS · HOOKS · MCPS · SKILLS · ACPS · COMMANDS · CHANGELOG · …) |
+| [MIGRATION.md](MIGRATION.md) | v1 (`claude-universal`) → v2 |
+| [docs/AGENTS-MATRIX.md](docs/AGENTS-MATRIX.md) | 26-agent matrix (generated) |
+| [docs/SKILLS.md](docs/SKILLS.md) | Skill catalog tiers + rationale |
+| [docs/TOOLS.md](docs/TOOLS.md) | CLI tools catalog |
+| [CHANGELOG.md](CHANGELOG.md) | Latest versions (full history in `user/docs/CHANGELOG.md`) |
+| [CONTRIBUTING.md](CONTRIBUTING.md) / [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) / [SECURITY.md](SECURITY.md) / [LICENSE](LICENSE) | Community + legal |
+| [user/docs/](user/docs/) | Claude-layer references (RULES · SETTINGS · HOOKS · MCPS · …) |
 
 ## Status
 
 | Component | Status |
 |---|---|
+| `agentic_sync.py` (26-agent engine) | Stable; 32-case unittest suite + smoke coverage |
 | `install.sh user` / `project` | Stable, idempotent, dry-run supported |
-| Cross-tool sync (`sync-cross-tool*.sh`) | Stable across Claude / Codex / Goose / Gemini / Kimi / OpenCode |
-| Skill router | Stable, validated 8/8 smoke tests |
+| `setup` / `setup.sh` / `setup.ps1` | Stable (setup is a real file now, Windows-safe) |
+| Skill router | Stable, validated in smoke tests |
 | Local-model launchers | gemma4 + llama3.1 validated; qwen3.6 + llama4 untested (disk-gated) |
 | Optional installers | All idempotent, all run from any cwd |
 
-Tested on Linux (Debian/Ubuntu derivatives, Pop!_OS). macOS support via the same scripts (uses `$HOME`, `~`, no Linux-specific syscalls). Windows via PowerShell mirrors (`*.ps1`).
+Tested on Linux (Debian/Ubuntu derivatives, Pop!_OS), macOS (same scripts, CI-verified),
+and Windows (PowerShell entrypoint + CI job; Python 3.9+, stdlib only).
 
 ## Contributing
 
-This is open source under MIT — fork and use freely. **Direct pushes to `main` are owner-only.** To contribute upstream: fork, branch, PR. The owner reviews every PR personally. See [CONTRIBUTING.md](CONTRIBUTING.md).
+This is open source under MIT — fork and use freely. **Direct pushes to `main`
+are owner-only.** To contribute upstream: fork, branch, PR. The owner reviews
+every PR personally. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Acknowledgements
 
@@ -174,6 +208,7 @@ The bundle integrates patterns from many excellent open-source projects:
 - [StevenStavrakis/obsidian-mcp](https://github.com/StevenStavrakis/obsidian-mcp) — vault MCP server
 - [google/langextract](https://github.com/google/langextract) — structured extraction
 - [lightpanda-io/browser](https://github.com/lightpanda-io/browser) — fast headless browser
+- [vercel-labs/skills](https://github.com/vercel-labs/skills) — the skills CLI the catalog builds on
 - … and dozens more credited inline in `user/docs/INSPIRATIONS.md`.
 
 Each upstream project retains its original license. The bundle scripts that orchestrate them are MIT.

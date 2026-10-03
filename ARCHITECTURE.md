@@ -2,26 +2,41 @@
 
 ## Goal
 
-One portable bundle that brings 7 AI coding CLIs to feature parity on a workstation, without forcing you to use any of them. Each CLI keeps its native config format; the bundle deploys consistent rules, skills, MCPs, and hooks across all of them.
+One agent-neutral source of truth (rules, MCP servers, skills, tools) rendered into the native config of 26 coding agents, without forcing you to use any of them. Each agent keeps its native config format; the bundle deploys consistent rules and MCP wiring everywhere it can do so safely, and prints instructions where it can't.
 
 ## Layout
 
 ```
-claude-universal/
-├── install.sh                 # main installer (bash)
+universal-agentic-setup/
+├── setup                      # one-command entrypoint (real file, not a symlink)
+├── setup.sh                   # 8-phase orchestrator (bash)
+├── setup.ps1                  # PowerShell entrypoint → agentic_sync.py
+├── install.sh                 # Claude-canonical installer (bash, merge mode)
 ├── install.ps1                # PowerShell mirror (Windows)
 ├── install-skills.sh          # design-skill family installer
 ├── HOW-TO-USE.md              # narrative manual
 ├── QUICKSTART.md              # 5-min path
 ├── ARCHITECTURE.md            # this file
+├── MIGRATION.md               # v1 (claude-universal) → v2 upgrade path
 ├── README.md                  # repo landing page
 │
+├── core/                      # v2 AGENT-NEUTRAL SOURCE OF TRUTH
+│   ├── AGENTS.md              # universal rules (managed-block source for all agents)
+│   ├── mcp/servers.json       # MCP catalog (12 servers; env var names only)
+│   ├── skills/catalog.json    # skill tiers: 21 core / 14 optional / 9 rejected
+│   └── tools/catalog.json     # companion CLI catalog: 8 core / 7 optional
+│
+├── agents/
+│   └── registry.json          # 26 agents: detect hints, per-OS paths, MCP format, manual flag
+│
+├── docs/                      # v2 references (AGENTS-MATRIX.md is generated)
+│   ├── AGENTS-MATRIX.md  SKILLS.md  TOOLS.md
+│
 ├── user/                      # GLOBAL scope — deploys to ~/.claude/
-│   ├── CLAUDE.md              # universal rules (managed block)
-│   ├── AGENTS.md              # cross-tool mirror (symlinked at install)
+│   ├── CLAUDE.md              # Claude-flavored rules (managed block; core/AGENTS.md goes to ~/.claude/AGENTS.md)
 │   ├── settings.json          # safe defaults, deep-merged not overwritten
 │   ├── .gitignore             # used as project-template too
-│   ├── hooks/                 # 11 hooks (post-tool, stop, prompt-submit)
+│   ├── hooks/                 # 11 hook scripts (10 registered in settings.json)
 │   │   ├── auto-format.sh
 │   │   ├── block-ai-attribution.sh
 │   │   ├── block-secret-writes.sh

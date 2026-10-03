@@ -9,7 +9,7 @@ Scenario-based guide. For reference docs (hooks, settings schema, full rules), s
 Every bundled script ships as a twin — `.sh` (bash) or `.ps1` (pwsh 7+). Pick the flavor for your shell; both produce byte-identical results.
 
 ```bash
-cd ~/Desktop/ACTIVITIES/claude-universal
+cd universal-agentic-setup
 
 # Preview what will change (no writes)
 ./install.sh --dry-run user
@@ -29,7 +29,7 @@ cd ~/Desktop/ACTIVITIES/claude-universal
 
 ```powershell
 # PowerShell 7+ equivalent (Linux, macOS, Windows)
-cd ~/Desktop/ACTIVITIES/claude-universal
+cd universal-agentic-setup
 
 ./install.ps1 -DryRun -Mode user
 ./install.ps1 -Mode user
@@ -101,12 +101,12 @@ Twelve bundled commands live in `user/commands/`. After `./install.sh user`, inv
 
 Initialize the wiki on first use:
 ```bash
-bash ~/Desktop/ACTIVITIES/claude-universal/scripts/init-llm-wiki.sh
+bash universal-agentic-setup/scripts/init-llm-wiki.sh
 ```
 
 Optional: clone additional OSS inspirations interactively:
 ```bash
-bash ~/Desktop/ACTIVITIES/claude-universal/scripts/install-inspired.sh
+bash universal-agentic-setup/scripts/install-inspired.sh
 ```
 
 See `user/docs/COMMANDS.md` for full command list, `user/docs/INSPIRATIONS.md` for credits, and `user/docs/LLM-WIKI.md` for the compounding-notes pattern.
@@ -156,12 +156,12 @@ The installer is idempotent and merge-safe:
 ```bash
 # on this machine
 cd ~/Desktop/ACTIVITIES
-tar czf claude-universal.tar.gz claude-universal/
-scp claude-universal.tar.gz other-host:~/
+tar czf universal-agentic-setup.tar.gz universal-agentic-setup/
+scp universal-agentic-setup.tar.gz other-host:~/
 
 # on the other machine
-tar xzf ~/claude-universal.tar.gz
-cd claude-universal
+tar xzf ~/universal-agentic-setup.tar.gz
+cd universal-agentic-setup
 ./install.sh user
 ./install-skills.sh
 ```
@@ -176,8 +176,8 @@ Secrets are **never** in the bundle — you'll need to log in / paste API keys o
 ```bash
 npx create-next-app@latest my-app
 cd my-app
-~/Desktop/ACTIVITIES/claude-universal/install.sh project .
-~/Desktop/ACTIVITIES/claude-universal/scripts/init-improvement-state.sh
+universal-agentic-setup/install.sh project .
+universal-agentic-setup/scripts/init-improvement-state.sh
 # Open CLAUDE.md, fill TODOs. Then `claude` and go.
 ```
 
@@ -245,7 +245,7 @@ cp ~/.claude/settings.json.bak.<timestamp> ~/.claude/settings.json
 ```bash
 # 1. Remove the managed block from CLAUDE.md + AGENTS.md
 for f in ~/.claude/CLAUDE.md ~/.claude/AGENTS.md; do
-  [[ -f "$f" ]] && sed -i '/<!-- BEGIN: claude-universal/,/<!-- END: claude-universal/d' "$f"
+  [[ -f "$f" ]] && sed -i '/<!-- BEGIN: universal-agentic-setup/,/<!-- END: universal-agentic-setup/d' "$f"
 done
 
 # 2. Remove the bundle's hooks
@@ -308,7 +308,7 @@ Restart Claude Code.
 │   └── .gitignore             # appended with Claude-ignore lines
 └── ACTIVITIES/
     ├── useful-resources.md    # auto-maintained resource catalog
-    └── claude-universal/      # (the bundle itself)
+    └── universal-agentic-setup/   # (the bundle itself)
 ```
 
 ---

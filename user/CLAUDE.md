@@ -1,4 +1,4 @@
-<!-- BEGIN: claude-universal managed block (do not edit between these markers — rerun installer to update) -->
+<!-- BEGIN: universal-agentic-setup managed block (do not edit between these markers — rerun installer to update) -->
 # Claude — Universal Rules
 
 On session start, run `~/.claude/hooks/tool-inventory.sh` output check (auto-injected). Detailed references live in `~/.claude/docs/` — load a doc only when the current task needs it (e.g., `docs/HOOKS.md` when the user asks about hooks).
@@ -24,4 +24,4 @@ On session start, run `~/.claude/hooks/tool-inventory.sh` output check (auto-inj
 - Hooks reference: `~/.claude/docs/HOOKS.md`
 - Available MCPs / skills / ACPs: `~/.claude/docs/MCPS.md`, `SKILLS.md`, `ACPS.md`
 - Web-fallback strategy: `~/.claude/docs/WEB-FALLBACK.md`
-<!-- END: claude-universal managed block -->
+<!-- END: universal-agentic-setup managed block -->

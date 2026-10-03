@@ -10,7 +10,7 @@ $SkipFragments = @(
     [IO.Path]::DirectorySeparatorChar + 'node_modules' + [IO.Path]::DirectorySeparatorChar
     [IO.Path]::DirectorySeparatorChar + '.cache' + [IO.Path]::DirectorySeparatorChar
     [IO.Path]::DirectorySeparatorChar + '.claude' + [IO.Path]::DirectorySeparatorChar + 'plugins' + [IO.Path]::DirectorySeparatorChar
-    [IO.Path]::DirectorySeparatorChar + 'claude-universal' + [IO.Path]::DirectorySeparatorChar
+    [IO.Path]::DirectorySeparatorChar + 'universal-agentic-setup' + [IO.Path]::DirectorySeparatorChar
 )
 
 function Should-Skip([string]$Path) {
@@ -35,7 +35,7 @@ foreach ($root in $SearchRoots) {
 
         $now = (Get-Date).ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ')
         $state = [ordered]@{
-            '$schema'          = 'https://github.com/taran/claude-universal/improvement-state.schema.json'
+            '$schema'          = 'https://github.com/Achitokun14/universal-agentic-setup/improvement-state.schema.json'
             project            = $f.Directory.Name
             path               = $projectDir
             created_at         = $now

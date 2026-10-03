@@ -5,7 +5,7 @@ How to install, upgrade, and roll back the bundle.
 ## First install (user scope, global)
 
 ```bash
-cd ~/Desktop/ACTIVITIES/claude-universal
+cd universal-agentic-setup
 ./install.sh --dry-run user    # preview
 ./install.sh user              # apply
 ```
@@ -33,7 +33,7 @@ Effect:
 
 ## Upgrade
 
-After editing anything under `~/Desktop/ACTIVITIES/claude-universal/`:
+After editing anything under `universal-agentic-setup/`:
 
 ```bash
 ./install.sh user              # for global changes
@@ -63,7 +63,7 @@ done
 
 ```bash
 # Remove managed block from CLAUDE.md
-sed -i '/<!-- BEGIN: claude-universal managed block -->/,/<!-- END: claude-universal managed block -->/d' ~/.claude/CLAUDE.md
+sed -i '/<!-- BEGIN: universal-agentic-setup managed block -->/,/<!-- END: universal-agentic-setup managed block -->/d' ~/.claude/CLAUDE.md
 
 # Remove hooks (those we added)
 rm -f ~/.claude/hooks/{block-ai-attribution,block-secret-writes,auto-format,notify-stop,session-context}.sh
@@ -82,21 +82,21 @@ The bundle is portable. Two supported flows:
 
 **Via git:**
 ```bash
-cd ~/Desktop/ACTIVITIES/claude-universal
+cd universal-agentic-setup
 git init && git add . && git commit -m "chore: bundle v1.1.0"
-git remote add origin git@github.com:<you>/claude-universal.git
+git remote add origin git@github.com:<you>/universal-agentic-setup.git
 git push -u origin main
 
 # On the other machine:
-git clone git@github.com:<you>/claude-universal.git
-./claude-universal/install.sh user
+git clone git@github.com:<you>/universal-agentic-setup.git
+./universal-agentic-setup/install.sh user
 ```
 
 **Via tarball:**
 ```bash
-tar czf claude-universal.tar.gz -C ~/Desktop/ACTIVITIES claude-universal/
-scp claude-universal.tar.gz other-host:~/
-ssh other-host 'tar xzf claude-universal.tar.gz && cd claude-universal && ./install.sh user'
+tar czf universal-agentic-setup.tar.gz -C ~ universal-agentic-setup/
+scp universal-agentic-setup.tar.gz other-host:~/
+ssh other-host 'tar xzf universal-agentic-setup.tar.gz && cd universal-agentic-setup && ./install.sh user'
 ```
 
 Secrets (API keys, OAuth tokens) live in `~/.claude/.credentials.json` and `~/.claude/settings.local.json` — **not in the bundle**, intentionally.

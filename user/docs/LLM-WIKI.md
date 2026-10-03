@@ -19,7 +19,7 @@ Inspired by Karpathy's "llm-wiki" pattern: a plain-markdown notebook that your A
 
 Initialize with:
 ```bash
-bash ~/Desktop/ACTIVITIES/claude-universal/scripts/init-llm-wiki.sh
+bash universal-agentic-setup/scripts/init-llm-wiki.sh
 ```
 
 ## Daily files

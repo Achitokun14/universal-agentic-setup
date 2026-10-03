@@ -15,7 +15,7 @@ Steps:
 
 3. Invoke the helper script which already handles the pipeline:
    ```bash
-   bash ~/Desktop/ACTIVITIES/claude-universal/scripts/ytdl-to-wiki.sh "$ARGUMENTS"
+   bash universal-agentic-setup/scripts/ytdl-to-wiki.sh "$ARGUMENTS"
    ```
    If the helper is missing (first-time machine), fall back to:
    ```bash

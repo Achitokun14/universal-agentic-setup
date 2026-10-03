@@ -3,7 +3,7 @@
 
 # Agents matrix
 
-`universal-agentic-setup` v1.18.0 knows **26 agents**: **18** are wired automatically (managed rules block + MCP merge in the agent's native format), **8** are manual (printed instructions). Paths below are user-scope; `~` = home directory, `{appdata}` = Windows roaming AppData.
+`universal-agentic-setup` v2.0.0 knows **26 agents**: **18** are wired automatically (managed rules block + MCP merge in the agent's native format), **8** are manual (printed instructions). Paths below are user-scope; `~` = home directory, `{appdata}` = Windows roaming AppData.
 
 | ID | Agent | Vendor | Context file | Skills dir(s) | MCP config | MCP format |
 |---|---|---|---|---|---|---|

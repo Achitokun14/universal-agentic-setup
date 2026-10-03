@@ -24,7 +24,7 @@ $assetSuffix = "$arch-$os"
 
 Write-Host '▸ Fetching latest Lightpanda release...'
 try {
-    $release = Invoke-RestMethod -Uri 'https://api.github.com/repos/lightpanda-io/browser/releases/latest' -Headers @{ 'User-Agent' = 'claude-universal' }
+    $release = Invoke-RestMethod -Uri 'https://api.github.com/repos/lightpanda-io/browser/releases/latest' -Headers @{ 'User-Agent' = 'universal-agentic-setup' }
 }
 catch {
     [Console]::Error.WriteLine("GitHub API failed: $_")

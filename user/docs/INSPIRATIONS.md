@@ -1,6 +1,6 @@
 # Inspirations & Credits
 
-The claude-universal bundle borrows patterns from 20 high-signal OSS repos and Claude Code community projects. This doc credits each source and explains what was adopted.
+The universal-agentic-setup bundle borrows patterns from 20 high-signal OSS repos and Claude Code community projects. This doc credits each source and explains what was adopted.
 
 ## Adopted — bundled directly
 
