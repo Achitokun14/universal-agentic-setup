@@ -1,6 +1,9 @@
 ﻿#!/usr/bin/env pwsh
 # universal-agentic-setup — Claude-canonical installer — MERGE mode (PowerShell twin of install.sh).
 # Never overwrites existing configs: deep-merges JSON, appends managed blocks to markdown.
+# Requires PowerShell 7+ (uses ConvertFrom-Json -AsHashtable). The agent-neutral
+# v2 entrypoint .\setup.ps1 works on Windows PowerShell 5.1 too.
+#Requires -Version 7
 #
 # Usage:
 #   ./install.ps1 [-DryRun] -Mode user
