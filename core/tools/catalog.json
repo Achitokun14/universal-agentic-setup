@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "updated": "2026-10-03",
+  "notes": "CLI / harness catalog for universal-agentic-setup. tier: core = installed by default; optional = opt-in. Install commands per OS family; never embed secrets.",
+  "tools": [
+    {"name": "ripgrep", "tier": "core", "why": "Fast gitignore-aware search used by most agents.", "install": {"windows": "winget install BurntSushi.ripgrep.MSVC", "macos": "brew install ripgrep", "debian": "apt-get install -y ripgrep"}},
+    {"name": "fd", "tier": "core", "why": "Fast find replacement.", "install": {"windows": "winget install sharkdp.fd", "macos": "brew install fd", "debian": "apt-get install -y fd-find"}},
+    {"name": "uv", "tier": "core", "why": "Python/tool manager; prerequisite for many agent tools.", "install": {"windows": "winget install astral-sh.uv", "macos": "brew install uv", "debian": "curl -LsSf https://astral.sh/uv/install.sh | sh"}},
+    {"name": "fzf", "tier": "core", "why": "Fuzzy picker for history, files, hosts.", "install": {"windows": "winget install junegunn.fzf", "macos": "brew install fzf", "debian": "apt-get install -y fzf"}},
+    {"name": "zoxide", "tier": "core", "why": "Frecency-based cd.", "install": {"windows": "winget install ajeetdsouza.zoxide", "macos": "brew install zoxide", "debian": "apt-get install -y zoxide"}, "post": "Shell init line must be added to the user's profile manually (PowerShell: Invoke-Expression (& { (zoxide init powershell | Out-String) }))."},
+    {"name": "lazygit", "tier": "core", "why": "Git TUI for reviewing agent commits.", "install": {"windows": "winget install JesseDuffield.lazygit", "macos": "brew install lazygit", "debian": "see github.com/jesseduffield/lazygit#installation"}},
+    {"name": "just", "tier": "core", "why": "One canonical command runner per repo for agents.", "install": {"windows": "winget install Casey.Just", "macos": "brew install just", "debian": "apt-get install -y just"}},
+    {"name": "ast-grep", "tier": "core", "why": "Structural search/rewrite.", "install": {"windows": "npm i -g @ast-grep/cli", "macos": "brew install ast-grep", "debian": "npm i -g @ast-grep/cli"}},
+    {"name": "difftastic", "tier": "optional", "why": "Syntax-aware diffs.", "install": {"windows": "winget install Wilfred.difftastic", "macos": "brew install difftastic", "debian": "cargo install difftastic"}},
+    {"name": "ccusage", "tier": "optional", "why": "Token/cost reports for 18 agent CLIs from local logs (no omp source yet).", "install": {"any": "npx ccusage@latest (no install)"}},
+    {"name": "repomix", "tier": "optional", "why": "Pack a repo into one token-counted file with secret exclusion.", "install": {"any": "npx repomix@latest"}},
+    {"name": "rtk", "tier": "optional", "why": "Compresses shell tool output 60-90% before it reaches the model.", "install": {"windows": "winget install rtk-ai.rtk", "macos": "brew install rtk"}, "caution": "`rtk init -g --agent <agent>` writes hooks into the agent's config; lossy by design (use `rtk proxy` to bypass)."},
+    {"name": "cass", "tier": "optional", "why": "Cross-agent session search index (omp connector, SSH multi-machine sync).", "install": {"windows": "scoop bucket add dicklesworthstone https://github.com/Dicklesworthstone/scoop-bucket; scoop install dicklesworthstone/cass"}, "caution": "Indexes full transcripts (may include secrets); keep the index local, alpha software."},
+    {"name": "ccmanager", "tier": "optional", "why": "Windows-friendly manager for parallel Claude/Codex/Gemini/OpenCode sessions (no tmux).", "install": {"any": "npm install -g ccmanager"}},
+    {"name": "beads (bd)", "tier": "optional", "why": "Dependency-aware task tracker shared by agents across machines (Dolt sync).", "install": {"windows": "see github.com/gastownhall/beads (winget/install.ps1)", "any": "npm i -g @beads/bd"}, "caution": "Pre-1.0, schema churn."}
+  ]
+}
