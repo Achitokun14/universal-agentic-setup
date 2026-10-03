@@ -281,7 +281,7 @@
       },
       "skills": {"dirs": ["~/.agents/skills"]},
       "mcp": {
-        "path": {"linux": "~/.config/zed/settings.json", "macos": "~/.config/zed/settings.json", "windows": ["{appdata}/Zed/settings.json"]},
+        "path": {"linux": "~/.config/zed/settings.json", "macos": "~/.config/zed/settings.json", "windows": "{appdata}/Zed/settings.json"},
         "format": "zed-json"
       },
       "manual": false
@@ -343,7 +343,7 @@
       "detect": {"binaries": ["junie"], "paths": ["~/.junie"]},
       "context": {"files": {"linux": ["~/.junie/AGENTS.md"], "macos": ["~/.junie/AGENTS.md"], "windows": ["~/.junie/AGENTS.md"]}},
       "skills": {"dirs": ["~/.junie/skills", "~/.agents/skills"]},
-      "mcp": {"path": {"linux": "~/.junie/mcp/mcp.json", "macos": "~/.junie/mcp/mcp.json", "windows": ["~/.junie/mcp/mcp.json"]}, "format": "mcpservers-json"},
+      "mcp": {"path": {"linux": "~/.junie/mcp/mcp.json", "macos": "~/.junie/mcp/mcp.json", "windows": "~/.junie/mcp/mcp.json"}, "format": "mcpservers-json"},
       "manual": false
     },
     {
@@ -357,7 +357,7 @@
         "note": "Global rules directory; AGENTS.md itself is not documented for Amazon Q."
       },
       "skills": null,
-      "mcp": {"path": {"linux": "~/.aws/amazonq/mcp.json", "macos": "~/.aws/amazonq/mcp.json", "windows": ["~/.aws/amazonq/mcp.json"]}, "format": "mcpservers-json"},
+      "mcp": {"path": {"linux": "~/.aws/amazonq/mcp.json", "macos": "~/.aws/amazonq/mcp.json", "windows": "~/.aws/amazonq/mcp.json"}, "format": "mcpservers-json"},
       "manual": false
     },
     {
