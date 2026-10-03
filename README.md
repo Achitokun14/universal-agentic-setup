@@ -7,7 +7,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![PRs: only via review](https://img.shields.io/badge/PRs-owner%20review-blue)](CONTRIBUTING.md)
-[![Status: stable](https://img.shields.io/badge/status-stable-green)](#status)
+[![Status: beta](https://img.shields.io/badge/status-beta-orange)](#status)
 
 Formerly `claude-universal` (v1, Claude-Code-canonical, 7 CLIs). v2 is agent-neutral.
 See [MIGRATION.md](MIGRATION.md) for the v1 → v2 path.
@@ -27,7 +27,8 @@ engine that renders it into each agent's native format:
   the repo itself ships **zero vendored skills**
 - `core/tools/catalog.json` — 8 core + 7 optional companion CLIs
 - `agents/registry.json` — per-agent paths, MCP config format, detect hints,
-  manual flags — every entry verified against vendor docs
+  manual flags — each entry cites its vendor doc; anything the docs leave open
+  (e.g. Kimi Code's global context file) is flagged in that entry's notes
 
 What v2 does **not** do (honesty section): it does not mirror hooks or slash
 commands into non-Claude agents (hook formats are agent-specific; the v1 deep
@@ -177,9 +178,9 @@ bonsai      bonsai-8b-q4km  5.2 GB    ⚠️ chat-only (reasoning model, no tool
 
 | Component | Status |
 |---|---|
-| `agentic_sync.py` (26-agent engine) | Stable; 32-case unittest suite + smoke coverage |
+| `agentic_sync.py` (26-agent engine) | Beta (new in v2); 34-case unittest suite + smoke coverage; Windows CI job not yet exercised |
 | `install.sh user` / `project` | Stable, idempotent, dry-run supported |
-| `setup` / `setup.sh` / `setup.ps1` | Stable (setup is a real file now, Windows-safe) |
+| `setup` / `setup.sh` / `setup.ps1` | Beta (setup is a real file now; setup.ps1 new in v2) |
 | Skill router | Stable, validated in smoke tests |
 | Local-model launchers | gemma4 + llama3.1 validated; qwen3.6 + llama4 untested (disk-gated) |
 | Optional installers | All idempotent, all run from any cwd |
