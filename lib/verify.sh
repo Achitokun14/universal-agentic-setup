@@ -23,9 +23,10 @@ verify_all() {
   step "7/8 — verify"
 
   # Bundle artefacts
-  verify_one "manifest exists"          "test -f $HOME/.claude/.claude-universal-manifest.json"
+  verify_one "manifest exists"          "test -f $HOME/.universal-agentic-manifest.json"
   verify_one "settings.json present"    "test -f $HOME/.claude/settings.json"
-  verify_one "managed CLAUDE.md block"  "grep -q 'BEGIN: claude-universal managed block' $HOME/.claude/CLAUDE.md"
+  verify_one "managed CLAUDE.md block"  "grep -q 'BEGIN: universal-agentic-setup managed block' $HOME/.claude/CLAUDE.md"
+  verify_one "managed AGENTS.md block"  "grep -q 'BEGIN: universal-agentic-setup managed block' $HOME/.claude/AGENTS.md"
   verify_one "skill-router hook wired"  "jq -e '.hooks.UserPromptSubmit[].hooks[]?.command | select(test(\"skill-router.sh\"))' $HOME/.claude/settings.json"
 
   # AI CLIs (only if present)

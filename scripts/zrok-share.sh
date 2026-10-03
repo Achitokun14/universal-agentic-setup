@@ -22,7 +22,7 @@ say() { printf '▸ %s\n' "$*"; }
 warn() { printf '⚠ %s\n' "$*" >&2; }
 
 if ! command -v zrok >/dev/null 2>&1; then
-  warn "zrok not on PATH. Install: bash ~/Desktop/ACTIVITIES/claude-universal/scripts/install-zrok.sh"
+  warn "zrok not on PATH. Install: bash universal-agentic-setup/scripts/install-zrok.sh"
   exit 2
 fi
 

@@ -1,0 +1,379 @@
+{
+  "version": 1,
+  "updated": "2026-10-03",
+  "notes": "Agent registry for universal-agentic-setup. One entry per verified agent from the 2026 agent landscape research. Paths are user-scope; '~' expands to the home directory, '{appdata}' to the Windows roaming AppData dir. 'context.files' lists the file(s) that receive the core/AGENTS.md managed block. 'mcp.format' references a renderer in scripts/agentic_sync.py. 'manual': true = at least one config path/format is unverified or not safely mergeable stdlib-only, so the sync prints instructions instead of writing. Env entries anywhere in this repo carry variable NAMES only.",
+  "formats": {
+    "claude-json": "top-level mcpServers object in ~/.claude.json (Claude Code user scope)",
+    "mcpservers-json": "JSON file whose root (or mcpServers key) holds {name: {command,args,env}} entries",
+    "serverurl-json": "mcpServers-style JSON where remote servers use 'serverUrl' (Antigravity/Windsurf requirement)",
+    "codex-toml": "[mcp_servers.<id>] TOML tables in ~/.codex/config.toml",
+    "opencode-json": "'mcp' key with type local|remote entries in opencode.json",
+    "zed-json": "'context_servers' key with nested command objects in Zed settings.json",
+    "amp-json": "'amp.mcpServers' nested object in ~/.config/amp/settings.json",
+    "crush-json": "'mcp' key with string command entries in ~/.config/crush/config.json"
+  },
+  "agents": [
+    {
+      "id": "claude-code",
+      "name": "Claude Code",
+      "vendor": "Anthropic",
+      "url": "https://code.claude.com/docs/en/settings",
+      "detect": {"binaries": ["claude"], "paths": ["~/.claude"]},
+      "context": {
+        "files": {"linux": ["~/.claude/AGENTS.md"], "macos": ["~/.claude/AGENTS.md"], "windows": ["~/.claude/AGENTS.md"]},
+        "note": "Claude Code reads AGENTS.md alongside CLAUDE.md; ~/.claude/CLAUDE.md stays owned by the legacy Claude-rich installer (install.sh user)."
+      },
+      "skills": {"dirs": ["~/.claude/skills", "~/.agents/skills"]},
+      "mcp": {"path": {"linux": "~/.claude.json", "macos": "~/.claude.json", "windows": "~/.claude.json"}, "format": "claude-json"},
+      "manual": false
+    },
+    {
+      "id": "codex",
+      "name": "OpenAI Codex CLI",
+      "vendor": "OpenAI",
+      "url": "https://github.com/openai/codex",
+      "detect": {"binaries": ["codex"], "paths": ["~/.codex"]},
+      "context": {"files": {"linux": ["~/.codex/AGENTS.md"], "macos": ["~/.codex/AGENTS.md"], "windows": ["~/.codex/AGENTS.md"]}},
+      "skills": {"dirs": ["~/.codex/skills", "~/.agents/skills"]},
+      "mcp": {"path": {"linux": "~/.codex/config.toml", "macos": "~/.codex/config.toml", "windows": "~/.codex/config.toml"}, "format": "codex-toml"},
+      "manual": false
+    },
+    {
+      "id": "gemini-cli",
+      "name": "Gemini CLI",
+      "vendor": "Google",
+      "url": "https://geminicli.com/docs/cli/settings",
+      "detect": {"binaries": ["gemini"], "paths": ["~/.gemini"]},
+      "context": {"files": {"linux": ["~/.gemini/GEMINI.md"], "macos": ["~/.gemini/GEMINI.md"], "windows": ["~/.gemini/GEMINI.md"]}},
+      "skills": {"dirs": ["~/.gemini/skills", "~/.agents/skills"]},
+      "mcp": {"path": {"linux": "~/.gemini/settings.json", "macos": "~/.gemini/settings.json", "windows": "~/.gemini/settings.json"}, "format": "mcpservers-json"},
+      "manual": false
+    },
+    {
+      "id": "antigravity",
+      "name": "Google Antigravity",
+      "vendor": "Google",
+      "url": "https://antigravity.google/docs/mcp",
+      "detect": {"binaries": ["agy"], "paths": ["~/.gemini/config"]},
+      "context": {
+        "files": {"linux": ["~/.gemini/AGENTS.md"], "macos": ["~/.gemini/AGENTS.md"], "windows": ["~/.gemini/AGENTS.md"]},
+        "note": "Antigravity shares the ~/.gemini tree with Gemini CLI by design."
+      },
+      "skills": {"dirs": ["~/.gemini/config/skills", "~/.agents/skills"]},
+      "mcp": {"path": {"linux": "~/.gemini/config/mcp_config.json", "macos": "~/.gemini/config/mcp_config.json", "windows": "~/.gemini/config/mcp_config.json"}, "format": "serverurl-json"},
+      "manual": false
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor (IDE + CLI)",
+      "vendor": "Anysphere",
+      "url": "https://cursor.com/docs/mcp",
+      "detect": {"binaries": ["cursor-agent", "cursor"], "paths": ["~/.cursor"]},
+      "context": {
+        "files": null,
+        "note": "No user-scope rules file: User Rules live in-app, project rules in .cursor/rules/*.mdc. Add core/AGENTS.md content as a User Rule or commit it as repo AGENTS.md (Cursor reads AGENTS.md natively)."
+      },
+      "skills": {"dirs": ["~/.cursor/skills", "~/.agents/skills"]},
+      "mcp": {"path": {"linux": "~/.cursor/mcp.json", "macos": "~/.cursor/mcp.json", "windows": "~/.cursor/mcp.json"}, "format": "mcpservers-json"},
+      "manual": false
+    },
+    {
+      "id": "github-copilot",
+      "name": "GitHub Copilot (VS Code agent mode + CLI)",
+      "vendor": "GitHub / Microsoft",
+      "url": "https://code.visualstudio.com/docs/agent-customization/mcp-servers",
+      "detect": {"binaries": ["copilot"], "paths": ["~/.copilot"]},
+      "context": {
+        "files": null,
+        "note": "Custom instructions are project-scope (.github/copilot-instructions.md or root AGENTS.md). Commit core/AGENTS.md content as repo AGENTS.md."
+      },
+      "skills": {"dirs": ["~/.copilot/skills", "~/.agents/skills"]},
+      "mcp": {"path": {"linux": "~/.copilot/mcp-config.json", "macos": "~/.copilot/mcp-config.json", "windows": "~/.copilot/mcp-config.json"}, "format": "mcpservers-json"},
+      "manual": false
+    },
+    {
+      "id": "opencode",
+      "name": "OpenCode",
+      "vendor": "open-source (SST origin)",
+      "url": "https://opencode.ai/docs/config",
+      "detect": {"binaries": ["opencode"], "paths": ["~/.config/opencode"]},
+      "context": {"files": {"linux": ["~/.config/opencode/AGENTS.md"], "macos": ["~/.config/opencode/AGENTS.md"], "windows": ["~/.config/opencode/AGENTS.md"]}},
+      "skills": {"dirs": ["~/.config/opencode/skills", "~/.agents/skills"]},
+      "mcp": {"path": {"linux": "~/.config/opencode/opencode.json", "macos": "~/.config/opencode/opencode.json", "windows": "~/.config/opencode/opencode.json"}, "format": "opencode-json"},
+      "manual": false
+    },
+    {
+      "id": "amp",
+      "name": "Amp",
+      "vendor": "Sourcegraph",
+      "url": "https://ampcode.com/docs/customize/mcp",
+      "detect": {"binaries": ["amp"], "paths": ["~/.config/amp"]},
+      "context": {"files": {"linux": ["~/.config/amp/AGENTS.md"], "macos": ["~/.config/amp/AGENTS.md"], "windows": ["~/.config/amp/AGENTS.md"]}},
+      "skills": {"dirs": ["~/.config/agents/skills", "~/.agents/skills"]},
+      "mcp": {"path": {"linux": "~/.config/amp/settings.json", "macos": "~/.config/amp/settings.json", "windows": "~/.config/amp/settings.json"}, "format": "amp-json"},
+      "manual": false
+    },
+    {
+      "id": "cline",
+      "name": "Cline",
+      "vendor": "Cline Bot Inc.",
+      "url": "https://docs.cline.bot/getting-started/config",
+      "detect": {"binaries": ["cline"], "paths": ["~/.cline"]},
+      "context": {
+        "files": {"linux": ["~/.cline/rules/universal-agentic-setup.md"], "macos": ["~/.cline/rules/universal-agentic-setup.md"], "windows": ["~/.cline/rules/universal-agentic-setup.md"]},
+        "note": "Global rules are a directory: the managed block is written to its own rules file."
+      },
+      "skills": {"dirs": ["~/.cline/skills", "~/.agents/skills"]},
+      "mcp": {"path": {"linux": "~/.cline/data/settings/cline_mcp_settings.json", "macos": "~/.cline/data/settings/cline_mcp_settings.json", "windows": "~/.cline/data/settings/cline_mcp_settings.json"}, "format": "mcpservers-json"},
+      "manual": false
+    },
+    {
+      "id": "roo",
+      "name": "Roo Code",
+      "vendor": "Roo Code Inc.",
+      "url": "https://roocodeinc.github.io/Roo-Code/features/skills",
+      "detect": {"binaries": [], "paths": ["~/.roo"]},
+      "context": {"files": {"linux": ["~/.roo/rules/universal-agentic-setup.md"], "macos": ["~/.roo/rules/universal-agentic-setup.md"], "windows": ["~/.roo/rules/universal-agentic-setup.md"]}},
+      "skills": {"dirs": ["~/.roo/skills", "~/.agents/skills"]},
+      "mcp": {
+        "path": null,
+        "format": null,
+        "note": "Global mcp_settings.json lives inside VS Code global storage (exact path varies per machine); project .roo/mcp.json is project-scope. Use Roo's 'Edit Global MCP' UI."
+      },
+      "manual": true,
+      "manual_reason": "User-scope MCP path is VS-Code-global-storage-dependent (unverified); context/skills paths above are verified — wire those by hand or via npx skills."
+    },
+    {
+      "id": "kilo",
+      "name": "Kilo Code",
+      "vendor": "Kilo Code",
+      "url": "https://kilo.ai/docs/customize/skills",
+      "detect": {"binaries": ["kilo"], "paths": ["~/.kilo"]},
+      "context": {"files": {"linux": ["~/.kilo/rules/universal-agentic-setup.md"], "macos": ["~/.kilo/rules/universal-agentic-setup.md"], "windows": ["~/.kilo/rules/universal-agentic-setup.md"]}},
+      "skills": {"dirs": ["~/.kilo/skills", "~/.agents/skills"]},
+      "mcp": {
+        "path": null,
+        "format": null,
+        "note": "MCP via marketplace UI or global/project MCP.json edit ('edit global MCP'); path not documented. Settings are kilo.jsonc (JSONC — comments make stdlib JSON parsing unsafe)."
+      },
+      "manual": true,
+      "manual_reason": "Global MCP.json path undocumented and settings are JSONC; not safely mergeable with stdlib-only JSON tooling."
+    },
+    {
+      "id": "windsurf",
+      "name": "Windsurf / Devin Desktop",
+      "vendor": "Cognition",
+      "url": "https://docs.devin.ai/desktop/cascade/skills",
+      "detect": {"binaries": ["windsurf", "devin"], "paths": ["~/.codeium/windsurf"]},
+      "context": {"files": {"linux": ["~/.codeium/windsurf/memories/global_rules.md"], "macos": ["~/.codeium/windsurf/memories/global_rules.md"], "windows": ["~/.codeium/windsurf/memories/global_rules.md"]}},
+      "skills": {"dirs": ["~/.codeium/windsurf/skills", "~/.agents/skills"]},
+      "mcp": {"path": {"linux": "~/.codeium/windsurf/mcp_config.json", "macos": "~/.codeium/windsurf/mcp_config.json", "windows": "~/.codeium/windsurf/mcp_config.json"}, "format": "serverurl-json"},
+      "manual": false
+    },
+    {
+      "id": "goose",
+      "name": "Goose",
+      "vendor": "Block",
+      "url": "https://goose-docs.ai/docs/guides/config-files",
+      "detect": {"binaries": ["goose"], "paths": ["~/.config/goose"]},
+      "context": {
+        "files": null,
+        "note": "Project hints live in .goosehints (per project). Add the core/AGENTS.md block to each project's goosehints or rely on the project AGENTS.md."
+      },
+      "skills": {"dirs": ["~/.config/goose/skills", "~/.agents/skills"]},
+      "mcp": {
+        "path": {"linux": "~/.config/goose/config.yaml", "macos": "~/.config/goose/config.yaml", "windows": "{appdata}/Block/goose/config/config.yaml"},
+        "format": null,
+        "note": "MCP servers are 'extensions' in YAML config — not merged without third-party YAML libs. Use `goose configure`."
+      },
+      "manual": true,
+      "manual_reason": "MCP config is YAML; a stdlib-only merge would be fragile. Context is project-scope only."
+    },
+    {
+      "id": "aider",
+      "name": "Aider",
+      "vendor": "Paul Gauthier",
+      "url": "https://aider.chat/docs/usage/conventions.html",
+      "detect": {"binaries": ["aider"], "paths": ["~/.aider.conf.yml"]},
+      "context": {
+        "files": null,
+        "note": "No auto-discovery: run `aider --read AGENTS.md` or add `read: [AGENTS.md]` to .aider.conf.yml."
+      },
+      "skills": null,
+      "mcp": null,
+      "manual": true,
+      "manual_reason": "No context auto-discovery (config is YAML), no MCP support, no skills support — printed instructions only."
+    },
+    {
+      "id": "kimi-code",
+      "name": "Kimi Code CLI",
+      "vendor": "Moonshot AI",
+      "url": "https://github.com/MoonshotAI/kimi-code",
+      "detect": {"binaries": ["kimi-code"], "paths": ["~/.kimi-code"]},
+      "context": {
+        "files": null,
+        "note": "Global context file unverified for the current CLI (workspace AGENTS.md is documented). Commit core/AGENTS.md content as repo AGENTS.md."
+      },
+      "skills": {"dirs": ["~/.kimi-code/skills", "~/.agents/skills"]},
+      "mcp": {"path": {"linux": "~/.kimi-code/mcp.json", "macos": "~/.kimi-code/mcp.json", "windows": "~/.kimi-code/mcp.json"}, "format": "mcpservers-json"},
+      "manual": false
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen Code",
+      "vendor": "Alibaba",
+      "url": "https://github.com/QwenLM/qwen-code",
+      "detect": {"binaries": ["qwen"], "paths": ["~/.qwen"]},
+      "context": {"files": {"linux": ["~/.qwen/QWEN.md"], "macos": ["~/.qwen/QWEN.md"], "windows": ["~/.qwen/QWEN.md"]}},
+      "skills": {"dirs": ["~/.qwen/skills"]},
+      "mcp": {"path": {"linux": "~/.qwen/settings.json", "macos": "~/.qwen/settings.json", "windows": "~/.qwen/settings.json"}, "format": "mcpservers-json"},
+      "manual": false
+    },
+    {
+      "id": "crush",
+      "name": "Crush",
+      "vendor": "Charm",
+      "url": "https://github.com/charmbracelet/crush",
+      "detect": {"binaries": ["crush"], "paths": ["~/.config/crush"]},
+      "context": {"files": {"linux": ["~/.config/crush/CRUSH.md"], "macos": ["~/.config/crush/CRUSH.md"], "windows": ["~/.config/crush/CRUSH.md"]}},
+      "skills": {"dirs": ["~/.config/crush/skills", "~/.agents/skills"]},
+      "mcp": {"path": {"linux": "~/.config/crush/config.json", "macos": "~/.config/crush/config.json", "windows": "~/.config/crush/config.json"}, "format": "crush-json"},
+      "manual": false
+    },
+    {
+      "id": "factory",
+      "name": "Factory Droid",
+      "vendor": "Factory AI",
+      "url": "https://docs.factory.ai/harness/mcp",
+      "detect": {"binaries": ["droid"], "paths": ["~/.factory"]},
+      "context": {"files": {"linux": ["~/.factory/AGENTS.md"], "macos": ["~/.factory/AGENTS.md"], "windows": ["~/.factory/AGENTS.md"]}},
+      "skills": {"dirs": ["~/.factory/skills"]},
+      "mcp": {"path": {"linux": "~/.factory/mcp.json", "macos": "~/.factory/mcp.json", "windows": "~/.factory/mcp.json"}, "format": "mcpservers-json"},
+      "manual": false
+    },
+    {
+      "id": "warp",
+      "name": "Warp",
+      "vendor": "Warp (warp.dev)",
+      "url": "https://docs.warp.dev/agents/capabilities/skills",
+      "detect": {"binaries": ["warp"], "paths": ["~/.warp"]},
+      "context": {
+        "files": null,
+        "note": "AGENTS.md is the default project rules file — commit core/AGENTS.md content to each repo. No user-scope context file documented."
+      },
+      "skills": {"dirs": ["~/.agents/skills", "~/.warp/skills"]},
+      "mcp": {
+        "path": null,
+        "format": null,
+        "note": "MCP servers are managed via Settings > Agents > MCP servers / Warp Drive (GUI); backing file path undocumented."
+      },
+      "manual": true,
+      "manual_reason": "MCP managed via GUI with undocumented backing file; no user-scope context file — printed instructions only."
+    },
+    {
+      "id": "zed",
+      "name": "Zed",
+      "vendor": "Zed Industries",
+      "url": "https://zed.dev/docs/ai/agent-settings",
+      "detect": {"binaries": ["zed", "zeditor"], "paths": ["~/.config/zed"]},
+      "context": {
+        "files": {"linux": ["~/.config/zed/AGENTS.md"], "macos": ["~/.config/zed/AGENTS.md"], "windows": ["{appdata}/Zed/AGENTS.md"]}
+      },
+      "skills": {"dirs": ["~/.agents/skills"]},
+      "mcp": {
+        "path": {"linux": "~/.config/zed/settings.json", "macos": "~/.config/zed/settings.json", "windows": "{appdata}/Zed/settings.json"},
+        "format": "zed-json"
+      },
+      "manual": false
+    },
+    {
+      "id": "omp",
+      "name": "omp (oh-my-pi)",
+      "vendor": "can1357",
+      "url": "https://github.com/can1357/oh-my-pi",
+      "detect": {"binaries": ["omp"], "paths": ["~/.omp"]},
+      "context": {"files": {"linux": ["~/.omp/agent/AGENTS.md"], "macos": ["~/.omp/agent/AGENTS.md"], "windows": ["~/.omp/agent/AGENTS.md"]}},
+      "skills": {"dirs": ["~/.omp/agent/skills", "~/.agents/skills"]},
+      "mcp": {"path": {"linux": "~/.omp/agent/mcp.json", "macos": "~/.omp/agent/mcp.json", "windows": "~/.omp/agent/mcp.json"}, "format": "mcpservers-json"},
+      "manual": false
+    },
+    {
+      "id": "hermes",
+      "name": "Hermes Agent",
+      "vendor": "Nous Research",
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp",
+      "detect": {"binaries": ["hermes"], "paths": ["~/.hermes"]},
+      "context": {
+        "files": null,
+        "note": "AGENTS.md is workspace-scope (--workspace-target); persona lives in SOUL.md. Keep the managed block in each workspace AGENTS.md."
+      },
+      "skills": {"dirs": ["~/.hermes/skills", "~/.agents/skills"]},
+      "mcp": {
+        "path": {"linux": "~/.hermes/config.yaml", "macos": "~/.hermes/config.yaml", "windows": "~/.hermes/config.yaml"},
+        "format": null,
+        "note": "Config is YAML — not merged without third-party YAML libs; secrets live in ~/.hermes/.env."
+      },
+      "manual": true,
+      "manual_reason": "MCP config is YAML (~/.hermes/config.yaml); stdlib-only merge would be fragile. Context is workspace-scope only."
+    },
+    {
+      "id": "openhands",
+      "name": "OpenHands",
+      "vendor": "All Hands AI",
+      "url": "https://docs.openhands.dev/openhands/usage/settings/mcp-settings",
+      "detect": {"binaries": ["openhands"], "paths": ["~/.openhands"]},
+      "context": {
+        "files": null,
+        "note": "Repo-root AGENTS.md is the supported convention (legacy .openhands/microagents/). Commit core/AGENTS.md content per repo."
+      },
+      "skills": {"dirs": ["~/.agents/skills"]},
+      "mcp": {
+        "path": null,
+        "format": null,
+        "note": "V1 manages MCP via the Settings UI or `openhands mcp add` CLI; config.toml [mcp] is legacy V0 only."
+      },
+      "manual": true,
+      "manual_reason": "No stable user-scope MCP config file to merge (UI/CLI-managed); context is repo-scope — printed instructions only."
+    },
+    {
+      "id": "junie",
+      "name": "JetBrains Junie",
+      "vendor": "JetBrains",
+      "url": "https://junie.jetbrains.com/docs/junie-cli-mcp-configuration.html",
+      "detect": {"binaries": ["junie"], "paths": ["~/.junie"]},
+      "context": {"files": {"linux": ["~/.junie/AGENTS.md"], "macos": ["~/.junie/AGENTS.md"], "windows": ["~/.junie/AGENTS.md"]}},
+      "skills": {"dirs": ["~/.junie/skills", "~/.agents/skills"]},
+      "mcp": {"path": {"linux": "~/.junie/mcp/mcp.json", "macos": "~/.junie/mcp/mcp.json", "windows": "~/.junie/mcp/mcp.json"}, "format": "mcpservers-json"},
+      "manual": false
+    },
+    {
+      "id": "amazon-q",
+      "name": "Amazon Q Developer CLI",
+      "vendor": "AWS",
+      "url": "https://aws.amazon.com/blogs/devops/mastering-amazon-q-developer-with-rules/",
+      "detect": {"binaries": ["q"], "paths": ["~/.aws/amazonq"]},
+      "context": {
+        "files": {"linux": ["~/.aws/amazonq/rules/universal-agentic-setup.md"], "macos": ["~/.aws/amazonq/rules/universal-agentic-setup.md"], "windows": ["~/.aws/amazonq/rules/universal-agentic-setup.md"]},
+        "note": "Global rules directory; AGENTS.md itself is not documented for Amazon Q."
+      },
+      "skills": null,
+      "mcp": {"path": {"linux": "~/.aws/amazonq/mcp.json", "macos": "~/.aws/amazonq/mcp.json", "windows": "~/.aws/amazonq/mcp.json"}, "format": "mcpservers-json"},
+      "manual": false
+    },
+    {
+      "id": "jules",
+      "name": "Google Jules",
+      "vendor": "Google",
+      "url": "https://jules.google",
+      "detect": {"binaries": [], "paths": []},
+      "context": {
+        "files": null,
+        "note": "Cloud agent: reads repo AGENTS.md. Commit core/AGENTS.md content (minus the managed-block markers) to each repo you run Jules on."
+      },
+      "skills": null,
+      "mcp": null,
+      "manual": true,
+      "manual_reason": "Web/GitHub cloud agent — nothing local to configure; commit AGENTS.md to your repos instead."
+    }
+  ]
+}

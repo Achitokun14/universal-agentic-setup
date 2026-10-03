@@ -1,1 +1,7 @@
-setup.sh
+#!/usr/bin/env bash
+# setup — universal-agentic-setup entrypoint.
+# A real script (the v1 git symlink checked out as a 0-byte file on Windows);
+# it simply forwards to setup.sh, the 8-phase orchestrator.
+# PowerShell users: run .\setup.ps1 instead.
+set -euo pipefail
+exec bash "$(dirname "$0")/setup.sh" "$@"

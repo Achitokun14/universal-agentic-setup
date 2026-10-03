@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# setup.sh — single entrypoint for claude-universal.
+# setup.sh — single entrypoint for universal-agentic-setup.
 # One command installs, configures, and updates the entire workstation.
 #
 #   ./setup                      # install (or no-op if up-to-date)
@@ -45,7 +45,7 @@ export SETUP_DRY SETUP_YES SETUP_UPDATE SETUP_UNINSTALL SETUP_DOCTOR SETUP_WITH 
 
 usage() {
   cat <<USAGE
-claude-universal v$VERSION — one-command installer/updater
+universal-agentic-setup v$VERSION — one-command installer/updater
 
 Usage:
   ./setup                       Install (or no-op if up-to-date)
@@ -83,7 +83,7 @@ while [[ $# -gt 0 ]]; do
     --with=*)     SETUP_WITH="${1#--with=}"; shift ;;
     --skip=*)     SETUP_SKIP="${1#--skip=}"; shift ;;
     --only=*)     SETUP_ONLY="${1#--only=}"; shift ;;
-    --version)    echo "claude-universal $VERSION"; exit 0 ;;
+    --version)    echo "universal-agentic-setup $VERSION"; exit 0 ;;
     -h|--help)    usage; exit 0 ;;
     *) err "unknown flag: $1"; usage; exit 1 ;;
   esac
@@ -94,7 +94,7 @@ export SETUP_DRY SETUP_YES SETUP_WITH SETUP_SKIP SETUP_ONLY
 
 # ─── doctor mode (read-only) ──────────────────────────────────────
 if [[ "$SETUP_DOCTOR" -eq 1 ]]; then
-  step "claude-universal doctor (v$VERSION)"
+  step "universal-agentic-setup doctor (v$VERSION)"
   detect_all
   plan_print
   verify_doctor
@@ -103,15 +103,17 @@ fi
 
 # ─── uninstall mode ───────────────────────────────────────────────
 if [[ "$SETUP_UNINSTALL" -eq 1 ]]; then
-  step "claude-universal — uninstall"
-  manifest="$HOME/.claude/.claude-universal-manifest.json"
-  if [[ ! -f "$manifest" ]]; then
-    err "no manifest at $manifest — nothing to uninstall"
+  step "universal-agentic-setup — uninstall"
+  manifest="$HOME/.universal-agentic-manifest.json"
+  legacy_manifest="$HOME/.claude/.claude-universal-manifest.json"
+  if [[ ! -f "$manifest" && ! -f "$legacy_manifest" ]]; then
+    err "no manifest at $manifest (or v1 $legacy_manifest) — nothing to uninstall"
     exit 1
   fi
   warn "this will:"
   warn "  • restore the most recent ~/.claude/settings.json.bak.* (if any)"
-  warn "  • remove the managed CLAUDE.md block"
+  warn "  • remove managed blocks (CLAUDE.md, AGENTS.md) and managed MCP entries"
+  warn "  • run agentic_sync.py --uninstall across every agent it wired"
   warn "  • delete bundle-owned files (docs, bundled commands, hooks)"
   warn "  • leave your custom files alone"
   if ! confirm "proceed?"; then
@@ -131,9 +133,20 @@ if [[ "$SETUP_UNINSTALL" -eq 1 ]]; then
     if [[ "$SETUP_DRY" -eq 1 ]]; then
       hint "(dry-run) sed delete managed block"
     else
-      sed -i.unrolled '/<!-- BEGIN: claude-universal managed block/,/<!-- END: claude-universal managed block/d' \
+      sed -i.unrolled '/<!-- BEGIN: universal-agentic-setup managed block/,/<!-- END: universal-agentic-setup managed block/d' \
         "$HOME/.claude/CLAUDE.md" 2>/dev/null || true
-      ok "stripped managed block from CLAUDE.md"
+      sed -i.unrolled '/<!-- BEGIN: universal-agentic-setup managed block/,/<!-- END: universal-agentic-setup managed block/d' \
+        "$HOME/.claude/AGENTS.md" 2>/dev/null || true
+      ok "stripped managed blocks from CLAUDE.md and AGENTS.md"
+    fi
+  fi
+
+  # v2: unwind every agent agentic_sync.py wired (restores .bak backups)
+  if command -v python3 >/dev/null 2>&1 && [[ -f "$manifest" ]]; then
+    if [[ "$SETUP_DRY" -eq 1 ]]; then
+      hint "(dry-run) python3 scripts/agentic_sync.py --uninstall --apply"
+    else
+      python3 "$BUNDLE_DIR/scripts/agentic_sync.py" --uninstall --apply 2>&1 | tail -10 || true
     fi
   fi
 
@@ -146,15 +159,16 @@ if [[ "$SETUP_UNINSTALL" -eq 1 ]]; then
   # Remove docs/ (bundle-owned)
   run "rm -rf '$HOME/.claude/docs'"
 
-  # Remove manifest
+  # Remove manifests (v2 + legacy v1 if present)
   run "rm -f '$manifest'"
+  run "rm -f '$legacy_manifest'"
   ok "uninstall complete"
   exit 0
 fi
 
 # ─── update mode ──────────────────────────────────────────────────
 if [[ "$SETUP_UPDATE" -eq 1 ]]; then
-  step "claude-universal — update (v$VERSION)"
+  step "universal-agentic-setup — update (v$VERSION)"
   cd "$BUNDLE_DIR"
   if [[ -d .git ]]; then
     if ! git diff-index --quiet HEAD -- 2>/dev/null; then
@@ -171,7 +185,7 @@ if [[ "$SETUP_UPDATE" -eq 1 ]]; then
 fi
 
 # ─── default = install/no-op ─────────────────────────────────────
-step "claude-universal v$VERSION — setup"
+step "universal-agentic-setup v$VERSION — setup"
 detect_all
 plan_print
 
@@ -191,7 +205,7 @@ apply_all
 verify_all
 
 step "8/8 — done"
-ok "claude-universal v$VERSION installed"
+ok "universal-agentic-setup v$VERSION installed"
 hint "Next: start a new session in your AI CLI to load merged settings."
 hint "Re-run later: ./setup            # idempotent no-op if up-to-date"
 hint "             ./setup --update    # pull latest from upstream"

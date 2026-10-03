@@ -1,6 +1,16 @@
 # Changelog
 
-All notable changes to the `claude-universal` bundle. Format: [Keep a Changelog](https://keepachangelog.com), semver.
+All notable changes to the `universal-agentic-setup` bundle (v1 name: `claude-universal`). Format: [Keep a Changelog](https://keepachangelog.com), semver.
+
+## [2.0.0] — 2026-10-03
+
+Renamed `claude-universal` → `universal-agentic-setup`: agent-neutral core
+(`core/`), 26-agent registry (`agents/registry.json`), sync engine
+(`scripts/agentic_sync.py`, dry-run default / idempotent / reversible), real
+`setup` script + `setup.ps1`, generated `docs/AGENTS-MATRIX.md`, unittest suite,
+windows CI. BREAKING: managed-block markers and manifest renamed — uninstall v1
+first (see MIGRATION.md); `sync-cross-tool*.sh` removed; `user/AGENTS.md`
+superseded by `core/AGENTS.md`. Details mirrored in the root [CHANGELOG.md](../../CHANGELOG.md).
 
 ## [1.18.0] — 2026-04-26
 

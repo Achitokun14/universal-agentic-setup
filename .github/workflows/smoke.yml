@@ -28,6 +28,9 @@ jobs:
           mkdir -p "$HOME"
           ./setup --dry-run --yes
 
+      - name: Python unittest suite (agentic_sync engine)
+        run: python3 -m unittest discover -s tests -v
+
       - name: Run smoke test suite
         run: |
           export HOME=/tmp/fake-home-smoke
@@ -67,8 +70,43 @@ jobs:
           mkdir -p "$HOME"
           ./setup --dry-run --yes
 
+      - name: Python unittest suite (agentic_sync engine)
+        run: python3 -m unittest discover -s tests -v
+
       - name: Run smoke test suite
         run: |
           export HOME=/tmp/fake-home-smoke
           mkdir -p "$HOME"
           bash tests/smoke.sh
+
+  smoke-windows:
+    name: smoke (windows)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python unittest suite (agentic_sync engine)
+        shell: pwsh
+        run: python -m unittest discover -s tests -v
+
+      - name: setup.ps1 -DryRun (agent-neutral plan, no changes)
+        shell: pwsh
+        run: ./setup.ps1 -DryRun
+
+      - name: agentic_sync doctor + list (read-only)
+        shell: pwsh
+        run: |
+          python scripts/agentic_sync.py --doctor
+          python scripts/agentic_sync.py --list
+
+      - name: Verify VERSION matches CHANGELOG
+        shell: pwsh
+        run: |
+          $ver = Get-Content VERSION -Raw
+          $ver = $ver.Trim()
+          $ok = (Select-String -Path CHANGELOG.md -Pattern "^## \[$ver\]" -Quiet) -and `
+                (Select-String -Path user/docs/CHANGELOG.md -Pattern "^## \[$ver\]" -Quiet)
+          if (-not $ok) {
+            Write-Error "VERSION $ver not found in CHANGELOG"
+            exit 1
+          }

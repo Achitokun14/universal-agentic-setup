@@ -3,8 +3,8 @@
 ## TL;DR
 
 ```bash
-git clone https://github.com/Achitokun14/claude-universal.git
-cd claude-universal
+git clone https://github.com/Achitokun14/universal-agentic-setup.git
+cd universal-agentic-setup
 ./setup
 ```
 
@@ -14,13 +14,13 @@ Done. The bundle detects your OS, your AI CLIs, your shell — and applies safe 
 
 Eight phases, all logged to your terminal:
 
-1. **Detect** — OS / arch / pkg-manager / shell / which AI CLIs you have
+1. **Detect** — OS / arch / pkg-manager / shell / which agents you have (26-agent registry)
 2. **Plan** — print exactly what would change; prompt once unless `--yes`
 3. **Install prereqs** — `jq`, `python3`, `node`, `curl`, `git` via your pkg-manager (only what's missing)
 4. **Apply user-scope** — merge `~/.claude/{settings.json,CLAUDE.md,docs,hooks,commands}` (idempotent — never clobbers your edits)
 5. **Skills + scaffolding** — design-skill family, llm-wiki, improvement-state, useful-resources
-6. **Wire AI CLIs** — for every detected CLI: skills/commands/hooks/MCPs in its native format
-7. **Manifest** — record version + install timestamp at `~/.claude/.claude-universal-manifest.json`
+6. **Wire every detected agent** — `agentic_sync.py`: rules block + MCP catalog in each agent's native format
+7. **Manifest** — record version + install timestamp at `~/.universal-agentic-manifest.json`
 8. **Verify** — smoke checks per agent; one PASS/FAIL line each
 
 ## Flags
@@ -43,8 +43,8 @@ Eight phases, all logged to your terminal:
 ### First-time install
 
 ```bash
-git clone https://github.com/Achitokun14/claude-universal.git
-cd claude-universal
+git clone https://github.com/Achitokun14/universal-agentic-setup.git
+cd universal-agentic-setup
 ./setup --dry-run                       # preview
 ./setup                                 # apply
 ```
@@ -81,7 +81,7 @@ Prints what's installed, what's missing, and one-line install hints for missing 
 ./setup --uninstall
 ```
 
-Restores the most recent `~/.claude/settings.json.bak.*`, strips the managed CLAUDE.md block, removes bundle-owned hooks and docs. Custom files stay.
+Restores the most recent `~/.claude/settings.json.bak.*`, strips managed blocks, removes managed MCP entries (restoring backups), removes bundle-owned hooks and docs. Custom files stay.
 
 ## Set up secrets
 
@@ -102,34 +102,26 @@ export GEMINI_API_KEY="<your google key>"        # used by gemini-cli, /extract 
 
 …then `source ~/.zshrc`.
 
-## Per-AI-CLI install (do this once if you don't have them)
+## Per-agent install (do this once if you don't have them)
 
-`./setup` doesn't auto-install the AI CLIs — those are your choices. Pick what you want:
+`./setup` doesn't auto-install the agents — those are your choices. A few popular
+ones (full 26-agent list with vendors and docs: `docs/AGENTS-MATRIX.md`):
 
 ```bash
-# Claude Code
-# https://docs.claude.com/claude-code
-
+# Claude Code — https://code.claude.com/docs/en/setup
 # Codex
 npm install -g @openai/codex
-
-# Goose
-curl -fsSL https://block.github.io/goose/install.sh | sh
-
 # Gemini CLI
 npm install -g @google/gemini-cli
-
-# Kimi CLI
-pipx install kimi-cli
-
 # OpenCode
 curl -fsSL https://opencode.ai/install | sh
-
-# Claw Code
-bash scripts/install-claw-code.sh
+# Amp
+curl -fsSL https://ampcode.com/install.sh | sh
+# omp (oh-my-pi)
+curl -fsSL https://omp.sh/install | sh
 ```
 
-Then run `./setup` again — it'll detect the new CLIs and wire them.
+Then run `./setup` again — it'll detect the new agents and wire them.
 
 ## Troubleshooting
 

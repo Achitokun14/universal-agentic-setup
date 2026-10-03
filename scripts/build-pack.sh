@@ -13,11 +13,11 @@ trap 'rm -rf "$STAGE"' EXIT
 say() { printf '▸ %s\n' "$*"; }
 REDACT='REDACTED_SET_VIA_ENV'
 
-# ─── 1. bundle (claude-universal) ──────────────────────────────────
-say "staging claude-universal bundle"
-mkdir -p "$STAGE/claude-universal"
+# ─── 1. bundle (universal-agentic-setup) ──────────────────────────
+say "staging universal-agentic-setup bundle"
+mkdir -p "$STAGE/universal-agentic-setup"
 rsync -a --exclude='__pycache__' --exclude='*.pyc' \
-  "$HOME/Desktop/ACTIVITIES/claude-universal/" "$STAGE/claude-universal/"
+  "$HOME/Projects/universal-agentic-setup/" "$STAGE/universal-agentic-setup/"
 
 # ─── 2. catalog + inventory ────────────────────────────────────────
 say "staging catalog + inventory"
@@ -207,7 +207,7 @@ Portable snapshot of a fully-configured AI-agent workstation. Restore on any mac
 ## What's inside
 
 ```
-claude-universal/          — the bundle (scripts + user/ + project/ templates)
+universal-agentic-setup/   — the bundle (core/ + agents/ + scripts + user/ + project/)
 configs/                   — per-tool config snapshots (redacted)
   claude/      goose/      codex/      gemini/      kimi/      opencode/      claw/
   carl/        base/       zeroclaw/                                    (newer)
@@ -221,7 +221,7 @@ references/                — non-skill clones (W3C specs, etc.)
 ### 1. Install the bundle (user scope)
 
 ```bash
-cd claude-universal
+cd universal-agentic-setup
 ./install.sh user
 ./install-skills.sh            # design skill family (Emil/Taste/Impeccable/UI-UX-Pro-Max)
 ./scripts/init-llm-wiki.sh
@@ -238,12 +238,12 @@ cd claude-universal
 # Gemini CLI:       npm install -g @google/gemini-cli
 # Goose:            curl -fsSL https://block.github.io/goose/install.sh | sh
 # Codex:            npm install -g @openai/codex
-# Claw Code:        bash claude-universal/scripts/install-claw-code.sh
+# Claw Code:        bash universal-agentic-setup/scripts/install-claw-code.sh
 # Ollama:           curl -fsSL https://ollama.com/install.sh | sh
-# Lightpanda:       bash claude-universal/scripts/install-lightpanda.sh
-# zrok (replaces ngrok): bash claude-universal/scripts/install-zrok.sh
-# Ghidra + MCP:     bash claude-universal/scripts/install-ghidra.sh
-# BASE/PAUL/CARL:   bash claude-universal/scripts/install-inspired.sh (interactive)
+# Lightpanda:       bash universal-agentic-setup/scripts/install-lightpanda.sh
+# zrok (replaces ngrok): bash universal-agentic-setup/scripts/install-zrok.sh
+# Ghidra + MCP:     bash universal-agentic-setup/scripts/install-ghidra.sh
+# BASE/PAUL/CARL:   bash universal-agentic-setup/scripts/install-inspired.sh (interactive)
 ```
 
 ### 3. Apply the configs
@@ -299,8 +299,7 @@ export OLLAMA_HOST="https://ollama.com"
 ### 5. Cross-tool sync (refresh all at once)
 
 ```bash
-bash claude-universal/scripts/sync-cross-tool.sh            # portable subset
-bash claude-universal/scripts/sync-cross-tool-native.sh     # deep per-tool native
+python3 universal-agentic-setup/scripts/agentic_sync.py --apply   # 26-agent rules + MCP sync
 ```
 
 ### 6. Verify
@@ -308,22 +307,22 @@ bash claude-universal/scripts/sync-cross-tool-native.sh     # deep per-tool nati
 ```bash
 claude --version  kimi --version  opencode --version  gemini --version
 goose --version   codex --version  claw --version
-bash claude-universal/scripts/scan-skills.sh                # rebuild inventory
+bash universal-agentic-setup/scripts/scan-skills.sh                # rebuild inventory
 ```
 
 ## What's NOT in this pack
 
 | Item | Why excluded | How to get |
 |---|---|---|
-| `~/.claude/skills/_inspired/` (661 MB) | 9 cloned OSS repos — too heavy | `bash claude-universal/scripts/install-inspired.sh --all` |
-| Whisper venv (200+ MB) | Rebuilt at install time | `bash claude-universal/scripts/install-claw-code.sh` (handled) |
-| Lightpanda binary (119 MB) | Architecture-specific | `bash claude-universal/scripts/install-lightpanda.sh` |
+| `~/.claude/skills/_inspired/` (661 MB) | 9 cloned OSS repos — too heavy | `bash universal-agentic-setup/scripts/install-inspired.sh --all` |
+| Whisper venv (200+ MB) | Rebuilt at install time | `bash universal-agentic-setup/scripts/install-claw-code.sh` (handled) |
+| Lightpanda binary (119 MB) | Architecture-specific | `bash universal-agentic-setup/scripts/install-lightpanda.sh` |
 | API keys | Security | You provide via env vars (step 4) |
 | Plugin-provided skills | Installed via marketplace | Handled by Claude Code plugin system |
 
 ## License notes
 
-- Bundle scripts: MIT (see claude-universal/LICENSE if present; otherwise public domain)
+- Bundle scripts: MIT (see universal-agentic-setup/LICENSE if present; otherwise public domain)
 - Inspired repos: each retains its original license (clone via install-inspired.sh)
 - Skills: each plugin retains its original license
 INSTALL

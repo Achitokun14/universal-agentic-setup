@@ -4,7 +4,7 @@
 set -euo pipefail
 
 SEARCH_ROOTS=("$HOME/Desktop")
-SKIP_GLOBS=("*/node_modules/*" "*/.cache/*" "*/.claude/plugins/*" "*/ACTIVITIES/claude-universal/*")
+SKIP_GLOBS=("*/node_modules/*" "*/.cache/*" "*/.claude/plugins/*" "*/universal-agentic-setup/*")
 
 should_skip() {
   local path="$1"
@@ -33,7 +33,7 @@ for root in "${SEARCH_ROOTS[@]}"; do
 
     cat > "$state" <<JSON
 {
-  "\$schema": "https://github.com/taran/claude-universal/improvement-state.schema.json",
+  "\$schema": "https://github.com/Achitokun14/universal-agentic-setup/improvement-state.schema.json",
   "project": "$project_name",
   "path": "$project_dir",
   "created_at": "$created_at",

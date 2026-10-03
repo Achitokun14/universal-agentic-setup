@@ -1,4 +1,4 @@
-# Contributing to claude-universal
+# Contributing to universal-agentic-setup
 
 Thanks for considering a contribution! This project is **open source under MIT** — anyone can use, fork, and modify it freely. Contributions to **this** repository, however, follow a strict pull-request workflow.
 

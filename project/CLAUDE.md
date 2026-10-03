@@ -1,4 +1,4 @@
-<!-- BEGIN: claude-universal managed block (do not edit between these markers — rerun installer to update) -->
+<!-- BEGIN: universal-agentic-setup managed block (do not edit between these markers — rerun installer to update) -->
 # Project context
 
 Universal rules live in `~/.claude/CLAUDE.md` + `~/.claude/docs/`. This file holds **only** what differs in this project. Delete sections you don't need; don't leave empty TODOs.
@@ -19,4 +19,4 @@ _Fill in only if Claude would otherwise guess wrong:_
 - What this is:
 - Stack highlights / version pins:
 - `Run it locally`:
-<!-- END: claude-universal managed block -->
+<!-- END: universal-agentic-setup managed block -->

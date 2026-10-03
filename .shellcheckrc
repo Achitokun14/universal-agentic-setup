@@ -1,4 +1,4 @@
-# shellcheck config — claude-universal
+# shellcheck config — universal-agentic-setup
 # Each disable has a justification.
 
 # SC2086 — word-splitting in unquoted vars

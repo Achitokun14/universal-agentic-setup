@@ -4,6 +4,54 @@ The full version history lives at [user/docs/CHANGELOG.md](user/docs/CHANGELOG.m
 
 For all versions: see [user/docs/CHANGELOG.md](user/docs/CHANGELOG.md).
 
+## [2.0.0] — 2026-10-03
+
+**Renamed `claude-universal` → `universal-agentic-setup`.** One agent-neutral source
+of truth rendered into 26 agents. Full upgrade path: [MIGRATION.md](MIGRATION.md).
+
+### BREAKING
+- Managed-block markers renamed: `<!-- BEGIN: universal-agentic-setup … -->`.
+  **Uninstall v1 before applying v2** — old `claude-universal` blocks are not replaced in place.
+- Manifest moved to `~/.universal-agentic-manifest.json` (v1 file is detected + reported).
+- `scripts/sync-cross-tool.sh` + `sync-cross-tool-native.sh` **removed**, superseded by
+  `scripts/agentic_sync.py` (portable subset fully covered; machine-bound deep-sync dropped).
+- `user/AGENTS.md` removed — superseded by `core/AGENTS.md`.
+- `setup` is now a real script (the v1 git symlink checked out 0-byte on Windows).
+
+### Added — agent-neutral core + 26-agent engine
+- `core/AGENTS.md` (universal rules), `core/mcp/servers.json` (12-server catalog,
+  6 default-enabled, env var names only), `core/skills/catalog.json`
+  (21 core / 14 optional / 9 rejected), `core/tools/catalog.json` (8+7 tools)
+- `agents/registry.json` — one entry per verified agent: detect hints, per-OS
+  user-scope paths, MCP format id, manual flag, source URL. 18 automatable,
+  8 manual (YAML configs, GUI-managed MCP, cloud-only)
+- `scripts/agentic_sync.py` (stdlib-only, py3.9+): `--dry-run` default / `--apply` /
+  `--only` / `--skip` / `--list [--markdown]` / `--doctor` / `--uninstall` / `--skills`.
+  Native MCP renders: Claude `~/.claude.json`, Codex TOML, Gemini/Qwen settings.json,
+  mcp.json-style (Cursor/Copilot/Junie/Factory/Kimi Code/omp/Cline/Amazon-Q),
+  OpenCode `mcp` local|remote, Zed `context_servers`, Amp `amp.mcpServers`,
+  Crush `mcp`, Antigravity/Windsurf `serverUrl`. Preserves unrelated keys and user
+  entries; timestamped `.bak` before any change; apply is byte-identical idempotent;
+  uninstall restores backups byte-original.
+- `setup.ps1` (PS 5.1-compatible; `install.ps1`/`setup.ps1` now UTF-8 BOM — fixes a
+  pre-existing PS 5.1 parse failure on BOM-less files with non-ASCII)
+- `docs/AGENTS-MATRIX.md` (generated), `docs/SKILLS.md`, `docs/TOOLS.md`, `MIGRATION.md`
+- `tests/test_agentic_sync.py` — 32 unittest cases (golden renders per format,
+  idempotency, managed-block insert/remove, unrelated-keys preservation, uninstall
+  restore, registry schema, no-secret-values)
+
+### Changed
+- `setup.sh` phase 4 wires every detected agent via `agentic_sync.py`; phase 6 writes
+  the v2 manifest (merge-mode, agents section preserved); `--uninstall` unwinds both layers
+- `install.sh` / `install.ps1` user mode: `~/.claude/AGENTS.md` block sourced from
+  `core/AGENTS.md`, then `agentic_sync.py --apply --only claude-code` (MCP catalog merge)
+- `tests/smoke.sh` extended to 23 assertions; CI adds `windows-latest`
+  (python tests + `setup.ps1 -DryRun`) and unittest steps on ubuntu/macos
+- README rewritten with computed numbers (10 registered hooks — v1 table listed 11
+  incl. an unshipped `carl-hook.py`; 13 commands incl. `/unfreeze`, dropping
+  nonexistent `/plan`; permissions 85/19/22 — was 80/19/25; MCP/skill catalogs
+  instead of author-machine counts)
+
 ## [1.18.0] — 2026-04-26
 
 ### Added — one-command universal `./setup`

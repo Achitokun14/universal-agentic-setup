@@ -31,7 +31,7 @@ def hx(s): return '#' + str(s)[2:] if str(s or '').startswith('0x') else s
 
 colors = cfg.get('colors', {})
 theme = {
-    'name': 'claude-universal',
+    'name': 'universal-agentic-setup',
     'accent': hx(colors.get('normal',{}).get('green','0x88C999')),
     'background': hx(colors.get('primary',{}).get('background','0x0a1f0a')),
     'foreground': hx(colors.get('primary',{}).get('foreground','0xe0e0e0')),
@@ -54,8 +54,8 @@ def to_yaml(d, ind=0):
 
 out_dir = Path.home() / '.warp/themes'
 out_dir.mkdir(parents=True, exist_ok=True)
-(out_dir/'claude-universal.yaml').write_text(to_yaml(theme)+'\n')
-print(f'wrote {out_dir/\"claude-universal.yaml\"}')
+(out_dir/'universal-agentic-setup.yaml').write_text(to_yaml(theme)+'\n')
+print(f'wrote {out_dir/\"universal-agentic-setup.yaml\"}')
 "
 }
 

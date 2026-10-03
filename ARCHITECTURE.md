@@ -2,26 +2,41 @@
 
 ## Goal
 
-One portable bundle that brings 7 AI coding CLIs to feature parity on a workstation, without forcing you to use any of them. Each CLI keeps its native config format; the bundle deploys consistent rules, skills, MCPs, and hooks across all of them.
+One agent-neutral source of truth (rules, MCP servers, skills, tools) rendered into the native config of 26 coding agents, without forcing you to use any of them. Each agent keeps its native config format; the bundle deploys consistent rules and MCP wiring everywhere it can do so safely, and prints instructions where it can't.
 
 ## Layout
 
 ```
-claude-universal/
-├── install.sh                 # main installer (bash)
+universal-agentic-setup/
+├── setup                      # one-command entrypoint (real file, not a symlink)
+├── setup.sh                   # 8-phase orchestrator (bash)
+├── setup.ps1                  # PowerShell entrypoint → agentic_sync.py
+├── install.sh                 # Claude-canonical installer (bash, merge mode)
 ├── install.ps1                # PowerShell mirror (Windows)
 ├── install-skills.sh          # design-skill family installer
 ├── HOW-TO-USE.md              # narrative manual
 ├── QUICKSTART.md              # 5-min path
 ├── ARCHITECTURE.md            # this file
+├── MIGRATION.md               # v1 (claude-universal) → v2 upgrade path
 ├── README.md                  # repo landing page
 │
+├── core/                      # v2 AGENT-NEUTRAL SOURCE OF TRUTH
+│   ├── AGENTS.md              # universal rules (managed-block source for all agents)
+│   ├── mcp/servers.json       # MCP catalog (12 servers; env var names only)
+│   ├── skills/catalog.json    # skill tiers: 21 core / 14 optional / 9 rejected
+│   └── tools/catalog.json     # companion CLI catalog: 8 core / 7 optional
+│
+├── agents/
+│   └── registry.json          # 26 agents: detect hints, per-OS paths, MCP format, manual flag
+│
+├── docs/                      # v2 references (AGENTS-MATRIX.md is generated)
+│   ├── AGENTS-MATRIX.md  SKILLS.md  TOOLS.md
+│
 ├── user/                      # GLOBAL scope — deploys to ~/.claude/
-│   ├── CLAUDE.md              # universal rules (managed block)
-│   ├── AGENTS.md              # cross-tool mirror (symlinked at install)
+│   ├── CLAUDE.md              # Claude-flavored rules (managed block; core/AGENTS.md goes to ~/.claude/AGENTS.md)
 │   ├── settings.json          # safe defaults, deep-merged not overwritten
 │   ├── .gitignore             # used as project-template too
-│   ├── hooks/                 # 11 hooks (post-tool, stop, prompt-submit)
+│   ├── hooks/                 # 11 hook scripts (10 registered in settings.json)
 │   │   ├── auto-format.sh
 │   │   ├── block-ai-attribution.sh
 │   │   ├── block-secret-writes.sh
@@ -67,9 +82,8 @@ claude-universal/
     ├── install-warp.sh                # cc/kc/oc/cw shell aliases
     ├── install-zrok.sh                # ngrok replacement
     ├── prune-skills.sh                # safe Tier-D skill disabler (move not delete)
+    ├── agentic_sync.py                # v2 agent-neutral sync engine (rules + MCP merge, 26 agents)
     ├── scan-skills.sh                 # rebuild skills-inventory.json
-    ├── sync-cross-tool.sh             # portable cross-CLI sync (markdown + MCP)
-    ├── sync-cross-tool-native.sh      # deep per-CLI native sync (skills, agents, providers)
     ├── vw-helper.sh                   # Vaultwarden/Bitwarden helper
     ├── ytdl-to-wiki.sh                # yt-dlp → whisper → wiki
     └── zrok-share.sh                  # zrok tunnel sharing
@@ -102,15 +116,18 @@ Each AI coding CLI has its own native config format. The bundle ships canonical 
 
 | CLI | Native format | Synced via |
 |---|---|---|
-| Claude Code | `~/.claude/{settings.json,CLAUDE.md,hooks/,commands/,skills/}` | `install.sh user` (canonical) |
-| Codex | `~/.codex/{config.toml,skills/,commands/,hooks/}` | `sync-cross-tool-native.sh` (mirrors skills + commands) |
-| Goose | `~/.config/goose/{config.yaml,mcp.json,hooks/,skills/}` | already present (~358 skills); `sync-cross-tool.sh` for MCP |
-| Gemini CLI | `~/.gemini/{settings.json,GEMINI.md,commands/,skills,hooks}` | `gemini hooks migrate` (first-party Claude→Gemini) + `gemini skills link` |
-| Kimi CLI | `~/.kimi/{config.toml,mcp.json}` | `sync-cross-tool-native.sh` (TOML providers + models) |
-| OpenCode | `~/.config/opencode/{opencode.json,AGENTS.md,agent/}` | `sync-cross-tool-native.sh` (custom agents + providers) |
-| Claw Code | `~/.config/claw/{env.sh,models.md}` | env-var driven; no config file beyond aliases |
+v2 replaces the v1 per-tool sync scripts with one agent-neutral engine:
 
-The sync scripts are **idempotent** — running twice yields the same state. They never overwrite user-edited files; instead they detect existing entries and skip.
+```bash
+python3 scripts/agentic_sync.py            # dry-run plan (default)
+python3 scripts/agentic_sync.py --apply    # write configs
+```
+
+It wires **26 agents** (see `docs/AGENTS-MATRIX.md`): managed rules block from
+`core/AGENTS.md` + MCP servers from `core/mcp/servers.json` in each agent's native
+format, preserving unrelated keys and user entries. The engine is **idempotent** —
+running twice yields byte-identical state. It never overwrites user-edited entries;
+existing managed entries are updated in place.
 
 ## Hook event flow (Claude Code)
 

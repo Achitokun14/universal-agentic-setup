@@ -33,9 +33,9 @@ plan_print() {
       echo "  2. apply user-scope config to ~/.claude/ (idempotent merge)"
       echo "  3. install design skills family (~/.claude/skills/)"
       echo "  4. init llm-wiki + improvement-state scaffolding"
-      echo "  5. wire each detected AI CLI to the bundle (sync-cross-tool*)"
+      echo "  5. wire every detected agent (scripts/agentic_sync.py: rules + MCP)"
       echo "  6. install opt-in add-ons: ${SETUP_WITH:-none requested}"
-      echo "  7. write manifest to ~/.claude/.claude-universal-manifest.json"
+      echo "  7. write manifest to ~/.universal-agentic-manifest.json"
       echo "  8. verify each agent (smoke checks)"
       ;;
     installed)

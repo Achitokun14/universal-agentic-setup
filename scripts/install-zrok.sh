@@ -58,7 +58,7 @@ NEXT STEPS (interactive — zrok account is required):
        zrok enable <invite-token>
 
   3. Share ZeroClaw's gateway:
-       bash ~/Desktop/ACTIVITIES/claude-universal/scripts/zrok-share.sh
+       bash universal-agentic-setup/scripts/zrok-share.sh
 
   Self-hosting? See https://docs.zrok.io/docs/guides/self-hosting
 EOM

@@ -83,7 +83,7 @@ Wired across all 6 agents (Claude/Codex/Goose/Gemini/Kimi/OpenCode). Claw uses e
 - Backed by [`obsidian-mcp`](https://github.com/StevenStavrakis/obsidian-mcp) (filesystem-direct, no plugin)
 - Default vault: `~/Desktop/ACTIVITIES`
 - Tools: read note, create note, edit note, move/delete, manage tags, search vault
-- Override vault: `OBSIDIAN_VAULT=/path bash claude-universal/scripts/install-obsidian.sh`
+- Override vault: `OBSIDIAN_VAULT=/path bash universal-agentic-setup/scripts/install-obsidian.sh`
 - CLI counterpart: `obsidian-cli` (Yakitrak / notesmd-cli) — `obsidian-cli {create,open,search,daily,frontmatter,...}`
 
 ## Universal CLI tools (user-scope, system PATH)
@@ -93,7 +93,7 @@ Wired across all 6 agents (Claude/Codex/Goose/Gemini/Kimi/OpenCode). Claw uses e
 - Converts: PDF, DOCX, XLSX, PPTX, images (OCR via magika), audio, HTML, JSON, XML, ZIP, CSV
 - Use: `markitdown report.pdf > report.md` · `cat doc.docx | markitdown`
 - Pairs well with `/extract` and `obsidian-cli create` for ingesting docs into vault
-- Install: `bash claude-universal/scripts/install-markitdown.sh`
+- Install: `bash universal-agentic-setup/scripts/install-markitdown.sh`
 
 ## See also
 

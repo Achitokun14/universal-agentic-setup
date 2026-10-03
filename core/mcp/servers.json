@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "updated": "2026-10-03",
+  "notes": "Canonical MCP server catalog for universal-agentic-setup. Seeded exclusively with servers this repository already documents (user/docs/MCPS.md, scripts/sync-cross-tool.sh history, scripts/install-obsidian.sh). 'env' lists variable NAMES only — values are never stored in this repo; renderers expand them as ${VAR} placeholders in each agent's native config. 'default_enabled': true = keyless/local servers safe to wire everywhere; false = needs an API key, a local binary, or an account (opt-in).",
+  "servers": [
+    {
+      "name": "duckduckgo",
+      "description": "Free web search, no API key",
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "duckduckgo-mcp-server"],
+      "env": [],
+      "default_enabled": true,
+      "source": "user/docs/MCPS.md"
+    },
+    {
+      "name": "playwright",
+      "description": "Local browser automation via Playwright",
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"],
+      "env": [],
+      "default_enabled": true,
+      "source": "user/docs/MCPS.md"
+    },
+    {
+      "name": "fetch",
+      "description": "Fetch web pages as clean text/Markdown",
+      "transport": "stdio",
+      "command": "uvx",
+      "args": ["mcp-server-fetch"],
+      "env": [],
+      "default_enabled": true,
+      "source": "scripts/sync-cross-tool.sh (v1)"
+    },
+    {
+      "name": "next-devtools",
+      "description": "Next.js dev tools MCP",
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "next-devtools-mcp"],
+      "env": [],
+      "default_enabled": true,
+      "source": "user/docs/MCPS.md"
+    },
+    {
+      "name": "svelte",
+      "description": "Svelte docs lookup + autofixer",
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "@sveltejs/mcp"],
+      "env": [],
+      "default_enabled": true,
+      "source": "user/docs/MCPS.md"
+    },
+    {
+      "name": "vue-devtools",
+      "description": "Vue + Vite dev tools MCP",
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "vue-mcp-server"],
+      "env": [],
+      "default_enabled": true,
+      "source": "user/docs/MCPS.md"
+    },
+    {
+      "name": "firecrawl",
+      "description": "Web scraping/crawling via Firecrawl",
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"],
+      "env": ["FIRECRAWL_API_KEY"],
+      "default_enabled": false,
+      "source": "user/docs/MCPS.md"
+    },
+    {
+      "name": "browserbase",
+      "description": "Cloud browser automation (account required)",
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "@browserbasehq/mcp-server-browserbase"],
+      "env": ["BROWSERBASE_API_KEY", "BROWSERBASE_PROJECT_ID"],
+      "default_enabled": false,
+      "source": "user/docs/MCPS.md"
+    },
+    {
+      "name": "github",
+      "description": "GitHub API — repos, issues, PRs",
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": ["GITHUB_PERSONAL_ACCESS_TOKEN"],
+      "default_enabled": false,
+      "source": "scripts/sync-cross-tool.sh (v1)"
+    },
+    {
+      "name": "puppeteer",
+      "description": "Local browser automation via Puppeteer (superseded by playwright for new setups)",
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+      "env": [],
+      "default_enabled": false,
+      "source": "scripts/sync-cross-tool.sh (v1)"
+    },
+    {
+      "name": "lightpanda",
+      "description": "Fast headless browser (local binary from scripts/install-lightpanda.sh)",
+      "transport": "stdio",
+      "command": "lightpanda",
+      "args": ["mcp"],
+      "env": [],
+      "default_enabled": false,
+      "source": "scripts/sync-cross-tool.sh (v1)"
+    },
+    {
+      "name": "obsidian",
+      "description": "Obsidian vault read/write/search; append your vault path as a final arg (v1 installer used $OBSIDIAN_VAULT, default ~/Desktop/ACTIVITIES)",
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "obsidian-mcp"],
+      "env": [],
+      "default_enabled": false,
+      "source": "scripts/install-obsidian.sh"
+    }
+  ]
+}

@@ -7,7 +7,7 @@
 #        - colors (primary, normal, bright) → Warp theme YAML
 #        - font family + size
 #        - blur/transparency hint (Warp's own transparency setting)
-#   3. Generate a Warp theme file at ~/.warp/themes/claude-universal.yaml
+#   3. Generate a Warp theme file at ~/.warp/themes/universal-agentic-setup.yaml
 #   4. Set up shell aliases that Warp will inherit via your ~/.zshrc
 #
 # What this does NOT do:
@@ -80,7 +80,7 @@ def hex_of(s):
 # Warp theme format: YAML with specific field names
 # Reference: https://docs.warp.dev/features/appearance/custom-themes
 theme = {
-    'name': 'claude-universal',
+    'name': 'universal-agentic-setup',
     'accent': hex_of(normal.get('green', '0x88C999')),  # mint green — stand-out
     'background': hex_of(primary.get('background', '0x0a1f0a')),
     'foreground': hex_of(primary.get('foreground', '0xe0e0e0')),
@@ -125,7 +125,7 @@ def to_yaml(d, indent=0):
 
 out_dir = Path.home() / '.warp/themes'
 out_dir.mkdir(parents=True, exist_ok=True)
-out_path = out_dir / 'claude-universal.yaml'
+out_path = out_dir / 'universal-agentic-setup.yaml'
 out_path.write_text(to_yaml(theme) + '\n')
 print(f"✓ wrote {out_path}")
 
@@ -136,17 +136,17 @@ hint = f"""# Warp settings Alacritty can't auto-apply
 #   Window blur:    {'enabled' if window.get('blur') else 'disabled'}
 #   Font:           {font.get('family', 'MesloLGS NF')}
 #   Font size:      {cfg.get('font', {}).get('size', 12.0)}
-#   Active theme:   claude-universal  (auto-imported from this install)
+#   Active theme:   universal-agentic-setup  (auto-imported from this install)
 """
-hint_path = out_dir / 'CLAUDE-UNIVERSAL-README.md'
+hint_path = out_dir / 'UNIVERSAL-AGENTIC-SETUP-README.md'
 hint_path.write_text(hint)
 print(f"✓ wrote settings hint: {hint_path}")
 PY
 
 # ── 3. Shell aliases for AI CLIs (Warp inherits your shell's PATH+aliases) ──
 ZSHRC="$HOME/.zshrc"
-BLOCK_BEGIN='# BEGIN: claude-universal AI CLI aliases'
-BLOCK_END='# END: claude-universal AI CLI aliases'
+BLOCK_BEGIN='# BEGIN: universal-agentic-setup AI CLI aliases'
+BLOCK_END='# END: universal-agentic-setup AI CLI aliases'
 
 if [[ -f "$ZSHRC" ]]; then
   if ! grep -qF "$BLOCK_BEGIN" "$ZSHRC"; then
@@ -184,10 +184,10 @@ NEXT STEPS (manual — Warp's opacity/blur/font/keybinds aren't file-configurabl
        - Log in is OPTIONAL — Warp works without an account (some AI features are gated behind it)
 
   3. Apply the migrated theme:
-       Settings → Appearance → Themes → "claude-universal" (auto-imported from ~/.warp/themes/)
+       Settings → Appearance → Themes → "universal-agentic-setup" (auto-imported from ~/.warp/themes/)
 
   4. Manually set the UI-only bits per your Alacritty config (values in
-     ~/.warp/themes/CLAUDE-UNIVERSAL-README.md):
+     ~/.warp/themes/UNIVERSAL-AGENTIC-SETUP-README.md):
        - Window opacity ~90%
        - Window blur: on
        - Font: MesloLGS NF, size 12
