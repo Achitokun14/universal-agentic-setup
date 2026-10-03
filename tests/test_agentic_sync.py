@@ -265,6 +265,53 @@ class TestApplyIdempotency(Sandbox):
         self.assertEqual(after1, after2, "second apply must be byte-identical everywhere")
 
 
+class TestManifestSequencing(Sandbox):
+    """Regression: setup.sh runs agentic_sync twice (phase 1: --only claude-code,
+    phase 4: full sweep). The second run must record every wired agent, keep the
+    no-op agent's recorded state, and stay byte-identical on a third run."""
+
+    def test_phase1_then_full_sweep_records_all(self):
+        r1 = run_sync("--apply", "--only", "claude-code,codex,gemini-cli,opencode", home=self.home)
+        self.assertEqual(r1.returncode, 0, r1.stderr)
+        # full sweep ends with manual/no-op agents — must not discard records
+        r2 = run_sync("--apply", home=self.home)
+        self.assertEqual(r2.returncode, 0, r2.stderr)
+        manifest = json.loads(
+            (self.home / ".universal-agentic-manifest.json").read_text(encoding="utf-8"))
+        recorded = set(manifest["agents"])
+        for expect in ("claude-code", "codex", "gemini-cli", "opencode"):
+            self.assertIn(expect, recorded)
+        # no-op re-run of a previously recorded agent must NOT drop its state
+        r3 = run_sync("--apply", "--only", "claude-code", home=self.home)
+        self.assertEqual(r3.returncode, 0, r3.stderr)
+        manifest3 = json.loads(
+            (self.home / ".universal-agentic-manifest.json").read_text(encoding="utf-8"))
+        self.assertIn("claude-code", manifest3["agents"])
+        # byte-identical no-op re-run (manifest untouched when nothing changed)
+        before = (self.home / ".universal-agentic-manifest.json").read_bytes()
+        run_sync("--apply", "--only", "claude-code", home=self.home)
+        after = (self.home / ".universal-agentic-manifest.json").read_bytes()
+        self.assertEqual(before, after)
+
+
+    def test_codex_toml_fresh_double_apply_identical(self):
+        """Regression: managed table at file top (fresh config) — the second
+        apply must not gain a leading blank line."""
+        h1, h2 = tempfile.mkdtemp(prefix="uas-t1-"), tempfile.mkdtemp(prefix="uas-t2-")
+        try:
+            run_sync("--apply", "--only", "codex", home=h1)
+            run_sync("--apply", "--only", "codex", home=h1)
+            run_sync("--apply", "--only", "codex", home=h2)
+            a = (Path(h1) / ".codex" / "config.toml").read_bytes()
+            b = (Path(h2) / ".codex" / "config.toml").read_bytes()
+            self.assertEqual(a, b)
+            self.assertFalse(a.startswith(b"\n"))
+        finally:
+            import shutil
+            shutil.rmtree(h1, ignore_errors=True)
+            shutil.rmtree(h2, ignore_errors=True)
+
+
 class TestUnrelatedKeysPreserved(Sandbox):
     def test_user_entries_and_top_level_keys_survive(self):
         (self.home / ".cursor").mkdir()

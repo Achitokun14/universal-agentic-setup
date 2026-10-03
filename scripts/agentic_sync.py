@@ -297,6 +297,10 @@ def toml_mcp_merge(existing_text, servers):
         span = _toml_find_table(out, srv["name"])
         if span:
             del out[span[0]:span[1]]
+            # a separator blank above the deleted span must not become a
+            # leading blank line (breaks byte-idempotency)
+            while out and out[0].strip() == "":
+                out.pop(0)
         body = "\n".join(out).rstrip("\n")
         block = _toml_render_table(srv)
         new = body + "\n\n" + block if body else block
@@ -453,8 +457,10 @@ class Sync:
         rec = {"context": [], "mcp": None, "managed_mcp": [], "created": [], "backups": {}}
 
         def harvest():
-            for rel, kind in self.store.changed:
-                if kind == "created":
+            # snapshot (do not consume — the plan printer and save gate read
+            # the same list); dedupe so context+mcp harvests don't double-count
+            for rel, kind in list(self.store.changed):
+                if kind == "created" and rel not in rec["created"]:
                     rec["created"].append(rel)
 
         # (a) context managed block
@@ -517,16 +523,30 @@ class Sync:
         old = self.load_manifest() or {}
         agents = old.get("agents", {})
         for aid, rec in records.items():
-            if not any([rec.get("context"), rec.get("mcp")]):
-                agents.pop(aid, None)
-                continue
             prev = agents.get(aid, {})
-            created = sorted(set(prev.get("created", [])) | set(rec.get("created", [])))
-            rec["created"] = created
-            backups = prev.get("backups", {})
-            backups.update(rec.get("backups") or {})
-            rec["backups"] = backups
-            agents[aid] = rec
+            rec_has_state = any([rec.get("context"), rec.get("mcp")])
+            prev_has_state = any([prev.get("context"), prev.get("mcp")])
+            if not rec_has_state:
+                if not prev_has_state:
+                    agents.pop(aid, None)  # never had state → nothing to record
+                # else: no-op this run, but the previously recorded state stands
+                continue
+            ctx = list(prev.get("context") or [])
+            for rel in rec.get("context") or []:
+                if rel not in ctx:
+                    ctx.append(rel)
+            managed = list(prev.get("managed_mcp") or [])
+            for name in rec.get("managed_mcp") or []:
+                if name not in managed:
+                    managed.append(name)
+            merged = {
+                "context": ctx,
+                "mcp": rec.get("mcp") or prev.get("mcp"),
+                "managed_mcp": managed,
+                "created": sorted(set(prev.get("created", [])) | set(rec.get("created", []))),
+                "backups": {**prev.get("backups", {}), **(rec.get("backups") or {})},
+            }
+            agents[aid] = merged
         manifest = {
             "name": MARKER,
             "version": version(),
@@ -761,6 +781,7 @@ def cmd_plan_apply(sync, apply=False, only=None, skip=None, skills=False):
         say("  ! v1 manifest detected — run v1 './setup --uninstall' first (MIGRATION.md)\n")
 
     records = {}
+    changed_total = 0
     only_ids = {s.strip() for s in (only or "").split(",") if s.strip()}
     for agent in selected:
         aid = agent["id"]
@@ -777,6 +798,7 @@ def cmd_plan_apply(sync, apply=False, only=None, skip=None, skills=False):
         how = det.get(aid, "forced via --only")
         say(f"● {aid} — detected via {how}")
         rec = sync.apply_agent(agent)
+        changed_total += len(sync.store.changed)
         for rel, kind in sync.store.changed:
             say(f"  {'+' if kind == 'created' else '~'} {rel}" + ("  (dry-run)" if sync.dry else ""))
         sync.store.changed = []
@@ -786,7 +808,7 @@ def cmd_plan_apply(sync, apply=False, only=None, skip=None, skills=False):
         sync.run_skills()
         say("")
     if apply:
-        if sync.store.changed or sync.load_manifest() is None:
+        if changed_total or sync.load_manifest() is None:
             sync.save_manifest(records)
         say(f"done — manifest: {sync.manifest_path}")
     else:

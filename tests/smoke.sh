@@ -8,6 +8,13 @@ set -euo pipefail
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 TMPHOME="$(mktemp -d -t uas-smoke-XXXXXX)"
 TMPOUT="$(mktemp -t uas-smoke-out-XXXXXX)"
+# Full sandbox: redirect every home-ish variable for the WHOLE suite so no
+# child process (hooks, installers, python) can touch the real home.
+export HOME="$TMPHOME"
+export USERPROFILE="$TMPHOME"
+export APPDATA="$TMPHOME/AppData/Roaming"
+export XDG_CONFIG_HOME="$TMPHOME/.config"
+export UNIVERSAL_AGENTIC_HOME="$TMPHOME"
 PASS=0
 FAIL=0
 

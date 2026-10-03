@@ -99,8 +99,8 @@ except Exception:
 data.update({
     "name": "universal-agentic-setup",
     "version": os.environ["VERSION"],
-    "installed_at": data.get("installed_at") or datetime.datetime.utcnow().isoformat(timespec="seconds") + "Z",
-    "updated_at": datetime.datetime.utcnow().isoformat(timespec="seconds") + "Z",
+    "installed_at": data.get("installed_at") or datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
+    "updated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
     "bundle_dir": os.environ["BUNDLE_DIR"],
     "addons": os.environ.get("SETUP_WITH", ""),
     "host": {"os": os.environ["OS"], "distro": os.environ["DISTRO"], "arch": os.environ["ARCH"]},
