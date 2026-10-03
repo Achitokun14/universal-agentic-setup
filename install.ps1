@@ -1,5 +1,5 @@
-#!/usr/bin/env pwsh
-# Universal Claude Code bundle installer — MERGE mode (PowerShell twin of install.sh).
+﻿#!/usr/bin/env pwsh
+# universal-agentic-setup — Claude-canonical installer — MERGE mode (PowerShell twin of install.sh).
 # Never overwrites existing configs: deep-merges JSON, appends managed blocks to markdown.
 #
 # Usage:
@@ -136,7 +136,7 @@ function Merge-Json([string]$ExistingPath, [string]$BundlePath) {
 function Install-ManagedMd([string]$TargetPath, [string]$BundlePath) {
     # PREFIX-only check: actual markers in the bundle templates include a trailing
     # comment ("(do not edit between these markers — rerun installer to update)").
-    $beginPrefix = '<!-- BEGIN: claude-universal managed block'
+    $beginPrefix = '<!-- BEGIN: universal-agentic-setup managed block'
     $bundleText  = (Get-Content -Raw $BundlePath).Trim()
 
     if ((Test-Path $TargetPath) -and (Select-String -Path $TargetPath -SimpleMatch -Pattern $beginPrefix -Quiet)) {
@@ -144,7 +144,7 @@ function Install-ManagedMd([string]$TargetPath, [string]$BundlePath) {
         $existing = Get-Content -Raw $TargetPath
         # Block-with-surrounding-blank-lines regex; collapses ALL occurrences.
         $pattern = [regex]::new(
-            '\n*<!-- BEGIN: claude-universal managed block.*?<!-- END: claude-universal managed block -->\n*',
+            '\n*<!-- BEGIN: universal-agentic-setup managed block.*?<!-- END: universal-agentic-setup managed block -->\n*',
             'Singleline'
         )
         $cleaned = $pattern.Replace($existing, '').TrimEnd()
@@ -173,7 +173,7 @@ function Merge-Gitignore([string]$TargetPath, [string]$BundlePath) {
     foreach ($line in Get-Content -LiteralPath $BundlePath) {
         if (-not $line -or $line.StartsWith('#')) { continue }
         if ($existing -notcontains $line) {
-            if (-not $added) { $toAdd += ''; $toAdd += '# claude-universal'; $added = $true }
+            if (-not $added) { $toAdd += ''; $toAdd += '# universal-agentic-setup'; $added = $true }
             $toAdd += $line
         }
     }
@@ -211,7 +211,7 @@ if ($Mode -eq 'user') {
 
     # CLAUDE.md & AGENTS.md managed blocks
     Install-ManagedMd (Join-Path $ClaudeDir 'CLAUDE.md') (Join-Path $BundleDir 'user/CLAUDE.md')
-    Install-ManagedMd (Join-Path $ClaudeDir 'AGENTS.md') (Join-Path $BundleDir 'user/AGENTS.md')
+    Install-ManagedMd (Join-Path $ClaudeDir 'AGENTS.md') (Join-Path $BundleDir 'core/AGENTS.md')
 
     # Hooks — add only if missing; skip .universal side-copy if byte-identical
     Get-ChildItem -Path (Join-Path $BundleDir 'user/hooks') -Filter '*.sh' -File -ErrorAction SilentlyContinue | ForEach-Object {
@@ -263,6 +263,20 @@ if ($Mode -eq 'user') {
                 Say "command: installed $($_.Name)"
             }
         }
+    }
+
+    # v2 — agent-neutral sync (core/AGENTS.md block + core/mcp catalog for this agent)
+    $py = Get-Command python -ErrorAction SilentlyContinue
+    if (-not $py) { $py = Get-Command python3 -ErrorAction SilentlyContinue }
+    if ($DryRun) {
+        Say 'agentic_sync: would run --apply --only claude-code'
+    }
+    elseif ($py) {
+        & $py.Source (Join-Path $BundleDir 'scripts/agentic_sync.py') --apply --only claude-code
+        if ($LASTEXITCODE -ne 0) { Warn 'agentic_sync exited non-zero' }
+    }
+    else {
+        Warn 'python not found — agent-neutral sync skipped'
     }
 
     Say 'done. Next: start a new Claude Code session to load merged settings.'

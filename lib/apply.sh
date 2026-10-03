@@ -48,14 +48,12 @@ apply_scaffolding() {
 apply_cross_tool_sync() {
   _only_user && { hint "skip agent sync (--only=user)"; return; }
   _should_skip sync && { hint "skip agent sync (--skip)"; return; }
-  step "4/8 — wire detected AI CLIs"
-  if [[ "$SETUP_DRY" -eq 1 ]]; then
-    hint "(dry-run) bash scripts/sync-cross-tool.sh"
-    hint "(dry-run) bash scripts/sync-cross-tool-native.sh"
-  else
-    bash "$BUNDLE_DIR/scripts/sync-cross-tool.sh"        2>&1 | tail -5 || true
-    bash "$BUNDLE_DIR/scripts/sync-cross-tool-native.sh" 2>&1 | tail -5 || true
-  fi
+  step "4/8 — wire every detected agent (agentic_sync.py)"
+  local mode=""; [[ "$SETUP_DRY" -eq 1 ]] || mode="--apply"
+  local py_bin="python3"
+  command -v python3 >/dev/null 2>&1 || py_bin="python"
+  command -v "$py_bin" >/dev/null 2>&1 || { warn "no python on PATH — agent sync skipped"; return; }
+  "$py_bin" "$BUNDLE_DIR/scripts/agentic_sync.py" $mode 2>&1 | tail -20 || warn "agent sync exited non-zero"
 }
 
 apply_addons() {
@@ -82,25 +80,35 @@ apply_addons() {
 
 apply_manifest() {
   step "6/8 — write manifest"
-  local manifest="$HOME/.claude/.claude-universal-manifest.json"
+  local manifest="$HOME/.universal-agentic-manifest.json"
   if [[ "$SETUP_DRY" -eq 1 ]]; then
     hint "(dry-run) write $manifest"
     return
   fi
-  mkdir -p "$HOME/.claude"
-  cat > "$manifest" <<EOF
-{
-  "version": "$VERSION",
-  "installed_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
-  "bundle_dir": "$BUNDLE_DIR",
-  "addons": "${SETUP_WITH:-}",
-  "host": {
-    "os": "$OS",
-    "distro": "$DISTRO",
-    "arch": "$ARCH"
-  }
-}
-EOF
+  # Merge setup state into the v2 manifest (agents section is owned by
+  # agentic_sync.py — never clobbered here).
+  MANIFEST="$manifest" VERSION="$VERSION" BUNDLE_DIR="$BUNDLE_DIR" \
+  SETUP_WITH="${SETUP_WITH:-}" OS="$OS" DISTRO="$DISTRO" ARCH="$ARCH" \
+  python3 - <<'PYEOF'
+import json, os, datetime
+path = os.environ["MANIFEST"]
+try:
+    data = json.load(open(path, encoding="utf-8"))
+except Exception:
+    data = {}
+data.update({
+    "name": "universal-agentic-setup",
+    "version": os.environ["VERSION"],
+    "installed_at": data.get("installed_at") or datetime.datetime.utcnow().isoformat(timespec="seconds") + "Z",
+    "updated_at": datetime.datetime.utcnow().isoformat(timespec="seconds") + "Z",
+    "bundle_dir": os.environ["BUNDLE_DIR"],
+    "addons": os.environ.get("SETUP_WITH", ""),
+    "host": {"os": os.environ["OS"], "distro": os.environ["DISTRO"], "arch": os.environ["ARCH"]},
+})
+with open(path, "w", encoding="utf-8", newline="\n") as fh:
+    json.dump(data, fh, indent=2)
+    fh.write("\n")
+PYEOF
   ok "manifest: $manifest"
 }
 

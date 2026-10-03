@@ -67,9 +67,8 @@ claude-universal/
     ├── install-warp.sh                # cc/kc/oc/cw shell aliases
     ├── install-zrok.sh                # ngrok replacement
     ├── prune-skills.sh                # safe Tier-D skill disabler (move not delete)
+    ├── agentic_sync.py                # v2 agent-neutral sync engine (rules + MCP merge, 26 agents)
     ├── scan-skills.sh                 # rebuild skills-inventory.json
-    ├── sync-cross-tool.sh             # portable cross-CLI sync (markdown + MCP)
-    ├── sync-cross-tool-native.sh      # deep per-CLI native sync (skills, agents, providers)
     ├── vw-helper.sh                   # Vaultwarden/Bitwarden helper
     ├── ytdl-to-wiki.sh                # yt-dlp → whisper → wiki
     └── zrok-share.sh                  # zrok tunnel sharing
@@ -102,15 +101,18 @@ Each AI coding CLI has its own native config format. The bundle ships canonical 
 
 | CLI | Native format | Synced via |
 |---|---|---|
-| Claude Code | `~/.claude/{settings.json,CLAUDE.md,hooks/,commands/,skills/}` | `install.sh user` (canonical) |
-| Codex | `~/.codex/{config.toml,skills/,commands/,hooks/}` | `sync-cross-tool-native.sh` (mirrors skills + commands) |
-| Goose | `~/.config/goose/{config.yaml,mcp.json,hooks/,skills/}` | already present (~358 skills); `sync-cross-tool.sh` for MCP |
-| Gemini CLI | `~/.gemini/{settings.json,GEMINI.md,commands/,skills,hooks}` | `gemini hooks migrate` (first-party Claude→Gemini) + `gemini skills link` |
-| Kimi CLI | `~/.kimi/{config.toml,mcp.json}` | `sync-cross-tool-native.sh` (TOML providers + models) |
-| OpenCode | `~/.config/opencode/{opencode.json,AGENTS.md,agent/}` | `sync-cross-tool-native.sh` (custom agents + providers) |
-| Claw Code | `~/.config/claw/{env.sh,models.md}` | env-var driven; no config file beyond aliases |
+v2 replaces the v1 per-tool sync scripts with one agent-neutral engine:
 
-The sync scripts are **idempotent** — running twice yields the same state. They never overwrite user-edited files; instead they detect existing entries and skip.
+```bash
+python3 scripts/agentic_sync.py            # dry-run plan (default)
+python3 scripts/agentic_sync.py --apply    # write configs
+```
+
+It wires **26 agents** (see `docs/AGENTS-MATRIX.md`): managed rules block from
+`core/AGENTS.md` + MCP servers from `core/mcp/servers.json` in each agent's native
+format, preserving unrelated keys and user entries. The engine is **idempotent** —
+running twice yields byte-identical state. It never overwrites user-edited entries;
+existing managed entries are updated in place.
 
 ## Hook event flow (Claude Code)
 

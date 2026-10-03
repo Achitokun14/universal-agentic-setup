@@ -299,8 +299,7 @@ export OLLAMA_HOST="https://ollama.com"
 ### 5. Cross-tool sync (refresh all at once)
 
 ```bash
-bash claude-universal/scripts/sync-cross-tool.sh            # portable subset
-bash claude-universal/scripts/sync-cross-tool-native.sh     # deep per-tool native
+python3 claude-universal/scripts/agentic_sync.py --apply   # 26-agent rules + MCP sync
 ```
 
 ### 6. Verify

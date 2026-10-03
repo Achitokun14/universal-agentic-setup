@@ -79,10 +79,15 @@ detect_helpers() {
 
 # Detect already-installed bundle (for update vs install path)
 detect_bundle_state() {
-  local manifest="$HOME/.claude/.claude-universal-manifest.json"
+  local manifest="$HOME/.universal-agentic-manifest.json"
+  local legacy="$HOME/.claude/.claude-universal-manifest.json"
   if [[ -f "$manifest" ]]; then
     INSTALLED_VERSION="$(jq -r '.version // "unknown"' "$manifest" 2>/dev/null || echo unknown)"
     BUNDLE_STATE=installed
+  elif [[ -f "$legacy" ]]; then
+    INSTALLED_VERSION="$(jq -r '.version // "unknown"' "$legacy" 2>/dev/null || echo unknown)"
+    BUNDLE_STATE=installed
+    say "v1 manifest found ($legacy, version $INSTALLED_VERSION) — see MIGRATION.md"
   else
     INSTALLED_VERSION=""
     BUNDLE_STATE=fresh

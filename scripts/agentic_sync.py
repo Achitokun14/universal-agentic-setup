@@ -577,7 +577,7 @@ class Sync:
                     new, removed = json_mcp_remove(text, fmt, names)
                 if restored is not None and not removed:
                     say(f"  − {aid}: {mcp_rel} restored from backup (no managed entries left)")
-                elif restored is None and new.strip() in ("", "{}\n") and mcp_rel in rec.get("created", []):
+                elif restored is None and new.strip() in ("", "{}") and mcp_rel in rec.get("created", []):
                     if not self.dry:
                         path.unlink()
                     say(f"  − {aid}: removed {mcp_rel} (was created by us)")
@@ -630,7 +630,8 @@ def fail(msg):
 
 def cmd_list(sync, markdown=False):
     if markdown:
-        return list_markdown(sync)
+        print(list_markdown(sync), end="")
+        return 0
     say(f"universal-agentic-setup v{version()} — agent registry "
         f"({len(sync.agents)} agents, "
         f"{sum(1 for a in sync.agents if not a['manual'])} automatable, "

@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-# tests/smoke.sh — basic smoke test for setup.sh.
+# tests/smoke.sh — smoke tests for the universal-agentic-setup entrypoints.
 # Runs ./setup --doctor and ./setup --dry-run --yes against an isolated $HOME.
 # Exits 0 if all expected lines are present, non-zero otherwise.
 
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-TMPHOME="$(mktemp -d -t cu-smoke-XXXXXX)"
-TMPOUT="$(mktemp -t cu-smoke-out-XXXXXX)"
+TMPHOME="$(mktemp -d -t uas-smoke-XXXXXX)"
+TMPOUT="$(mktemp -t uas-smoke-out-XXXXXX)"
 PASS=0
 FAIL=0
 
@@ -21,7 +21,7 @@ contains() {
   if grep -qF -- "$needle" "$file" 2>/dev/null; then ok "$label"; else bad "$label"; fi
 }
 
-echo "=== claude-universal smoke test ==="
+echo "=== universal-agentic-setup smoke test ==="
 echo "  REPO:    $REPO_DIR"
 echo "  TMPHOME: $TMPHOME"
 
@@ -29,7 +29,7 @@ echo "  TMPHOME: $TMPHOME"
 echo
 echo "--- T1: --version ---"
 if "$REPO_DIR/setup" --version > "$TMPOUT" 2>&1; then ok "version exits 0"; else bad "version exits 0"; fi
-expected="claude-universal $(cat "$REPO_DIR/VERSION")"
+expected="universal-agentic-setup $(cat "$REPO_DIR/VERSION")"
 if [[ "$(cat "$TMPOUT")" = "$expected" ]]; then ok "version matches VERSION file"; else bad "version matches VERSION file"; fi
 
 # T2 — help
@@ -50,7 +50,7 @@ echo "--- T4: --dry-run --yes ---"
 if HOME="$TMPHOME" "$REPO_DIR/setup" --dry-run --yes > "$TMPOUT" 2>&1; then ok "dry-run exits 0"; else bad "dry-run exits 0"; fi
 contains "dry-run reaches phase 1" "$TMPOUT" "1/8"
 contains "dry-run reaches phase 8" "$TMPOUT" "8/8"
-if [[ ! -f "$TMPHOME/.claude/.claude-universal-manifest.json" ]]; then ok "dry-run did NOT write manifest"; else bad "dry-run did NOT write manifest"; fi
+if [[ ! -f "$TMPHOME/.universal-agentic-manifest.json" ]]; then ok "dry-run did NOT write manifest"; else bad "dry-run did NOT write manifest"; fi
 
 # T5 — install.sh user --dry-run
 echo
@@ -73,6 +73,26 @@ HOME="$TMPHOME/t7" mkdir -p "$TMPHOME/t7"
 HOME="$TMPHOME/t7" printf '%s' '{"prompt":"hi"}' \
   | HOME="$TMPHOME/t7" "$REPO_DIR/user/hooks/skill-router.sh" > "$TMPOUT" 2>&1 || true
 if [[ ! -s "$TMPOUT" ]]; then ok "router silent on short prompt"; else bad "router silent on short prompt"; fi
+
+# T8 — agentic_sync doctor against an isolated home
+echo
+echo "--- T8: agentic_sync.py --doctor ---"
+if HOME="$TMPHOME" python3 "$REPO_DIR/scripts/agentic_sync.py" --doctor > "$TMPOUT" 2>&1; then ok "doctor exits 0"; else bad "doctor exits 0"; fi
+contains "doctor counts the registry" "$TMPOUT" "26 in registry"
+
+# T9 — agentic_sync apply + uninstall round-trip in an isolated home
+echo
+echo "--- T9: agentic_sync.py apply + uninstall ---"
+if HOME="$TMPHOME" python3 "$REPO_DIR/scripts/agentic_sync.py" --apply --only cursor > "$TMPOUT" 2>&1; then ok "apply exits 0"; else bad "apply exits 0"; fi
+if [[ -f "$TMPHOME/.cursor/mcp.json" ]]; then ok "apply wrote .cursor/mcp.json"; else bad "apply wrote .cursor/mcp.json"; fi
+if grep -q '"duckduckgo"' "$TMPHOME/.cursor/mcp.json" 2>/dev/null; then ok "mcp catalog merged"; else bad "mcp catalog merged"; fi
+if HOME="$TMPHOME" python3 "$REPO_DIR/scripts/agentic_sync.py" --uninstall --apply > "$TMPOUT" 2>&1; then ok "uninstall exits 0"; else bad "uninstall exits 0"; fi
+if [[ ! -f "$TMPHOME/.cursor/mcp.json" ]]; then ok "uninstall removed created file"; else bad "uninstall removed created file"; fi
+
+# T10 — python unittest suite
+echo
+echo "--- T10: python unittest suite ---"
+if (cd "$REPO_DIR" && python3 -m unittest discover -s tests > "$TMPOUT" 2>&1); then ok "unittest suite passes"; else bad "unittest suite passes"; tail -20 "$TMPOUT" >&2; fi
 
 # Summary
 echo

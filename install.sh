@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Universal Claude Code bundle installer — MERGE mode.
+# universal-agentic-setup — Claude-canonical installer — MERGE mode.
 # Never overwrites existing configs: deep-merges JSON, appends managed blocks to markdown.
 #
 # Modes:
@@ -18,7 +18,7 @@ TARGET=""
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --dry-run) DRY_RUN=1; shift ;;
-    --version) echo "claude-universal $VERSION"; exit 0 ;;
+    --version) echo "universal-agentic-setup $VERSION"; exit 0 ;;
     -h|--help) MODE="help"; shift ;;
     user|project) MODE="$1"; shift ;;
     *) TARGET="$1"; shift ;;
@@ -135,7 +135,7 @@ install_managed_md() {
   # Use PREFIX-only check: actual markers in the bundle template include a
   # trailing comment ("(do not edit between these markers — rerun installer to update)")
   # so we match a stable prefix, not the exact string.
-  local begin_prefix='<!-- BEGIN: claude-universal managed block'
+  local begin_prefix='<!-- BEGIN: universal-agentic-setup managed block'
 
   if [[ -f "$target" ]] && grep -qF "$begin_prefix" "$target"; then
     # Replace/collapse existing managed block(s)
@@ -143,11 +143,11 @@ install_managed_md() {
     python3 - "$target" "$bundle" > "$tmp" <<'PY'
 import sys, re
 tgt, bdl = open(sys.argv[1]).read(), open(sys.argv[2]).read()
-# Match any "BEGIN: claude-universal managed block..." through "END: claude-universal managed block -->"
+# Match any "BEGIN: universal-agentic-setup managed block..." through "END: universal-agentic-setup managed block -->"
 # plus surrounding blank lines. Collapse ALL occurrences (historical duplicates) into a SINGLE
 # trailing block.
 pat = re.compile(
-    r"\n*<!-- BEGIN: claude-universal managed block.*?<!-- END: claude-universal managed block -->\n*",
+    r"\n*<!-- BEGIN: universal-agentic-setup managed block.*?<!-- END: universal-agentic-setup managed block -->\n*",
     re.DOTALL,
 )
 cleaned = pat.sub('', tgt).rstrip()
@@ -175,7 +175,7 @@ merge_gitignore() {
     [[ -z "$line" || "$line" =~ ^# ]] && continue
     if ! grep -qxF "$line" "$target" 2>/dev/null; then
       if [[ "$added" -eq 0 ]]; then
-        do_run "printf '\n# claude-universal\n' >> '$target'"
+        do_run "printf '\n# universal-agentic-setup\n' >> '$target'"
         added=1
       fi
       do_run "echo '$line' >> '$target'"
@@ -187,7 +187,7 @@ merge_gitignore() {
 
 usage() {
   cat <<USAGE
-claude-universal installer (v$VERSION)
+universal-agentic-setup installer (v$VERSION)
 
 Usage:
   $0 [--dry-run] user
@@ -239,8 +239,9 @@ if [[ "$MODE" == "user" ]]; then
   # CLAUDE.md — managed block
   install_managed_md "$CLAUDE_DIR/CLAUDE.md" "$BUNDLE_DIR/user/CLAUDE.md"
 
-  # AGENTS.md — managed block (cross-tool alias: Codex/Cursor/OpenCode/Windsurf read this)
-  install_managed_md "$CLAUDE_DIR/AGENTS.md" "$BUNDLE_DIR/user/AGENTS.md"
+  # AGENTS.md — managed block from the agent-neutral core (read by Claude Code,
+  # Codex, Cursor, OpenCode, Windsurf, ...; same source agentic_sync.py uses)
+  install_managed_md "$CLAUDE_DIR/AGENTS.md" "$BUNDLE_DIR/core/AGENTS.md"
 
   # Hooks — only add if missing; skip .universal side-copy if bundle == existing (byte-identical)
   for h in "$BUNDLE_DIR"/user/hooks/*.sh; do
@@ -291,6 +292,14 @@ if [[ "$MODE" == "user" ]]; then
         say "command: installed $name"
       fi
     done
+  fi
+
+  # v2 — agent-neutral sync (core/AGENTS.md block + core/mcp catalog for this agent)
+  if [[ "$DRY_RUN" -eq 1 ]]; then
+    say "agentic_sync: would run --apply --only claude-code"
+  else
+    python3 "$BUNDLE_DIR/scripts/agentic_sync.py" --apply --only claude-code \
+      || warn "agentic_sync failed (python3 required)"
   fi
 
   say "done. Next: start a new Claude Code session to load merged settings."
