@@ -105,8 +105,10 @@ def per_os(spec, okey):
 
 
 def rel_to_home(path, home):
+    # Resolve both sides: macOS temp dirs live under /var -> /private/var, so a
+    # resolved path never sits under an unresolved home.
     try:
-        return str(Path(path).resolve().relative_to(home))
+        return str(Path(path).resolve().relative_to(Path(home).resolve()))
     except ValueError:
         return str(path)
 
@@ -850,6 +852,15 @@ def cmd_uninstall(sync, only=None, skip=None):
 # ------------------------------------------------------------------ main ----
 
 def main(argv=None):
+    # Windows pipes default to the legacy code page (cp1252), which cannot encode the
+    # arrows and dashes in our output: always emit UTF-8 so pipes, CI and consoles agree.
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure:
+            try:
+                reconfigure(encoding="utf-8", errors="replace")
+            except (ValueError, OSError):
+                pass
     parser = argparse.ArgumentParser(
         prog="agentic_sync.py",
         description="Sync the universal-agentic-setup core into every detected agent "
