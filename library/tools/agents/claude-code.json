@@ -1,0 +1,46 @@
+{
+ "id": "claude-code",
+ "name": "Claude Code",
+ "url": "https://code.claude.com/docs/en/settings",
+ "skills_dirs_user": [
+  "~/.claude/skills",
+  "~/.agents/skills"
+ ],
+ "instruction_files": {
+  "files": {
+   "linux": [
+    "~/.claude/AGENTS.md"
+   ],
+   "macos": [
+    "~/.claude/AGENTS.md"
+   ],
+   "windows": [
+    "~/.claude/AGENTS.md"
+   ]
+  },
+  "note": "Claude Code reads AGENTS.md alongside CLAUDE.md; ~/.claude/CLAUDE.md stays owned by the legacy Claude-rich installer (install.sh user)."
+ },
+ "mcp": {
+  "path": {
+   "linux": "~/.claude.json",
+   "macos": "~/.claude.json",
+   "windows": "~/.claude.json"
+  },
+  "format": "claude-json"
+ },
+ "detect": {
+  "binaries": [
+   "claude"
+  ],
+  "paths": [
+   "~/.claude"
+  ]
+ },
+ "install_agent": {
+  "command": "npm i -g @anthropic-ai/claude-code",
+  "evidence": "installed locally via npm (package present)"
+ },
+ "library_installer_agent_id": "claude",
+ "source": "paths copied from agents/registry.json of this repo (vendor-cited there); not re-verified except where noted",
+ "note": "This library only copies skill folders. It never edits instruction files or MCP configs."
+}

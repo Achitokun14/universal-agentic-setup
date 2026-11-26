@@ -1,0 +1,54 @@
+{
+ "buckets": [
+  {
+   "Name": "main",
+   "Source": "https://github.com/ScoopInstaller/Main"
+  }
+ ],
+ "apps": [
+  {
+   "Name": "git",
+   "Source": "main"
+  },
+  {
+   "Name": "gh",
+   "Source": "main"
+  },
+  {
+   "Name": "python",
+   "Source": "main"
+  },
+  {
+   "Name": "uv",
+   "Source": "main"
+  },
+  {
+   "Name": "bun",
+   "Source": "main"
+  },
+  {
+   "Name": "ripgrep",
+   "Source": "main"
+  },
+  {
+   "Name": "jq",
+   "Source": "main"
+  },
+  {
+   "Name": "ffmpeg",
+   "Source": "main"
+  },
+  {
+   "Name": "yt-dlp",
+   "Source": "main"
+  },
+  {
+   "Name": "pandoc",
+   "Source": "main"
+  },
+  {
+   "Name": "poppler",
+   "Source": "main"
+  }
+ ]
+}

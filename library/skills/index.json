@@ -1,0 +1,748 @@
+{
+ "version": 1,
+ "count": 70,
+ "skills": [
+  {
+   "name": "agent-topology-chooser",
+   "description": "Use when choosing how to structure multi-agent or looped work: single agent, loop, router, fan-out",
+   "files": 1,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [],
+   "has_sources": false
+  },
+  {
+   "name": "ai-research-ml",
+   "description": "Use for ML research, fine-tuning, evaluation, local GGUF inference and paper-writing questions; indexes an on-demand skill library by topic.",
+   "files": 8,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "animation-audit-suite",
+   "description": "Use to audit app motion: find missing animations, remove needless ones, or plan fixes; not for one-off builds",
+   "files": 4,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "animation-choreography",
+   "description": "Use when several elements animate from one event: stagger, hero entrance, view swap, exit gap-closing, flows",
+   "files": 3,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "astro-svelte",
+   "description": "Use for Astro or Svelte/SvelteKit code: query the Astro Docs and Svelte MCP docs before writing code",
+   "files": 1,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [],
+   "has_sources": false
+  },
+  {
+   "name": "autoresearch-loop",
+   "description": "Use for metric-driven iteration: bounded modify, verify, keep/discard loops (optimize, fix-until-green, benchmark, eval-harness).",
+   "files": 5,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "awwwards-scrollstory",
+   "description": "Use for art-directed scroll-storytelling pages: scroll-driven motion, WebGL/canvas scenes, video heroes, OSS component sourcing, within performance, i18n and accessibility budgets.",
+   "files": 6,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "batch-worktree-migration",
+   "description": "Use for a big migration or refactor of independent units: plan, isolated worktrees, one verified merge.",
+   "files": 2,
+   "origin": "round-3",
+   "requires": [],
+   "upstream_licenses": [],
+   "has_sources": true
+  },
+  {
+   "name": "ci-cd",
+   "description": "Use when writing or reviewing GitHub Actions or GitLab CI pipelines, deployment gates, or CI secrets handling.",
+   "files": 6,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "cook-visual-match",
+   "description": "Use to match a build to reference images or videos over scored rounds with zero-context critics.",
+   "files": 7,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "design-corrections-to-rules",
+   "description": "Use at session end, when asked, to turn the user's design corrections into rules with reasons in DESIGN.md",
+   "files": 2,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "design-target-first-loop",
+   "description": "Use to start a UI build from references: choose a mockup direction, lock static layout, then add motion",
+   "files": 3,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "diagrams-architecture",
+   "description": "Create Mermaid diagrams (optionally rendered with mmdc) or explorable standalone HTML architecture, sequence and ERD diagrams. Use when the user asks for a diagram.",
+   "files": 116,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "divergent-ideation-lenses",
+   "description": "Use for open-ended, high-stakes ideation, test-strategy or pre-launch audits needing non-default options",
+   "files": 2,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [],
+   "has_sources": false
+  },
+  {
+   "name": "docker",
+   "description": "Use for Dockerfiles, image size/build cache/hardening, and Docker Compose service wiring.",
+   "files": 20,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "Apache-2.0"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "docs-claim-verification",
+   "description": "Use when writing or editing developer docs, API references or code samples that state product behavior",
+   "files": 4,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [
+    "Apache-2.0"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "dogfood-exploratory-qa",
+   "description": "Use for open-ended exploratory QA or bug hunts of a web app with no diff: repro evidence, severity, report.",
+   "files": 5,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [
+    "Apache-2.0"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "egm-dual-pass-review",
+   "description": "Use after a non-trivial code change or design draft to get an independent fresh-context subagent review",
+   "files": 4,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [
+    "Apache-2.0"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "email-react-resend",
+   "description": "Use for React Email templates, Resend API/CLI sending, SPF/DKIM deliverability, safe inbound email",
+   "files": 9,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "engineering-workflow",
+   "description": "Use when implementing, fixing or refactoring code: TDD, root-cause debugging, verify-before-done, commit/PR.",
+   "files": 16,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "CC BY-SA 4.0",
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "expo-animation",
+   "description": "Use for React Native/Expo animation: gestures, sheets, press feedback, haptics, transitions, device jank",
+   "files": 4,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "gesture-driven-ui",
+   "description": "Use for web drag, swipe, sheet or hold gestures that lag the pointer, jump on release, or can't be caught",
+   "files": 3,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "google-workspace",
+   "description": "Use for Gmail, Calendar, Drive, Docs, Sheets, Slides, Tasks, Forms, Chat via the gws CLI",
+   "files": 10,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "Apache-2.0"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "gsap-motion",
+   "description": "Write, review and fix GSAP animation: tweens, timelines, ScrollTrigger, plugins, framework cleanup, performance. Use when the task involves GSAP or scroll-driven animation.",
+   "files": 23,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "hallmark-design-direction",
+   "description": "Use when building a new web page from a prompt that must not look AI-generated: gates, shapes, themes",
+   "files": 13,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "hallmark-redesign-review",
+   "description": "Use to review a built page's hero or finish in fresh context, or audit/redesign an existing site",
+   "files": 3,
+   "origin": "round-1/2",
+   "requires": [
+    "hallmark-design-direction"
+   ],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "harness2-deterministic-script-and-hook-guard",
+   "description": "Use when a task needs exact counts, totals, schema or pixel checks, or finishing must pass real checks.",
+   "files": 2,
+   "origin": "round-3",
+   "requires": [],
+   "upstream_licenses": [],
+   "has_sources": true
+  },
+  {
+   "name": "harness2-propose-probe-compose",
+   "description": "Use when an agent repeats a failure on one task type and each fix must be proven by side-by-side traces.",
+   "files": 2,
+   "origin": "round-3",
+   "requires": [],
+   "upstream_licenses": [],
+   "has_sources": true
+  },
+  {
+   "name": "head-start",
+   "description": "Use before coding a new project or feature: build-vs-buy cost check, plus paper digests if novel.",
+   "files": 2,
+   "origin": "round-3",
+   "requires": [],
+   "upstream_licenses": [],
+   "has_sources": true
+  },
+  {
+   "name": "higgsfield",
+   "description": "Use for paid Higgsfield API image/video generation (Seedance, Kling, Soul ID, Ideogram): always estimate cost and ask the user before submitting.",
+   "files": 7,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "infra-as-code",
+   "description": "Use for writing or reviewing Terraform/OpenTofu, Helm, Kubernetes, Kustomize, Argo CD GitOps, Ansible and IaC security review.",
+   "files": 11,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "invariant-tests-gate",
+   "description": "Use when starting a feature whose non-negotiable product rules need user-approved tests first.",
+   "files": 2,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [],
+   "has_sources": false
+  },
+  {
+   "name": "journey-completion-report",
+   "description": "Use before a release to run scripted browser journeys on critical paths and report pass/fail and latency.",
+   "files": 2,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [],
+   "has_sources": false
+  },
+  {
+   "name": "landing-copy-voice",
+   "description": "Use when writing business website copy: heroes, headings, buttons, brand voice, microcopy, AI-sounding text",
+   "files": 7,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "legal",
+   "description": "Use for contract/NDA review, DPA/DSAR/privacy checks, employment/IP questions; output is an attorney-review draft, not legal advice.",
+   "files": 8,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "Apache-2.0"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "marketing",
+   "description": "Marketing references for positioning, copy, CRO, SEO, email, LinkedIn/social, launch, pricing, A/B tests and growth decisions. Use when the task is marketing strategy or content.",
+   "files": 26,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "media-generation",
+   "description": "Write prompts for, or generate, images, video, music, posters, generative art and GIFs with the lightest suitable tool. Use when the user asks for AI media or code-made art; ask before any paid step.",
+   "files": 17,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "Apache-2.0"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "monorepo-nx-turbo",
+   "description": "Use for Nx or Turborepo workspaces: generators, run/affected tasks, caching, package linking, imports.",
+   "files": 9,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "motion",
+   "description": "Write, review and fix animation with Motion (ex Framer Motion): motion/react, motion-v, animate, springs, layout, performance. Use when a project uses or needs Motion.",
+   "files": 13,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "office-docs",
+   "description": "Use for .docx .pptx .xlsx .pdf files or HTML slides: create, edit, convert, extract text, OCR, fill forms, using open tools (python-docx, openpyxl, pandoc, LibreOffice).",
+   "files": 11,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "outcome-prompting",
+   "description": "Use to rewrite a task prompt as an outcome goal with depth and range, before delegating a build or audit",
+   "files": 1,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [],
+   "has_sources": false
+  },
+  {
+   "name": "plan-and-design",
+   "description": "Use before non-trivial builds: grill requirements, write spec/tickets/ADR, architecture review, handoff.",
+   "files": 14,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "prd-drift-audit",
+   "description": "Use when agent-built code may have drifted from its written spec files, or before building an MVP.",
+   "files": 2,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [],
+   "has_sources": false
+  },
+  {
+   "name": "railway",
+   "description": "Use for Railway: deploy, services, databases, variables, domains, logs, metrics via the railway CLI",
+   "files": 21,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "react-three-fiber",
+   "description": "Use for React Three Fiber (R3F) 3D: Canvas, Drei, glTF, scroll, physics, XR, postprocessing, perf",
+   "files": 5,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [],
+   "has_sources": false
+  },
+  {
+   "name": "research",
+   "description": "Use for web research: quick answers, multi-item deep research, academic review, last-30-days trends",
+   "files": 32,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "CC BY-NC 4.0",
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "security-review",
+   "description": "Use for security audits: diff review, hardening auth/input/secrets, CI agent injection, insecure defaults.",
+   "files": 10,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "CC-BY-SA-4.0",
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "site-visual-direction",
+   "description": "Use when choosing landing-page visuals: photos, product UI cards, diagrams, logos, grounds, effects",
+   "files": 9,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "skill-authoring",
+   "description": "Use to create, edit, review, find or install agent skills and AGENTS.md; scan third-party skills before adopting.",
+   "files": 11,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "Apache-2.0",
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "skill-quality-gates",
+   "description": "Use to gate an agent skill before publishing or installing: structure, portability, score, evals.",
+   "files": 6,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [
+    "Apache-2.0"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "stageshow",
+   "description": "Use for faux product UI: mocked app windows, phones, bento tiles, hero stills, animated cursor demos.",
+   "files": 6,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "stripe",
+   "description": "Use for Stripe integrations: Checkout, subscriptions, Connect, tax, webhooks, API/SDK upgrades",
+   "files": 9,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "style-extraction-diff",
+   "description": "Use to extract exact hex, sizes and spacing from a reference or live page, and diff styles after edits",
+   "files": 2,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [],
+   "has_sources": false
+  },
+  {
+   "name": "supply-chain-audit",
+   "description": "Use to audit project dependencies: CVEs, abandoned/archived upstreams, install scripts, lockfile tree risk.",
+   "files": 8,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "CC-BY-SA-4.0"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "swift-modern-language",
+   "description": "Use when writing, reviewing or migrating Swift 6: concurrency errors, data races, hangs, retain cycles, tests",
+   "files": 5,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "taste-art-direction-gate",
+   "description": "Use before building or restyling a business landing page, and to gate it with browser checks",
+   "files": 9,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "ui-design",
+   "description": "Use for designing, building, critiquing or polishing web UI: layout, type, color, motion, a11y, DESIGN.md",
+   "files": 81,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "Apache-2.0",
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "ui-test-perfect",
+   "description": "Use to run, repair or harden web-app E2E/UI/functional tests with Playwright/Cypress, optional UI-TARS visual checks and firecrawl references; needs the repo path and a running URL.",
+   "files": 1,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [],
+   "has_sources": false
+  },
+  {
+   "name": "ui-variant-prototyping",
+   "description": "Use to explore a UI piece as several genuinely different live variants behind a switcher, then promote one",
+   "files": 3,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "unlazy-parallel",
+   "description": "Use for large multi-requirement builds where agents drop items or self-certify: task tree plus ledger.",
+   "files": 3,
+   "origin": "round-3",
+   "requires": [],
+   "upstream_licenses": [],
+   "has_sources": true
+  },
+  {
+   "name": "vercel-deploy",
+   "description": "Use to deploy on Vercel or tune cost/perf via the authenticated CLI (Next, SvelteKit, Astro, Nuxt); every deploy, promote or settings change is ask-the-user-first.",
+   "files": 6,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "vercel-next-react",
+   "description": "Use for React/Next.js code: perf rules, composition patterns, App Router, caching, bundle size, dev-loop.",
+   "files": 15,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "video-brief-build-review",
+   "description": "Use for programmatic motion-graphics or launch videos: spec first, build from code, review, then render.",
+   "files": 4,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [],
+   "has_sources": false
+  },
+  {
+   "name": "wayfinder-answer-key",
+   "description": "Use before an autonomous build-and-critic loop on a novel app: settle decisions, write pass/fail checks.",
+   "files": 2,
+   "origin": "round-3",
+   "requires": [],
+   "upstream_licenses": [],
+   "has_sources": true
+  },
+  {
+   "name": "web-platform-behavior-checks",
+   "description": "Use after changing UI for layout shift, reduced motion, dark mode or modal dialogs: verify it in a browser.",
+   "files": 3,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [
+    "Apache-2.0"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "web-quality",
+   "description": "Use to audit/improve web pages: performance, Core Web Vitals, WCAG accessibility, SEO, best practices.",
+   "files": 8,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "web-testing",
+   "description": "Use to test/QA a running web app in a real browser: Playwright E2E, UI flows, click-path audits, regression tests; includes a cross-platform dev-server runner script.",
+   "files": 7,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "Apache-2.0",
+    "MIT"
+   ],
+   "has_sources": true
+  },
+  {
+   "name": "web-ui-toolkit",
+   "description": "Use for live web scraping, crawling and extraction (firecrawl, scrape.do, Scrapling fallback chain) and comparing live sites with local code. UI-TARS visual testing lives in ui-test-perfect.",
+   "files": 1,
+   "origin": "consolidated-local",
+   "requires": [
+    "ui-test-perfect"
+   ],
+   "upstream_licenses": [],
+   "has_sources": false
+  },
+  {
+   "name": "workflow-automation-audit",
+   "description": "Use before automating a human operator's workflow with an agent, to audit the real process first",
+   "files": 2,
+   "origin": "round-1/2",
+   "requires": [],
+   "upstream_licenses": [],
+   "has_sources": false
+  },
+  {
+   "name": "writing-clarity",
+   "description": "Use when writing or editing prose: remove AI-slop, write controlled English (STE) for agents and specs, co-author long docs; includes a cross-platform STE lint script.",
+   "files": 18,
+   "origin": "consolidated-local",
+   "requires": [],
+   "upstream_licenses": [
+    "MIT"
+   ],
+   "has_sources": true
+  }
+ ]
+}

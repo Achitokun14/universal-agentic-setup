@@ -1,0 +1,45 @@
+{
+ "id": "opencode",
+ "name": "OpenCode",
+ "url": "https://opencode.ai/docs/config",
+ "skills_dirs_user": [
+  "~/.config/opencode/skills",
+  "~/.agents/skills"
+ ],
+ "instruction_files": {
+  "files": {
+   "linux": [
+    "~/.config/opencode/AGENTS.md"
+   ],
+   "macos": [
+    "~/.config/opencode/AGENTS.md"
+   ],
+   "windows": [
+    "~/.config/opencode/AGENTS.md"
+   ]
+  }
+ },
+ "mcp": {
+  "path": {
+   "linux": "~/.config/opencode/opencode.json",
+   "macos": "~/.config/opencode/opencode.json",
+   "windows": "~/.config/opencode/opencode.json"
+  },
+  "format": "opencode-json"
+ },
+ "detect": {
+  "binaries": [
+   "opencode"
+  ],
+  "paths": [
+   "~/.config/opencode"
+  ]
+ },
+ "install_agent": {
+  "command": "npm i -g opencode-ai",
+  "evidence": "installed locally via npm (package present)"
+ },
+ "library_installer_agent_id": "opencode",
+ "source": "paths copied from agents/registry.json of this repo (vendor-cited there); not re-verified except where noted",
+ "note": "This library only copies skill folders. It never edits instruction files or MCP configs."
+}

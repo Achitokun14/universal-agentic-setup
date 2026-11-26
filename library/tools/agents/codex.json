@@ -1,0 +1,45 @@
+{
+ "id": "codex",
+ "name": "OpenAI Codex CLI",
+ "url": "https://github.com/openai/codex",
+ "skills_dirs_user": [
+  "~/.codex/skills",
+  "~/.agents/skills"
+ ],
+ "instruction_files": {
+  "files": {
+   "linux": [
+    "~/.codex/AGENTS.md"
+   ],
+   "macos": [
+    "~/.codex/AGENTS.md"
+   ],
+   "windows": [
+    "~/.codex/AGENTS.md"
+   ]
+  }
+ },
+ "mcp": {
+  "path": {
+   "linux": "~/.codex/config.toml",
+   "macos": "~/.codex/config.toml",
+   "windows": "~/.codex/config.toml"
+  },
+  "format": "codex-toml"
+ },
+ "detect": {
+  "binaries": [
+   "codex"
+  ],
+  "paths": [
+   "~/.codex"
+  ]
+ },
+ "install_agent": {
+  "command": "npm i -g @openai/codex",
+  "evidence": "installed locally via npm (package present)"
+ },
+ "library_installer_agent_id": "codex",
+ "source": "paths copied from agents/registry.json of this repo (vendor-cited there); not re-verified except where noted",
+ "note": "This library only copies skill folders. It never edits instruction files or MCP configs."
+}

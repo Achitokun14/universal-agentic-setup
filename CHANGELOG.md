@@ -4,6 +4,11 @@ The full version history lives at [user/docs/CHANGELOG.md](user/docs/CHANGELOG.m
 
 For all versions: see [user/docs/CHANGELOG.md](user/docs/CHANGELOG.md).
 
+## [Unreleased]
+
+### Added
+- [`library/`](library/README.md): 70 portable, security-tested agent skills, tool manifests (winget/scoop, apt/dnf, brew), per-agent notes and dry-run-first installers (`library/install.sh`, `library/install.ps1`). Self-contained; the v2 engine above is unchanged. Licence for `library/` left to the owner (`library/LICENSE-CHOICE.md`).
+
 ## [2.0.0] — 2026-10-03
 
 **Renamed `claude-universal` → `universal-agentic-setup`.** One agent-neutral source

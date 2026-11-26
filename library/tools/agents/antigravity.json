@@ -1,0 +1,46 @@
+{
+ "id": "antigravity",
+ "name": "Google Antigravity",
+ "url": "https://antigravity.google/docs/mcp",
+ "skills_dirs_user": [
+  "~/.gemini/config/skills",
+  "~/.agents/skills"
+ ],
+ "instruction_files": {
+  "files": {
+   "linux": [
+    "~/.gemini/AGENTS.md"
+   ],
+   "macos": [
+    "~/.gemini/AGENTS.md"
+   ],
+   "windows": [
+    "~/.gemini/AGENTS.md"
+   ]
+  },
+  "note": "Antigravity shares the ~/.gemini tree with Gemini CLI by design."
+ },
+ "mcp": {
+  "path": {
+   "linux": "~/.gemini/config/mcp_config.json",
+   "macos": "~/.gemini/config/mcp_config.json",
+   "windows": "~/.gemini/config/mcp_config.json"
+  },
+  "format": "serverurl-json"
+ },
+ "detect": {
+  "binaries": [
+   "agy"
+  ],
+  "paths": [
+   "~/.gemini/config"
+  ]
+ },
+ "install_agent": {
+  "command": null,
+  "evidence": "desktop app installer from the vendor site"
+ },
+ "library_installer_agent_id": "antigravity",
+ "source": "paths copied from agents/registry.json of this repo (vendor-cited there); not re-verified except where noted",
+ "note": "This library only copies skill folders. It never edits instruction files or MCP configs."
+}

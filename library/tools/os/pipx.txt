@@ -1,0 +1,4 @@
+# for p in $(grep -v "^#" pipx.txt); do pipx install $p; done
+pip-audit
+uv
+yt-dlp
