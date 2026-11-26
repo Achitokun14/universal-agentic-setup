@@ -49,6 +49,21 @@ Every skill is a folder with `SKILL.md`:
 
 Existing skill folders are skipped. `--update` / `-Update` first moves the old folder to `<skills-dir>-backups/YYYYMMDD/<name>` (a sibling folder that agents do not scan) before replacing it. `shared` is `~/.agents/skills`, which several agents read (see `tools/agents/*.json` for the vendor-cited paths); install to `shared` OR to individual agents, not both, to avoid duplicates.
 
+### Google Antigravity (Antigravity app, IDE and `agy` CLI)
+
+Antigravity reads user-level skills from `~/.gemini/config/skills/<name>/SKILL.md` (global, all projects; the legacy `~/.gemini/antigravity/skills/` is also accepted) and workspace skills from `<project>/.agents/skills/`. The installer target is `antigravity`:
+
+```powershell
+.\install.ps1 -Agents antigravity            # dry run
+.\install.ps1 -Agents antigravity -Apply     # copies the skills into ~/.gemini/config/skills
+```
+
+```bash
+./install.sh --agents antigravity --apply
+```
+
+Antigravity shares the `~/.gemini` tree with Gemini CLI, but the two use different skill folders (`~/.gemini/config/skills` vs `~/.gemini/skills`). Antigravity scans one level deep only, so a skill folder must sit directly in `skills/` (links to a skill folder work; nested collections do not). If a folder already holds links to another agent's copies of a skill, run without `-Update` so those links are kept. Check discovery by starting a new session and asking the agent to list its skills (for `agy`: `agy -p "list your skills"`).
+
 ## Tools
 
 `tools/manifest.json` lists each optional CLI with the skills that use it. winget ids were checked with `winget show` (read-only); scoop/apt/dnf/brew names are unverified: check before use. Examples (run them yourself):

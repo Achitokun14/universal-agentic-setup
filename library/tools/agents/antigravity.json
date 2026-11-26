@@ -3,9 +3,15 @@
  "name": "Google Antigravity",
  "url": "https://antigravity.google/docs/mcp",
  "skills_dirs_user": [
-  "~/.gemini/config/skills",
-  "~/.agents/skills"
+  "~/.gemini/config/skills"
  ],
+ "skills_dirs_legacy": [
+  "~/.gemini/antigravity/skills"
+ ],
+ "skills_dirs_workspace": [
+  "<project>/.agents/skills"
+ ],
+ "skills_url": "https://antigravity.google/docs/skills",
  "instruction_files": {
   "files": {
    "linux": [

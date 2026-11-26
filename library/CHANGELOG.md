@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Antigravity install target documented and verified: `install.sh --agents antigravity` / `install.ps1 -Agents antigravity` copy skills to `~/.gemini/config/skills` (see README); `tools/agents/antigravity.json` lists the verified user and workspace skill folders.
+
 ## 0.1.0 - 2026-11-26
 
 First export of the universal skill library.
