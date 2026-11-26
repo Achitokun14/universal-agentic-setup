@@ -1,0 +1,45 @@
+{
+ "id": "omp",
+ "name": "omp (oh-my-pi)",
+ "url": "https://github.com/can1357/oh-my-pi",
+ "skills_dirs_user": [
+  "~/.omp/agent/skills",
+  "~/.agents/skills"
+ ],
+ "instruction_files": {
+  "files": {
+   "linux": [
+    "~/.omp/agent/AGENTS.md"
+   ],
+   "macos": [
+    "~/.omp/agent/AGENTS.md"
+   ],
+   "windows": [
+    "~/.omp/agent/AGENTS.md"
+   ]
+  }
+ },
+ "mcp": {
+  "path": {
+   "linux": "~/.omp/agent/mcp.json",
+   "macos": "~/.omp/agent/mcp.json",
+   "windows": "~/.omp/agent/mcp.json"
+  },
+  "format": "mcpservers-json"
+ },
+ "detect": {
+  "binaries": [
+   "omp"
+  ],
+  "paths": [
+   "~/.omp"
+  ]
+ },
+ "install_agent": {
+  "command": null,
+  "evidence": "see the project url; install method not verified here"
+ },
+ "library_installer_agent_id": "omp",
+ "source": "paths copied from agents/registry.json of this repo (vendor-cited there); not re-verified except where noted",
+ "note": "This library only copies skill folders. It never edits instruction files or MCP configs."
+}

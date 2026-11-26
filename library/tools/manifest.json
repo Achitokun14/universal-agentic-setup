@@ -1,0 +1,582 @@
+{
+ "version": 1,
+ "updated": "2026-11-26",
+ "note": "Nothing here is installed by this repo. winget ids were checked with `winget show` (read-only); scoop/apt/dnf/brew names are from upstream docs/knowledge and NOT verified on this machine: check before use. Tools are optional; each skill states which it needs and degrades to a manual path.",
+ "tools": [
+  {
+   "name": "git",
+   "why": "version control used by most skills",
+   "used_by": [
+    "ai-research-ml",
+    "animation-audit-suite",
+    "autoresearch-loop",
+    "batch-worktree-migration",
+    "ci-cd",
+    "cook-visual-match",
+    "diagrams-architecture",
+    "docker",
+    "dogfood-exploratory-qa",
+    "engineering-workflow",
+    "google-workspace",
+    "hallmark-redesign-review",
+    "infra-as-code",
+    "marketing",
+    "monorepo-nx-turbo",
+    "plan-and-design",
+    "prd-drift-audit",
+    "security-review",
+    "skill-authoring",
+    "supply-chain-audit",
+    "vercel-deploy",
+    "vercel-next-react",
+    "web-testing"
+   ],
+   "windows": {
+    "winget": "Git.Git",
+    "winget_verified": true,
+    "scoop": "git"
+   },
+   "debian_apt": "git",
+   "fedora_dnf": "git",
+   "macos_brew": "git",
+   "other": null
+  },
+  {
+   "name": "gh",
+   "why": "GitHub CLI (PR/issue workflows)",
+   "used_by": [
+    "ci-cd",
+    "engineering-workflow",
+    "plan-and-design",
+    "railway",
+    "security-review",
+    "skill-authoring",
+    "supply-chain-audit",
+    "web-testing"
+   ],
+   "windows": {
+    "winget": "GitHub.cli",
+    "winget_verified": true,
+    "scoop": "gh"
+   },
+   "debian_apt": "gh",
+   "fedora_dnf": "gh",
+   "macos_brew": "gh",
+   "other": null
+  },
+  {
+   "name": "node",
+   "why": "Node.js + npm/npx (web, motion, e-mail, MCP tooling)",
+   "used_by": [
+    "agent-topology-chooser",
+    "awwwards-scrollstory",
+    "ci-cd",
+    "diagrams-architecture",
+    "docker",
+    "email-react-resend",
+    "engineering-workflow",
+    "expo-animation",
+    "google-workspace",
+    "gsap-motion",
+    "harness2-deterministic-script-and-hook-guard",
+    "higgsfield",
+    "infra-as-code",
+    "media-generation",
+    "monorepo-nx-turbo",
+    "motion",
+    "office-docs",
+    "railway",
+    "react-three-fiber",
+    "research",
+    "security-review",
+    "skill-authoring",
+    "stripe",
+    "taste-art-direction-gate",
+    "ui-test-perfect",
+    "vercel-deploy",
+    "vercel-next-react",
+    "web-platform-behavior-checks",
+    "web-quality",
+    "web-testing"
+   ],
+   "windows": {
+    "winget": "OpenJS.NodeJS.LTS",
+    "winget_verified": true,
+    "scoop": "nodejs-lts"
+   },
+   "debian_apt": "nodejs npm",
+   "fedora_dnf": "nodejs npm",
+   "macos_brew": "node",
+   "other": null
+  },
+  {
+   "name": "python",
+   "why": "Python 3 for bundled stdlib-only scripts",
+   "used_by": [
+    "ai-research-ml",
+    "ci-cd",
+    "cook-visual-match",
+    "docker",
+    "email-react-resend",
+    "engineering-workflow",
+    "harness2-deterministic-script-and-hook-guard",
+    "higgsfield",
+    "infra-as-code",
+    "media-generation",
+    "office-docs",
+    "railway",
+    "research",
+    "security-review",
+    "skill-authoring",
+    "stripe",
+    "supply-chain-audit",
+    "ui-design",
+    "vercel-next-react",
+    "web-platform-behavior-checks",
+    "web-testing",
+    "writing-clarity"
+   ],
+   "windows": {
+    "winget": "Python.Python.3.13",
+    "winget_verified": true,
+    "scoop": "python"
+   },
+   "debian_apt": "python3 python3-pip python3-venv",
+   "fedora_dnf": "python3 python3-pip",
+   "macos_brew": "python@3.13",
+   "other": null
+  },
+  {
+   "name": "uv",
+   "why": "fast Python runner",
+   "used_by": [
+    "ai-research-ml",
+    "ci-cd",
+    "engineering-workflow",
+    "google-workspace",
+    "infra-as-code",
+    "media-generation",
+    "office-docs",
+    "react-three-fiber",
+    "research",
+    "supply-chain-audit",
+    "ui-design"
+   ],
+   "windows": {
+    "winget": "astral-sh.uv",
+    "winget_verified": true,
+    "scoop": "uv"
+   },
+   "debian_apt": null,
+   "fedora_dnf": null,
+   "macos_brew": "uv",
+   "other": "pipx install uv"
+  },
+  {
+   "name": "bun",
+   "why": "JS runtime (optional)",
+   "used_by": [
+    "engineering-workflow",
+    "gsap-motion",
+    "monorepo-nx-turbo",
+    "railway",
+    "vercel-deploy"
+   ],
+   "windows": {
+    "winget": "Oven-sh.Bun",
+    "winget_verified": true,
+    "scoop": "bun"
+   },
+   "debian_apt": null,
+   "fedora_dnf": null,
+   "macos_brew": "oven-sh/bun/bun",
+   "other": "npm i -g bun"
+  },
+  {
+   "name": "ripgrep",
+   "why": "fast code search",
+   "used_by": [
+    "ai-research-ml",
+    "plan-and-design",
+    "security-review",
+    "skill-authoring",
+    "vercel-next-react"
+   ],
+   "windows": {
+    "winget": "BurntSushi.ripgrep.MSVC",
+    "winget_verified": true,
+    "scoop": "ripgrep"
+   },
+   "debian_apt": "ripgrep",
+   "fedora_dnf": "ripgrep",
+   "macos_brew": "ripgrep",
+   "other": null
+  },
+  {
+   "name": "jq",
+   "why": "JSON processing",
+   "used_by": [
+    "ci-cd",
+    "engineering-workflow",
+    "monorepo-nx-turbo",
+    "security-review"
+   ],
+   "windows": {
+    "winget": "jqlang.jq",
+    "winget_verified": true,
+    "scoop": "jq"
+   },
+   "debian_apt": "jq",
+   "fedora_dnf": "jq",
+   "macos_brew": "jq",
+   "other": null
+  },
+  {
+   "name": "ffmpeg",
+   "why": "video/audio processing and frame review",
+   "used_by": [
+    "cook-visual-match",
+    "higgsfield",
+    "media-generation",
+    "video-brief-build-review"
+   ],
+   "windows": {
+    "winget": "Gyan.FFmpeg",
+    "winget_verified": true,
+    "scoop": "ffmpeg"
+   },
+   "debian_apt": "ffmpeg",
+   "fedora_dnf": null,
+   "macos_brew": "ffmpeg",
+   "other": null
+  },
+  {
+   "name": "yt-dlp",
+   "why": "media/transcript download (research skill, ask first)",
+   "used_by": [
+    "research"
+   ],
+   "windows": {
+    "winget": "yt-dlp.yt-dlp",
+    "winget_verified": true,
+    "scoop": "yt-dlp"
+   },
+   "debian_apt": "yt-dlp",
+   "fedora_dnf": null,
+   "macos_brew": "yt-dlp",
+   "other": "pipx install yt-dlp"
+  },
+  {
+   "name": "pandoc",
+   "why": "document conversion",
+   "used_by": [
+    "office-docs"
+   ],
+   "windows": {
+    "winget": "JohnMacFarlane.Pandoc",
+    "winget_verified": true,
+    "scoop": "pandoc"
+   },
+   "debian_apt": "pandoc",
+   "fedora_dnf": "pandoc",
+   "macos_brew": "pandoc",
+   "other": null
+  },
+  {
+   "name": "libreoffice",
+   "why": "headless Office conversion/render",
+   "used_by": [
+    "office-docs"
+   ],
+   "windows": {
+    "winget": "TheDocumentFoundation.LibreOffice",
+    "winget_verified": true,
+    "scoop": "libreoffice"
+   },
+   "debian_apt": "libreoffice",
+   "fedora_dnf": "libreoffice",
+   "macos_brew": "--cask libreoffice",
+   "other": null
+  },
+  {
+   "name": "poppler",
+   "why": "PDF text/image extraction",
+   "used_by": [
+    "office-docs"
+   ],
+   "windows": {
+    "winget": null,
+    "winget_verified": null,
+    "scoop": "poppler"
+   },
+   "debian_apt": "poppler-utils",
+   "fedora_dnf": "poppler-utils",
+   "macos_brew": "poppler",
+   "other": null
+  },
+  {
+   "name": "tesseract",
+   "why": "OCR",
+   "used_by": [
+    "office-docs"
+   ],
+   "windows": {
+    "winget": "UB-Mannheim.TesseractOCR",
+    "winget_verified": true,
+    "scoop": "tesseract"
+   },
+   "debian_apt": "tesseract-ocr",
+   "fedora_dnf": "tesseract",
+   "macos_brew": "tesseract",
+   "other": null
+  },
+  {
+   "name": "docker",
+   "why": "containers (docker skill)",
+   "used_by": [
+    "ci-cd",
+    "docker",
+    "engineering-workflow",
+    "infra-as-code",
+    "monorepo-nx-turbo",
+    "railway",
+    "security-review",
+    "vercel-next-react"
+   ],
+   "windows": {
+    "winget": "Docker.DockerDesktop",
+    "winget_verified": true,
+    "scoop": null
+   },
+   "debian_apt": "docker.io",
+   "fedora_dnf": null,
+   "macos_brew": "--cask docker",
+   "other": null
+  },
+  {
+   "name": "terraform",
+   "why": "IaC (infra-as-code skill)",
+   "used_by": [
+    "ci-cd",
+    "infra-as-code"
+   ],
+   "windows": {
+    "winget": "Hashicorp.Terraform",
+    "winget_verified": true,
+    "scoop": "terraform"
+   },
+   "debian_apt": null,
+   "fedora_dnf": null,
+   "macos_brew": "hashicorp/tap/terraform",
+   "other": null
+  },
+  {
+   "name": "opentofu",
+   "why": "IaC alternative",
+   "used_by": [
+    "infra-as-code"
+   ],
+   "windows": {
+    "winget": "OpenTofu.Tofu",
+    "winget_verified": true,
+    "scoop": "opentofu"
+   },
+   "debian_apt": null,
+   "fedora_dnf": null,
+   "macos_brew": "opentofu",
+   "other": null
+  },
+  {
+   "name": "kubectl",
+   "why": "Kubernetes CLI",
+   "used_by": [
+    "ci-cd",
+    "infra-as-code"
+   ],
+   "windows": {
+    "winget": "Kubernetes.kubectl",
+    "winget_verified": true,
+    "scoop": "kubectl"
+   },
+   "debian_apt": null,
+   "fedora_dnf": null,
+   "macos_brew": "kubernetes-cli",
+   "other": null
+  },
+  {
+   "name": "gitleaks",
+   "why": "secret scanning",
+   "used_by": [
+    "ci-cd",
+    "engineering-workflow",
+    "stripe",
+    "vercel-deploy"
+   ],
+   "windows": {
+    "winget": "Gitleaks.Gitleaks",
+    "winget_verified": true,
+    "scoop": "gitleaks"
+   },
+   "debian_apt": null,
+   "fedora_dnf": null,
+   "macos_brew": "gitleaks",
+   "other": null
+  },
+  {
+   "name": "osv-scanner",
+   "why": "dependency vulnerability scan",
+   "used_by": [
+    "ci-cd",
+    "engineering-workflow",
+    "infra-as-code",
+    "plan-and-design",
+    "security-review",
+    "supply-chain-audit",
+    "web-quality"
+   ],
+   "windows": {
+    "winget": "Google.OSVScanner",
+    "winget_verified": true,
+    "scoop": "osv-scanner"
+   },
+   "debian_apt": null,
+   "fedora_dnf": null,
+   "macos_brew": "osv-scanner",
+   "other": null
+  },
+  {
+   "name": "vale",
+   "why": "prose linter",
+   "used_by": [
+    "writing-clarity"
+   ],
+   "windows": {
+    "winget": "errata-ai.Vale",
+    "winget_verified": true,
+    "scoop": "vale"
+   },
+   "debian_apt": null,
+   "fedora_dnf": null,
+   "macos_brew": "vale",
+   "other": null
+  },
+  {
+   "name": "stripe-cli",
+   "why": "Stripe test webhooks",
+   "used_by": [
+    "stripe"
+   ],
+   "windows": {
+    "winget": "Stripe.StripeCli",
+    "winget_verified": true,
+    "scoop": "stripe"
+   },
+   "debian_apt": null,
+   "fedora_dnf": null,
+   "macos_brew": "stripe/stripe-cli/stripe",
+   "other": null
+  },
+  {
+   "name": "railway-cli",
+   "why": "Railway deploys (ask first)",
+   "used_by": [
+    "railway"
+   ],
+   "windows": {
+    "winget": null,
+    "winget_verified": null,
+    "scoop": null
+   },
+   "debian_apt": null,
+   "fedora_dnf": null,
+   "macos_brew": "railway",
+   "other": "npm i -g @railway/cli"
+  },
+  {
+   "name": "vercel-cli",
+   "why": "Vercel deploys (ask first)",
+   "used_by": [
+    "vercel-deploy"
+   ],
+   "windows": {
+    "winget": null,
+    "winget_verified": null,
+    "scoop": null
+   },
+   "debian_apt": null,
+   "fedora_dnf": null,
+   "macos_brew": null,
+   "other": "npm i -g vercel"
+  },
+  {
+   "name": "mermaid-cli",
+   "why": "render Mermaid diagrams",
+   "used_by": [
+    "diagrams-architecture",
+    "marketing",
+    "office-docs",
+    "plan-and-design"
+   ],
+   "windows": {
+    "winget": null,
+    "winget_verified": null,
+    "scoop": null
+   },
+   "debian_apt": null,
+   "fedora_dnf": null,
+   "macos_brew": null,
+   "other": "npm i -g @mermaid-js/mermaid-cli"
+  },
+  {
+   "name": "pip-audit",
+   "why": "Python dependency audit",
+   "used_by": [
+    "engineering-workflow",
+    "supply-chain-audit"
+   ],
+   "windows": {
+    "winget": null,
+    "winget_verified": null,
+    "scoop": null
+   },
+   "debian_apt": null,
+   "fedora_dnf": null,
+   "macos_brew": null,
+   "other": "pipx install pip-audit"
+  },
+  {
+   "name": "playwright",
+   "why": "browser automation / E2E tests",
+   "used_by": [
+    "astro-svelte",
+    "dogfood-exploratory-qa",
+    "engineering-workflow",
+    "gsap-motion",
+    "higgsfield",
+    "journey-completion-report",
+    "motion",
+    "office-docs",
+    "react-three-fiber",
+    "stageshow",
+    "style-extraction-diff",
+    "taste-art-direction-gate",
+    "ui-test-perfect",
+    "vercel-next-react",
+    "video-brief-build-review",
+    "web-platform-behavior-checks",
+    "web-quality",
+    "web-testing",
+    "web-ui-toolkit"
+   ],
+   "windows": {
+    "winget": null,
+    "winget_verified": null,
+    "scoop": null
+   },
+   "debian_apt": null,
+   "fedora_dnf": null,
+   "macos_brew": null,
+   "other": "npm i -D @playwright/test  or  pip install playwright; then `playwright install` (downloads browsers: ask first)"
+  }
+ ]
+}

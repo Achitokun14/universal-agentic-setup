@@ -1,0 +1,45 @@
+{
+ "id": "gemini-cli",
+ "name": "Gemini CLI",
+ "url": "https://geminicli.com/docs/cli/settings",
+ "skills_dirs_user": [
+  "~/.gemini/skills",
+  "~/.agents/skills"
+ ],
+ "instruction_files": {
+  "files": {
+   "linux": [
+    "~/.gemini/GEMINI.md"
+   ],
+   "macos": [
+    "~/.gemini/GEMINI.md"
+   ],
+   "windows": [
+    "~/.gemini/GEMINI.md"
+   ]
+  }
+ },
+ "mcp": {
+  "path": {
+   "linux": "~/.gemini/settings.json",
+   "macos": "~/.gemini/settings.json",
+   "windows": "~/.gemini/settings.json"
+  },
+  "format": "mcpservers-json"
+ },
+ "detect": {
+  "binaries": [
+   "gemini"
+  ],
+  "paths": [
+   "~/.gemini"
+  ]
+ },
+ "install_agent": {
+  "command": "npm i -g @google/gemini-cli",
+  "evidence": "installed locally via npm (package present)"
+ },
+ "library_installer_agent_id": "gemini",
+ "source": "paths copied from agents/registry.json of this repo (vendor-cited there); not re-verified except where noted",
+ "note": "This library only copies skill folders. It never edits instruction files or MCP configs."
+}

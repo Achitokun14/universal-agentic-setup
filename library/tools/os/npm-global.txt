@@ -1,0 +1,5 @@
+# npm install -g $(cat npm-global.txt | grep -v "^#")
+@mermaid-js/mermaid-cli
+@railway/cli
+bun
+vercel

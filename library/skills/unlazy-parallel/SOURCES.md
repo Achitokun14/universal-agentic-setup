@@ -1,0 +1,6 @@
+# Sources
+
+- Origin 1: compendium `Agentic_Skills_Wayfinder_Unlazy_HeadStart_AstryxMax_UIUXProMax_and_BorisCherny.md`, heading "2.2 `unlazy-parallel`", from video #47 "GitHub's #1 Trending Author's New Claude Skill Is Insane" (channel AI LABS). The compendium says it modifies the project it names as `Leonxlnx/unlazy` (author of `taste-skill`) to run leaf tasks in parallel; it states no license for the modified text and the upstream text was not available here. Background on the laziness problem: `Research_Papers_FPGA_PyTorch_to_Verilog_Compiler_NeuroArXiv_and_SkillSpector_30K_Study.pdf`, section 3 (summary only).
+- Origin 2 (`references/subtask-manifest.md`): same compendium, heading "3.2 `handoff`", from video #51 "Fleet Engineering Is Insane... The Next Evolution Of Vibe Coding" (channel AI LABS).
+- Taken: depth-N tree with leaves of real work, file-ownership plan, command/expected/evidence ledger, no self-grading, give-up rule, per-session manifest fields.
+- Changed: the external checker script is not shipped (run commands yourself or via CI); folder creation and ledger approval gated on the user; gate commands restricted to non-destructive local/test; "agent fraud" wording and the fixed 10-agent figure removed; launch commands for specific products removed.

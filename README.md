@@ -24,7 +24,7 @@ engine that renders it into each agent's native format:
   env var **names** only — never values)
 - `core/skills/catalog.json` — curated skill tiers (21 core / 14 optional / 9
   rejected-with-reason); skills are installed on demand via `npx skills`,
-  the repo itself ships **zero vendored skills**
+  the v2 engine itself vendors **no skills**; the separate [`library/`](library/README.md) folder bundles 70 portable, security-tested skills plus dry-run-first installers
 - `core/tools/catalog.json` — 8 core + 7 optional companion CLIs
 - `agents/registry.json` — per-agent paths, MCP config format, detect hints,
   manual flags — each entry cites its vendor doc; anything the docs leave open

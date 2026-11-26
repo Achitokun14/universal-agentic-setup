@@ -1,0 +1,37 @@
+{
+ "id": "hermes",
+ "name": "Hermes Agent",
+ "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp",
+ "skills_dirs_user": [
+  "~/.hermes/skills",
+  "~/.agents/skills"
+ ],
+ "instruction_files": {
+  "files": null,
+  "note": "AGENTS.md is workspace-scope (--workspace-target); persona lives in SOUL.md. Keep the managed block in each workspace AGENTS.md."
+ },
+ "mcp": {
+  "path": {
+   "linux": "~/.hermes/config.yaml",
+   "macos": "~/.hermes/config.yaml",
+   "windows": "~/.hermes/config.yaml"
+  },
+  "format": null,
+  "note": "Config is YAML \u2014 not merged without third-party YAML libs; secrets live in ~/.hermes/.env."
+ },
+ "detect": {
+  "binaries": [
+   "hermes"
+  ],
+  "paths": [
+   "~/.hermes"
+  ]
+ },
+ "install_agent": {
+  "command": null,
+  "evidence": "see the project url; install method not verified here"
+ },
+ "library_installer_agent_id": "hermes",
+ "source": "paths copied from agents/registry.json of this repo (vendor-cited there); not re-verified except where noted",
+ "note": "This library only copies skill folders. It never edits instruction files or MCP configs."
+}

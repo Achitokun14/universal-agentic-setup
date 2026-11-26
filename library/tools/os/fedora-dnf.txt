@@ -1,0 +1,12 @@
+gh
+git
+jq
+libreoffice
+nodejs
+npm
+pandoc
+poppler-utils
+python3
+python3-pip
+ripgrep
+tesseract

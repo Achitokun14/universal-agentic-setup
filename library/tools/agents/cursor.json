@@ -1,0 +1,37 @@
+{
+ "id": "cursor",
+ "name": "Cursor (IDE + CLI)",
+ "url": "https://cursor.com/docs/mcp",
+ "skills_dirs_user": [
+  "~/.cursor/skills",
+  "~/.agents/skills"
+ ],
+ "instruction_files": {
+  "files": null,
+  "note": "No user-scope rules file: User Rules live in-app, project rules in .cursor/rules/*.mdc. Add core/AGENTS.md content as a User Rule or commit it as repo AGENTS.md (Cursor reads AGENTS.md natively)."
+ },
+ "mcp": {
+  "path": {
+   "linux": "~/.cursor/mcp.json",
+   "macos": "~/.cursor/mcp.json",
+   "windows": "~/.cursor/mcp.json"
+  },
+  "format": "mcpservers-json"
+ },
+ "detect": {
+  "binaries": [
+   "cursor-agent",
+   "cursor"
+  ],
+  "paths": [
+   "~/.cursor"
+  ]
+ },
+ "install_agent": {
+  "command": null,
+  "evidence": "desktop app installer from the vendor site"
+ },
+ "library_installer_agent_id": "cursor",
+ "source": "paths copied from agents/registry.json of this repo (vendor-cited there); not re-verified except where noted",
+ "note": "This library only copies skill folders. It never edits instruction files or MCP configs."
+}

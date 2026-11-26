@@ -1,0 +1,1860 @@
+{
+ "lock": [
+  {
+   "skill": "grill-me",
+   "source": "mattpocock/skills",
+   "path": "skills/productivity/grill-me/SKILL.md",
+   "status": "merged into plan-and-design (stub)",
+   "licence": "see upstream repository",
+   "install": "npx skills add mattpocock/skills --skill grill-me"
+  },
+  {
+   "skill": "docx",
+   "source": "anthropics/skills",
+   "path": "skills/docx/SKILL.md",
+   "status": "catalog only",
+   "licence": "proprietary (all rights reserved) - never redistributed",
+   "install": "npx skills add anthropics/skills --skill docx"
+  },
+  {
+   "skill": "frontend-design",
+   "source": "anthropics/skills",
+   "path": "skills/frontend-design/SKILL.md",
+   "status": "catalog only",
+   "licence": "see upstream repository",
+   "install": "npx skills add anthropics/skills --skill frontend-design"
+  },
+  {
+   "skill": "mcp-builder",
+   "source": "anthropics/skills",
+   "path": "skills/mcp-builder/SKILL.md",
+   "status": "catalog only",
+   "licence": "see upstream repository",
+   "install": "npx skills add anthropics/skills --skill mcp-builder"
+  },
+  {
+   "skill": "pdf",
+   "source": "anthropics/skills",
+   "path": "skills/pdf/SKILL.md",
+   "status": "catalog only",
+   "licence": "proprietary (all rights reserved) - never redistributed",
+   "install": "npx skills add anthropics/skills --skill pdf"
+  },
+  {
+   "skill": "skill-creator",
+   "source": "anthropics/skills",
+   "path": "skills/skill-creator/SKILL.md",
+   "status": "catalog only",
+   "licence": "see upstream repository",
+   "install": "npx skills add anthropics/skills --skill skill-creator"
+  },
+  {
+   "skill": "xlsx",
+   "source": "anthropics/skills",
+   "path": "skills/xlsx/SKILL.md",
+   "status": "catalog only",
+   "licence": "proprietary (all rights reserved) - never redistributed",
+   "install": "npx skills add anthropics/skills --skill xlsx"
+  },
+  {
+   "skill": "build-with-exa",
+   "source": "exa-labs/agent-skills",
+   "path": "skills/build-with-exa/SKILL.md",
+   "status": "catalog only",
+   "licence": "see upstream repository",
+   "install": "npx skills add exa-labs/agent-skills --skill build-with-exa"
+  },
+  {
+   "skill": "skill-scanner",
+   "source": "getsentry/skills",
+   "path": "skills/skill-scanner/SKILL.md",
+   "status": "catalog only",
+   "licence": "see upstream repository",
+   "install": "npx skills add getsentry/skills --skill skill-scanner"
+  },
+  {
+   "skill": "systematic-debugging",
+   "source": "obra/superpowers",
+   "path": "skills/systematic-debugging/SKILL.md",
+   "status": "catalog only",
+   "licence": "see upstream repository",
+   "install": "npx skills add obra/superpowers --skill systematic-debugging"
+  },
+  {
+   "skill": "remotion-best-practices",
+   "source": "remotion-dev/skills",
+   "path": "skills/remotion-best-practices/SKILL.md",
+   "status": "catalog only",
+   "licence": "see upstream repository",
+   "install": "npx skills add remotion-dev/skills --skill remotion-best-practices"
+  },
+  {
+   "skill": "prompt-images",
+   "source": "replicate/skills",
+   "path": "skills/prompt-images/SKILL.md",
+   "status": "catalog only",
+   "licence": "see upstream repository",
+   "install": "npx skills add replicate/skills --skill prompt-images"
+  },
+  {
+   "skill": "prompt-videos",
+   "source": "replicate/skills",
+   "path": "skills/prompt-videos/SKILL.md",
+   "status": "catalog only",
+   "licence": "see upstream repository",
+   "install": "npx skills add replicate/skills --skill prompt-videos"
+  },
+  {
+   "skill": "hf-cli",
+   "source": "huggingface/skills",
+   "path": "skills/hf-cli/SKILL.md",
+   "status": "catalog only",
+   "licence": "see upstream repository",
+   "install": "npx skills add huggingface/skills --skill hf-cli"
+  },
+  {
+   "skill": "docker-build-strategies",
+   "source": "docker/skills",
+   "path": "skills/docker-build-strategies/SKILL.md",
+   "status": "merged into docker",
+   "licence": "see upstream repository",
+   "install": "npx skills add docker/skills --skill docker-build-strategies"
+  },
+  {
+   "skill": "docker-compose-patterns",
+   "source": "docker/skills",
+   "path": "skills/docker-compose-patterns/SKILL.md",
+   "status": "merged into docker",
+   "licence": "see upstream repository",
+   "install": "npx skills add docker/skills --skill docker-compose-patterns"
+  },
+  {
+   "skill": "security-and-hardening",
+   "source": "addyosmani/agent-skills",
+   "path": "skills/security-and-hardening/SKILL.md",
+   "status": "catalog only",
+   "licence": "see upstream repository",
+   "install": "npx skills add addyosmani/agent-skills --skill security-and-hardening"
+  },
+  {
+   "skill": "gsap-scrolltrigger",
+   "source": "greensock/gsap-skills",
+   "path": "skills/gsap-scrolltrigger/SKILL.md",
+   "status": "merged into gsap-motion",
+   "licence": "see upstream repository",
+   "install": "npx skills add greensock/gsap-skills --skill gsap-scrolltrigger"
+  },
+  {
+   "skill": "obsidian-markdown",
+   "source": "kepano/obsidian-skills",
+   "path": "skills/obsidian-markdown/SKILL.md",
+   "status": "catalog only",
+   "licence": "see upstream repository",
+   "install": "npx skills add kepano/obsidian-skills --skill obsidian-markdown"
+  },
+  {
+   "skill": "supabase-postgres-best-practices",
+   "source": "supabase/agent-skills",
+   "path": "skills/supabase-postgres-best-practices/SKILL.md",
+   "status": "catalog only",
+   "licence": "see upstream repository",
+   "install": "npx skills add supabase/agent-skills --skill supabase-postgres-best-practices"
+  },
+  {
+   "skill": "convert-documents-to-markdown",
+   "source": "firecrawl/anydoc",
+   "path": "skills/convert-documents-to-markdown/SKILL.md",
+   "status": "catalog only",
+   "licence": "see upstream repository",
+   "install": "npx skills add firecrawl/anydoc --skill convert-documents-to-markdown"
+  }
+ ],
+ "other": [
+  {
+   "name": "ab-test-setup",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "academic-deep-research",
+   "group": "research / academic",
+   "covered_by": "research"
+  },
+  {
+   "name": "academic-paper",
+   "group": "research / academic",
+   "covered_by": "research"
+  },
+  {
+   "name": "academic-paper-reviewer",
+   "group": "research / academic",
+   "covered_by": "research"
+  },
+  {
+   "name": "academic-pipeline",
+   "group": "research / academic",
+   "covered_by": "research"
+  },
+  {
+   "name": "accessibility",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "ad-creative",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "agent-bridge",
+   "group": "agent orchestration",
+   "covered_by": "agent-topology-chooser"
+  },
+  {
+   "name": "agent-coordination",
+   "group": "agent orchestration",
+   "covered_by": "agent-topology-chooser"
+  },
+  {
+   "name": "agent-eval",
+   "group": "agent orchestration",
+   "covered_by": "agent-topology-chooser"
+  },
+  {
+   "name": "agent-goal-planner",
+   "group": "agent orchestration",
+   "covered_by": "agent-topology-chooser"
+  },
+  {
+   "name": "agent-harness-construction",
+   "group": "agent orchestration",
+   "covered_by": "agent-topology-chooser"
+  },
+  {
+   "name": "agent-introspection-debugging",
+   "group": "agent orchestration",
+   "covered_by": "agent-topology-chooser"
+  },
+  {
+   "name": "agent-orchestrator-task",
+   "group": "agent orchestration",
+   "covered_by": "agent-topology-chooser"
+  },
+  {
+   "name": "agent-sort",
+   "group": "agent orchestration",
+   "covered_by": "agent-topology-chooser"
+  },
+  {
+   "name": "agentic-engineering",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "ai-regression-testing",
+   "group": "language/framework patterns",
+   "covered_by": null
+  },
+  {
+   "name": "ai-seo",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "ai-slop-cleaner",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "analytics-tracking",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "api-connector-builder",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "api-design",
+   "group": "language/framework patterns",
+   "covered_by": null
+  },
+  {
+   "name": "architecture-decision-records",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "article-writing",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "ask",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "aso-audit",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "autonomous-agent-harness",
+   "group": "agent orchestration",
+   "covered_by": "agent-topology-chooser"
+  },
+  {
+   "name": "autonomous-loops",
+   "group": "agent orchestration",
+   "covered_by": "agent-topology-chooser"
+  },
+  {
+   "name": "autopilot",
+   "group": "planning / orchestration",
+   "covered_by": "plan-and-design"
+  },
+  {
+   "name": "autoresearch",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "backend-patterns",
+   "group": "language/framework patterns",
+   "covered_by": null
+  },
+  {
+   "name": "beautiful_prose",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "benchmark",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "blueprint",
+   "group": "planning / orchestration",
+   "covered_by": "plan-and-design"
+  },
+  {
+   "name": "brag",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "brand-voice",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "browser",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "browser-harness",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "browser-qa",
+   "group": "testing/qa",
+   "covered_by": "web-testing"
+  },
+  {
+   "name": "brutalist-skill",
+   "group": "UI / design",
+   "covered_by": "ui-design"
+  },
+  {
+   "name": "bun-runtime",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "canary-watch",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "cancel",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "caveman",
+   "group": "caveman family",
+   "covered_by": null
+  },
+  {
+   "name": "caveman-commit",
+   "group": "caveman family",
+   "covered_by": null
+  },
+  {
+   "name": "caveman-compress",
+   "group": "caveman family",
+   "covered_by": null
+  },
+  {
+   "name": "caveman-help",
+   "group": "caveman family",
+   "covered_by": null
+  },
+  {
+   "name": "caveman-review",
+   "group": "caveman family",
+   "covered_by": null
+  },
+  {
+   "name": "ccg",
+   "group": "planning / orchestration",
+   "covered_by": "plan-and-design"
+  },
+  {
+   "name": "chronology",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "churn-prevention",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "ck",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "claude-api",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "claude-devfleet",
+   "group": "agent orchestration",
+   "covered_by": "agent-topology-chooser"
+  },
+  {
+   "name": "click-path-audit",
+   "group": "testing/qa",
+   "covered_by": "web-testing"
+  },
+  {
+   "name": "code-tour",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "codebase-onboarding",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "coding-standards",
+   "group": "language/framework patterns",
+   "covered_by": null
+  },
+  {
+   "name": "cold-email",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "community-marketing",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "competitor-alternatives",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "configure-notifications",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "content-engine",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "content-hash-cache-pattern",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "content-strategy",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "context-budget",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "context-engineering-skills",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "continue-loop",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "continuous-agent-loop",
+   "group": "agent orchestration",
+   "covered_by": "agent-topology-chooser"
+  },
+  {
+   "name": "continuous-learning",
+   "group": "agent orchestration",
+   "covered_by": "agent-topology-chooser"
+  },
+  {
+   "name": "continuous-learning-v2",
+   "group": "agent orchestration",
+   "covered_by": "agent-topology-chooser"
+  },
+  {
+   "name": "coordinator-orchestrator",
+   "group": "agent orchestration",
+   "covered_by": "agent-topology-chooser"
+  },
+  {
+   "name": "copy-editing",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "copywriting",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "cost-aware-llm-pipeline",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "council",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "crosspost",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "dashboard-builder",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "data-scraper-agent",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "database-migrations",
+   "group": "databases",
+   "covered_by": null
+  },
+  {
+   "name": "debug",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "deep-dive",
+   "group": "research / academic",
+   "covered_by": "research"
+  },
+  {
+   "name": "deep-interview",
+   "group": "planning / orchestration",
+   "covered_by": "plan-and-design"
+  },
+  {
+   "name": "deep-research",
+   "group": "research / academic",
+   "covered_by": "research"
+  },
+  {
+   "name": "deepinit",
+   "group": "planning / orchestration",
+   "covered_by": "plan-and-design"
+  },
+  {
+   "name": "deploy-runbook",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "deploy-verify-loop",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "deployment-patterns",
+   "group": "language/framework patterns",
+   "covered_by": null
+  },
+  {
+   "name": "design-system",
+   "group": "UI / design",
+   "covered_by": "ui-design"
+  },
+  {
+   "name": "dmux-workflows",
+   "group": "agent orchestration",
+   "covered_by": "agent-topology-chooser"
+  },
+  {
+   "name": "docker-patterns",
+   "group": "docker",
+   "covered_by": "docker"
+  },
+  {
+   "name": "documentation-lookup",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "dsar-response",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "e2e-testing",
+   "group": "testing/qa",
+   "covered_by": "web-testing"
+  },
+  {
+   "name": "email-sequence",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "emil-design-eng",
+   "group": "UI / design",
+   "covered_by": "ui-design"
+  },
+  {
+   "name": "eval-harness",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "evaluating-llms-harness",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "everything-claude-code",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "exa-search",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "external-context",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "fal-ai-media",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "flue",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "form-cro",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "frontend-patterns",
+   "group": "language/framework patterns",
+   "covered_by": null
+  },
+  {
+   "name": "frontend-slides",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "gateguard",
+   "group": "security",
+   "covered_by": "security-review"
+  },
+  {
+   "name": "gguf-quantization",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "git-workflow",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "golang-patterns",
+   "group": "language/framework patterns",
+   "covered_by": null
+  },
+  {
+   "name": "golang-testing",
+   "group": "language/framework patterns",
+   "covered_by": null
+  },
+  {
+   "name": "graphify",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-autoplan",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-benchmark",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-benchmark-models",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-browse",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-canary",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-careful",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-codex",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-connect-chrome",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-context-restore",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-context-save",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-cso",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-design-consultation",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-design-html",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-design-review",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-design-shotgun",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-devex-review",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-document-release",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-freeze",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-gstack-upgrade",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-guard",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-health",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-investigate",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-land-and-deploy",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-landing-report",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-learn",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-make-pdf",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-office-hours",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-open-gstack-browser",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-pair-agent",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-plan-ceo-review",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-plan-design-review",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-plan-devex-review",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-plan-eng-review",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-plan-tune",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-qa",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-qa-only",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-retro",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-review",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-scrape",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-setup-browser-cookies",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-setup-deploy",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-setup-gbrain",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-ship",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-skillify",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-sync-gbrain",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "gstack-unfreeze",
+   "group": "gstack family",
+   "covered_by": null
+  },
+  {
+   "name": "handy",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "headroom",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "hive-mind",
+   "group": "agent orchestration",
+   "covered_by": "agent-topology-chooser"
+  },
+  {
+   "name": "hookify-rules",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "html-plan",
+   "group": "planning / orchestration",
+   "covered_by": "plan-and-design"
+  },
+  {
+   "name": "hud",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "huggingface-accelerate",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "impeccable",
+   "group": "UI / design",
+   "covered_by": "ui-design"
+  },
+  {
+   "name": "improve",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "ip-clause-review",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "iterative-retrieval",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "jcode-optimization",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "jira-integration",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "last30days",
+   "group": "research / academic",
+   "covered_by": "research"
+  },
+  {
+   "name": "launch-shadcn-registry",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "launch-strategy",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "lead-intelligence",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "lead-magnets",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "learner",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "linear-claude-skill",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "managing-google-workspace",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "manim-video",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "market-research",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "marketing-ideas",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "marketing-psychology",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "mcp-server-patterns",
+   "group": "language/framework patterns",
+   "covered_by": null
+  },
+  {
+   "name": "mcp-setup",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "minimalist-skill",
+   "group": "UI / design",
+   "covered_by": "ui-design"
+  },
+  {
+   "name": "my-skills",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "nanoppt-skills",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "nestjs-patterns",
+   "group": "language/framework patterns",
+   "covered_by": null
+  },
+  {
+   "name": "nextjs-turbopack",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "notebooklm-skill",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "nuxt4-patterns",
+   "group": "language/framework patterns",
+   "covered_by": null
+  },
+  {
+   "name": "od-shadcn-ui",
+   "group": "UI / design",
+   "covered_by": "ui-design"
+  },
+  {
+   "name": "onboarding-cro",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "opentofu",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "opentui",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "page-cro",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "paid-ads",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "paywall-upgrade-cro",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "peft-fine-tuning",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "plan",
+   "group": "planning / orchestration",
+   "covered_by": "plan-and-design"
+  },
+  {
+   "name": "plan-design-review",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "plankton-code-quality",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "plannotator-annotate",
+   "group": "plannotator family",
+   "covered_by": null
+  },
+  {
+   "name": "plannotator-last",
+   "group": "plannotator family",
+   "covered_by": null
+  },
+  {
+   "name": "plannotator-review",
+   "group": "plannotator family",
+   "covered_by": null
+  },
+  {
+   "name": "platform-design",
+   "group": "UI / design",
+   "covered_by": "ui-design"
+  },
+  {
+   "name": "ponytail",
+   "group": "ponytail family",
+   "covered_by": null
+  },
+  {
+   "name": "ponytail-audit",
+   "group": "ponytail family",
+   "covered_by": null
+  },
+  {
+   "name": "ponytail-debt",
+   "group": "ponytail family",
+   "covered_by": null
+  },
+  {
+   "name": "ponytail-gain",
+   "group": "ponytail family",
+   "covered_by": null
+  },
+  {
+   "name": "ponytail-help",
+   "group": "ponytail family",
+   "covered_by": null
+  },
+  {
+   "name": "ponytail-review",
+   "group": "ponytail family",
+   "covered_by": null
+  },
+  {
+   "name": "popup-cro",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "postgres-patterns",
+   "group": "databases",
+   "covered_by": null
+  },
+  {
+   "name": "pricing-strategy",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "product-capability",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "product-lens",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "product-marketing-context",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "programmatic-seo",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "project-session-manager",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "prompt-optimizer",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "public-apis",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "pypict-claude-skill",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "python-patterns",
+   "group": "language/framework patterns",
+   "covered_by": null
+  },
+  {
+   "name": "python-testing",
+   "group": "language/framework patterns",
+   "covered_by": null
+  },
+  {
+   "name": "railway-database",
+   "group": "railway",
+   "covered_by": "railway"
+  },
+  {
+   "name": "railway-deploy",
+   "group": "railway",
+   "covered_by": "railway"
+  },
+  {
+   "name": "railway-deployment",
+   "group": "railway",
+   "covered_by": "railway"
+  },
+  {
+   "name": "railway-domain",
+   "group": "railway",
+   "covered_by": "railway"
+  },
+  {
+   "name": "railway-environment",
+   "group": "railway",
+   "covered_by": "railway"
+  },
+  {
+   "name": "railway-metrics",
+   "group": "railway",
+   "covered_by": "railway"
+  },
+  {
+   "name": "railway-new",
+   "group": "railway",
+   "covered_by": "railway"
+  },
+  {
+   "name": "railway-projects",
+   "group": "railway",
+   "covered_by": "railway"
+  },
+  {
+   "name": "railway-railway-docs",
+   "group": "railway",
+   "covered_by": "railway"
+  },
+  {
+   "name": "railway-service",
+   "group": "railway",
+   "covered_by": "railway"
+  },
+  {
+   "name": "railway-status",
+   "group": "railway",
+   "covered_by": "railway"
+  },
+  {
+   "name": "railway-templates",
+   "group": "railway",
+   "covered_by": "railway"
+  },
+  {
+   "name": "ralph",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "ralplan",
+   "group": "planning / orchestration",
+   "covered_by": "plan-and-design"
+  },
+  {
+   "name": "react-best-practices",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "recover-skipped",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "redesign-skill",
+   "group": "UI / design",
+   "covered_by": "ui-design"
+  },
+  {
+   "name": "referral-program",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "reg-gap-analysis",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "regex-vs-llm-structured-text",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "release",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "remember",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "repo-scan",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "research-deep",
+   "group": "research / academic",
+   "covered_by": "research"
+  },
+  {
+   "name": "research-improve",
+   "group": "research / academic",
+   "covered_by": "research"
+  },
+  {
+   "name": "research-report",
+   "group": "research / academic",
+   "covered_by": "research"
+  },
+  {
+   "name": "review",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "revops",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "ruflo-agentdb-advanced",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-agentdb-learning",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-agentdb-memory-patterns",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-agentdb-optimization",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-agentdb-vector-search",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-agentic-jujutsu",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-browser",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-flow-nexus-neural",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-flow-nexus-platform",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-flow-nexus-swarm",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-github-code-review",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-github-multi-repo",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-github-project-management",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-github-release-management",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-github-workflow-automation",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-hive-mind-advanced",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-hooks-automation",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-pair-programming",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-performance-analysis",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-reasoningbank-agentdb",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-reasoningbank-intelligence",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-skill-builder",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-sparc-methodology",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-stream-chain",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-swarm-advanced",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-swarm-orchestration",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-verification-quality",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-worker-benchmarks",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "ruflo-worker-integration",
+   "group": "ruflo family (ruvnet/ruflo)",
+   "covered_by": null
+  },
+  {
+   "name": "rules-distill",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "rust-patterns",
+   "group": "language/framework patterns",
+   "covered_by": null
+  },
+  {
+   "name": "rust-testing",
+   "group": "language/framework patterns",
+   "covered_by": null
+  },
+  {
+   "name": "ruv",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "safety-guard",
+   "group": "security",
+   "covered_by": "security-review"
+  },
+  {
+   "name": "sales-enablement",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "santa-method",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "schema-markup",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "sciomc",
+   "group": "research / academic",
+   "covered_by": "research"
+  },
+  {
+   "name": "search-first",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "security-bluebook-builder",
+   "group": "security",
+   "covered_by": "security-review"
+  },
+  {
+   "name": "security-bounty-hunter",
+   "group": "security",
+   "covered_by": "security-review"
+  },
+  {
+   "name": "security-code-audit",
+   "group": "security",
+   "covered_by": "security-review"
+  },
+  {
+   "name": "security-scan",
+   "group": "security",
+   "covered_by": "security-review"
+  },
+  {
+   "name": "self-improve",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "seo",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "seo-audit",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "serving-llms-vllm",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "setup",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "signup-flow-cro",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "site-architecture",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "skill",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "skill-comply",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "skill-rails-upgrade",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "skill-stocktake",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "skillify",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "social-content",
+   "group": "marketing / growth",
+   "covered_by": "marketing"
+  },
+  {
+   "name": "soft-skill",
+   "group": "UI / design",
+   "covered_by": "ui-design"
+  },
+  {
+   "name": "stop-slop",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "strategic-compact",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "swarm-orchestration",
+   "group": "agent orchestration",
+   "covered_by": "agent-topology-chooser"
+  },
+  {
+   "name": "tabular-review",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "taste-skill",
+   "group": "UI / design",
+   "covered_by": "ui-design"
+  },
+  {
+   "name": "tdd-workflow",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "team",
+   "group": "planning / orchestration",
+   "covered_by": "plan-and-design"
+  },
+  {
+   "name": "team-builder",
+   "group": "planning / orchestration",
+   "covered_by": "plan-and-design"
+  },
+  {
+   "name": "terraform-skill",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "theme-factory",
+   "group": "UI / design",
+   "covered_by": "ui-design"
+  },
+  {
+   "name": "token-budget-advisor",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "trace",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "ui-demo",
+   "group": "testing/qa",
+   "covered_by": "web-testing"
+  },
+  {
+   "name": "ui-modernize",
+   "group": "UI / design",
+   "covered_by": "ui-design"
+  },
+  {
+   "name": "ui-skills",
+   "group": "UI / design",
+   "covered_by": "ui-design"
+  },
+  {
+   "name": "ui-ux-pro-max",
+   "group": "UI / design",
+   "covered_by": "ui-design"
+  },
+  {
+   "name": "ultraqa",
+   "group": "testing/qa",
+   "covered_by": "web-testing"
+  },
+  {
+   "name": "ultrawork",
+   "group": "planning / orchestration",
+   "covered_by": "plan-and-design"
+  },
+  {
+   "name": "verification-loop",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "verify",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "video-editing",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "visual-plan",
+   "group": "planning / orchestration",
+   "covered_by": "plan-and-design"
+  },
+  {
+   "name": "visual-verdict",
+   "group": "testing/qa",
+   "covered_by": "web-testing"
+  },
+  {
+   "name": "web-design-guidelines",
+   "group": "UI / design",
+   "covered_by": "ui-design"
+  },
+  {
+   "name": "wiki",
+   "group": "other",
+   "covered_by": null
+  },
+  {
+   "name": "writer-memory",
+   "group": "other",
+   "covered_by": null
+  }
+ ],
+ "withheld_count": 19
+}
